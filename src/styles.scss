@@ -9,6 +9,47 @@ $default-theme : mat-light-theme(mat-palette($mat-indigo,500),mat-palette($mat-d
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html{
+    box-sizing: border-box;
+}
 
+body {
+    position: relative;
+    margin: 0;
+    margin-top: 4em;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(#3F51B5,#3F51B5, #00072E);
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.rounded-box{
+    padding: 1em;
+    background: #fff;
+    color: #333;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.content{
+    padding: 1em 1em 1em 1em;
+}
+
+.footer {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-size: 0.7rem;
+    padding-bottom: 1rem;
+}
+
+.header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
