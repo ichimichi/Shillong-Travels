@@ -1,19 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatIconModule } from '@angular/material';
+import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
+import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
+import { HomePageComponent } from './main/home-page/home-page.component';
+import { PageNotFoundComponent } from './main/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TopNavigationComponent,
+    BottomNavigationComponent,
+    HomePageComponent,
+    PageNotFoundComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
