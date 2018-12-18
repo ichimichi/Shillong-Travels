@@ -12,9 +12,12 @@ html, body {
     height: 100%;
 }
 
+
+
 html{
     box-sizing: border-box;
 }
+
 
 body {
     position: relative;
@@ -35,6 +38,7 @@ body {
 
 .content{
     padding: 1em 1em 1em 1em;
+    
 }
 
 .footer {
@@ -42,11 +46,13 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    position: absolute;
+    position: relative;
     color: white;
     text-align: center;
     font-size: 0.7rem;
     padding-bottom: 1rem;
+    height: 3rem;
+    top: 3rem;
 }
 
 .header {
@@ -54,6 +60,8 @@ body {
     right: 0;
     top: 0;
     width: 100%;
+    z-index: 1;
+    
 }
 
 .align-left{
@@ -66,4 +74,14 @@ body {
 
 .card{
     border: 0.05rem solid rgb(202, 202, 202);
+}
+
+.same-line{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.content {
+    min-height: calc(100vh - 70px);
 }

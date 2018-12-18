@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
 import { SearchResultComponent } from './main/search-result/search-result.component';
 import { BookingCardComponent } from './main/search-result/booking-card/booking-card.component';
 import { TimePipe } from './pipes/time.pipe';
+import { HourPipe } from './pipes/hour.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TimePipe } from './pipes/time.pipe';
     SearchResultComponent,
     BookingCardComponent,
     TimePipe,
+    HourPipe,
   ],
   imports: [
     BrowserModule,

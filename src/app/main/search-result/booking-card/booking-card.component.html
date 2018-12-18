@@ -1,8 +1,24 @@
 <ol *ngFor="let booking of availableBookings">
     <li style="list-style-type: none!important;margin-left: -2.5rem;">
         <div class="rounded-box align-left card">
-            <h1>Departure Time</h1>
-            <span class="time">{{booking.departureTime | time}}</span>
+            <div class="same-line">
+                <div>
+                    <h1>Departure Time</h1>
+                    <span class="time">{{booking.departureTime | time}}</span>
+                </div>
+                <div style="margin-left: 6rem;">
+                    <h1><span>Duration : </span> {{booking.arrivalTime - booking.departureTime | hour}}</h1>
+                </div>
+            </div>
+            <div>
+                <h1>{{booking.agencyName | uppercase }}</h1>
+            </div>
+            <div class="same-line">
+                <button mat-flat-button style="margin-left: -1rem;">click for more details</button>
+                <span class="price">{{booking.price | currency:'INR'}}</span>
+                <button mat-raised-button color="accent">BOOK</button>
+            </div>
         </div>
+
     </li>
 </ol>

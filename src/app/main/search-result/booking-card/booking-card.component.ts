@@ -31,7 +31,62 @@ export class BookingCardComponent implements OnInit {
      availableSeats : 4,
      price : 210,
      agencyName : "Shi Para Agency"
-    }
+    },
+    {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "600",
+      arrivalTime : "900",
+      availableSeats : 5,
+      price : 200,
+      agencyName : "Lei Suk Agency"
+     },
+     {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "700",
+      arrivalTime : "1100",
+      availableSeats : 4,
+      price : 210,
+      agencyName : "Shi Para Agency"
+     },
+     {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "600",
+      arrivalTime : "900",
+      availableSeats : 5,
+      price : 200,
+      agencyName : "Lei Suk Agency"
+     },
+     {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "700",
+      arrivalTime : "1100",
+      availableSeats : 4,
+      price : 210,
+      agencyName : "Shi Para Agency"
+     },
+     {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "600",
+      arrivalTime : "900",
+      availableSeats : 5,
+      price : 200,
+      agencyName : "Lei Suk Agency"
+     },
+     {
+      source:"Shillong",
+      destination: "Guwahati",
+      departureTime: "700",
+      arrivalTime : "1100",
+      availableSeats : 4,
+      price : 210,
+      agencyName : "Shi Para Agency"
+     }
+    
   ];
 
 
