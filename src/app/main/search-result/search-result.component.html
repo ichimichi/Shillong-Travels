@@ -1,0 +1,28 @@
+<div class="rounded-box align-left">
+  <div class="source-destination">
+    {{source}}
+    <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
+    {{destination}}
+  </div>
+  <div class="trip-options">
+    <mat-chip-list *ngFor="let option of searchOptions">
+      <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{option}}</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <!-- <button mat-flat-button color="primary">
+    <mat-icon >keyboard_arrow_up</mat-icon>sort</button> -->
+
+  <mat-form-field>
+    <mat-select [(value)]="selected">
+      <mat-option *ngFor="let sort of sorting" [value]="sort">
+        {{sort}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" style="margin: 0 0 0 4rem;">
+    <mat-icon >filter_list</mat-icon>Filter</button>
+
+  <app-booking-card></app-booking-card>
+</div>

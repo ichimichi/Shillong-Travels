@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
 import { PageNotFoundComponent } from './main/page-not-found/page-not-found.component';
+import { SearchResultComponent } from './main/search-result/search-result.component';
+import { BookingCardComponent } from './main/search-result/booking-card/booking-card.component';
+import { TimePipe } from './pipes/time.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
     BottomNavigationComponent,
     HomePageComponent,
     PageNotFoundComponent,
-    routingComponents
+    routingComponents,
+    SearchResultComponent,
+    BookingCardComponent,
+    TimePipe,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,9 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
