@@ -12,8 +12,8 @@ export class SearchResultComponent implements OnInit {
 
   searchOptions = ["One Way","12/12/2018","1"];
 
-  sorting = ["Time : Earliest","Time : Last","Price : Low to High","Price : High to Low"];
-  selected = "Time : Earliest";
+  sortOptions = ["Time : Earliest","Time : Last","Price : Low to High","Price : High to Low"];
+  selectedSortOption = "Time : Earliest";
   constructor() { }
 
   ngOnInit() {
