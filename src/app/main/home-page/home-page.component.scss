@@ -1,4 +1,42 @@
-.logo-container{
+.section-a{
+    margin-top: 2rem;
+}
+.section-a h1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+}
+
+.section-a h1 span{
+    margin: 0.4rem;
+}
+
+.section-a p{
+    padding: 0 10%;
+    margin: 0;
+}
+
+.section-a button{
+    margin: 2rem auto;
+}
+
+.section-b{
+    margin: 0;
+    margin-top: 3rem;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5rem 3%;
+    align-items: center;
+}
+
+.section-b button{
+    margin-top: 0.5rem;
+    margin-bottom: 1.4rem;
+
+}
+
+.section-c{
     margin-top: 3em;
     text-align: center;
     color: white;
@@ -10,8 +48,4 @@
     font-size: 2em;
     font-weight: 500;
 }
-
-.intro span{
-    font-size: 2rem;
-  }
 
