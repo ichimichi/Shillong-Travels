@@ -1,15 +1,35 @@
+.rounded-box{
+    background: #000 url(../../../assets/images/home-1.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: inherit;
+    height: auto;
+    color: #fff;
+}
+
+.banner .section-c{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
 .section-a{
     margin-top: 2rem;
 }
+
 .section-a h1{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0;
+    margin-bottom: 0.4rem;;
 }
 
 .section-a h1 span{
-    margin: 0.4rem;
+    margin: 0 0.4rem;
 }
 
 .section-a p{
@@ -49,3 +69,24 @@
     font-weight: 500;
 }
 
+@media(min-width:780px){
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(12,minmax(auto,25em));
+        grid-auto-rows: minmax(auto,100px);
+        
+    }
+
+    .rounded-box{
+        grid-column: 1/13;
+        grid-row: 1/7;
+        border-radius: 7px;
+    }
+
+
+    .section-c{
+        grid-column: 11/13;
+        grid-row: 5/7;
+    }
+
+}

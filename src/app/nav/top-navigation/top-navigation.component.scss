@@ -12,3 +12,13 @@
     font-weight: 500;
 }
 
+.desktop-links{
+  display: none;
+}
+
+
+@media(min-width:780px){
+  .desktop-links{
+    display: inline;
+  }
+}
