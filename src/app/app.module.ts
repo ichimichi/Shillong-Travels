@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule} from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule,} from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -43,6 +43,7 @@ import { AccountRegistrationComponent } from './main/account-registration/accoun
     MatSelectModule,
     MatDialogModule,
     MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
