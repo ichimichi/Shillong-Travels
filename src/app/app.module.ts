@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule} from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -13,6 +13,7 @@ import { SearchResultComponent } from './main/search-result/search-result.compon
 import { BookingCardComponent } from './main/search-result/booking-card/booking-card.component';
 import { TimePipe } from './pipes/time.pipe';
 import { HourPipe } from './pipes/hour.pipe';
+import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HourPipe } from './pipes/hour.pipe';
     BookingCardComponent,
     TimePipe,
     HourPipe,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    AccountRegistrationComponent,
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
@@ -39,7 +41,8 @@ import { HourPipe } from './pipes/hour.pipe';
     MatButtonModule,
     MatChipsModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
