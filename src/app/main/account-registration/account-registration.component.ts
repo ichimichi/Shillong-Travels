@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-account-registration',
@@ -8,8 +9,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class AccountRegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
+  registrationForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    gender: [''],
+    date: [''],
+    phone: [''],
+    email: [''],
+    user_type: [''],
+  });
   ngOnInit() {
   }
 
