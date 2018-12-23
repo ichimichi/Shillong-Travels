@@ -1,0 +1,39 @@
+<div class="rounded-box drop-shadow">
+  <div class="content align-left">
+    <h1>SEARCH</h1>
+    <div class="inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Your Origin</mat-label>
+        <input matInput placeholder="SHILLONG">
+        <mat-hint>ORIGIN</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Your Destination</mat-label>
+        <input matInput placeholder="GUWAHATI">
+        <mat-hint>DESTINATION</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selected">
+          <mat-option value="option1">One Way</mat-option>
+          <mat-option value="option2">Round Trip</mat-option>
+        </mat-select>
+        <mat-hint>TYPE</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>DEPARTURE DATE</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput value={{this.clickinput}}>
+        <div matSuffix class="inrdcr">
+     <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
+          <mat-icon (click)="incrementNP()">add_box</mat-icon>
+          </div>
+          <mat-hint>NO. OF PASSENGERS</mat-hint>
+      </mat-form-field>
+      <button class="submit" mat-raised-button color="accent">SUBMIT</button>
+    </div>
+  </div>
+</div>
