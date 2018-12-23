@@ -3,13 +3,23 @@
     <h1>SEARCH</h1>
     <div class="inputs">
       <mat-form-field appearance="outline">
-        <mat-label>Enter Your Origin</mat-label>
-        <input matInput placeholder="SHILLONG">
+        <input matInput aria-label="State" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <span>{{state.name}}</span> |
+            <small>Country: {{state.country}}</small>
+          </mat-option>
+        </mat-autocomplete>
         <mat-hint>ORIGIN</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Enter Your Destination</mat-label>
-        <input matInput placeholder="GUWAHATI">
+        <input matInput aria-label="State" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <span>{{state.name}}</span> |
+            <small>Country: {{state.country}}</small>
+          </mat-option>
+        </mat-autocomplete>
         <mat-hint>DESTINATION</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -28,10 +38,10 @@
       <mat-form-field appearance="outline">
         <input matInput value={{this.clickinput}}>
         <div matSuffix class="inrdcr">
-     <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
+          <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
           <mat-icon (click)="incrementNP()">add_box</mat-icon>
-          </div>
-          <mat-hint>NO. OF PASSENGERS</mat-hint>
+        </div>
+        <mat-hint>NO. OF PASSENGERS</mat-hint>
       </mat-form-field>
       <button class="submit" mat-raised-button color="accent">SUBMIT</button>
     </div>
