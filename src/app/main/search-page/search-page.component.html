@@ -1,49 +1,81 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
-    <h1>SEARCH</h1>
-    <div class="inputs">
-      <mat-form-field appearance="outline">
-        <input matInput aria-label="State" [matAutocomplete]="auto">
+    <h2>SEARCH</h2>
+    <div class="inputs" [formGroup]="searchForm">
+      <div *ngIf="searchForm.invalid && searchForm.touched">
+        <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION CANNOT BE THE SAME</div>
+      </div>
+      <mat-form-field appearance="outline" class="form-group">
+
+        <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin" aria-label="State"
+          [matAutocomplete]="auto" class="form-control">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
             <span>{{state.name}}</span> |
             <small>Country: {{state.country}}</small>
           </mat-option>
         </mat-autocomplete>
-        <mat-hint>ORIGIN</mat-hint>
+        <mat-hint>
+          <div *ngIf="origin.invalid && origin.touched; else elseBlock">
+            <div *ngIf="origin.errors?.required" class="text-danger">ORIGIN is required</div>
+          </div>
+          <ng-template #elseBlock>ORIGIN</ng-template>
+        </mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <input matInput aria-label="State" [matAutocomplete]="auto">
+      <mat-form-field appearance="outline" class="form-group">
+        <input matInput [class.is-invalid]="destination.invalid && destination.touched && searchForm.errors?.misMatch"
+          formControlName="destination" aria-label="State" [matAutocomplete]="auto" class="form-control">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
             <span>{{state.name}}</span> |
             <small>Country: {{state.country}}</small>
           </mat-option>
         </mat-autocomplete>
-        <mat-hint>DESTINATION</mat-hint>
+        <mat-hint>
+          <div *ngIf="destination.invalid && destination.touched; else elseBlck">
+            <div *ngIf="destination.errors?.required" class="text-danger">DESTINATION is required</div>
+          </div>
+          <ng-template #elseBlck>DESTINATION</ng-template>
+        </mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-select [(value)]="selected">
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-select [class.is-invalid]="type.invalid && type.touched" formControlName="type" [(value)]="selected" class="form-control">
           <mat-option value="option1">One Way</mat-option>
           <mat-option value="option2">Round Trip</mat-option>
         </mat-select>
-        <mat-hint>TYPE</mat-hint>
+        <mat-hint>
+          <div *ngIf="type.invalid && type.touched; else elseBlk">
+            <div *ngIf="type.errors?.required" class="text-danger">TYPE is required</div>
+          </div>
+          <ng-template #elseBlk>TYPE</ng-template>
+        </mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <input matInput [matDatepicker]="picker">
+      <mat-form-field appearance="outline" class="form-group">
+        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure_date" [matDatepicker]="picker" class="form-control">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-hint>DEPARTURE DATE</mat-hint>
+        <mat-hint>
+          <div *ngIf="dept_date.invalid && dept_date.touched; else elsBlock">
+            <div *ngIf="dept_date.errors?.required" class="text-danger">DEPARTURE DATE is required</div>
+          </div>
+          <ng-template #elsBlock>DEPARTURE DATE</ng-template>
+        </mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <input matInput value={{this.clickinput}}>
+      <mat-form-field appearance="outline" class="form-group">
+        <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="3" formControlName="no_of_passengers" value={{this.clickinput}} class="form-control">
         <div matSuffix class="inrdcr">
           <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
           <mat-icon (click)="incrementNP()">add_box</mat-icon>
         </div>
-        <mat-hint>NO. OF PASSENGERS</mat-hint>
+        <mat-hint>
+          <div *ngIf="NOP.invalid && NOP.touched ; else elseBlck">
+            <div *ngIf="NOP.errors?.required" class="text-danger">SELECT ATLEAST ONE PASSENGER</div>
+            <div *ngIf="NOP.errors?.min" class="text-danger">INVALID NUMBER OF PASSENGERS</div>
+          </div>
+          <ng-template #elseBlck>NO. OF PASSENGERS</ng-template>
+        </mat-hint>      
       </mat-form-field>
-      <button class="submit" mat-raised-button color="accent">SUBMIT</button>
+      <button class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
     </div>
   </div>
 </div>

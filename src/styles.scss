@@ -38,6 +38,10 @@ a{
     text-decoration: none;
 }
 
+h2{
+    font-size: 1rem;
+}
+
 
 .rounded-box{
     padding: 1em;
@@ -95,4 +99,17 @@ a{
 
 .content {
     min-height: calc(100vh - 70px);
+}
+
+.text-danger
+{
+    color: red;
+}
+
+.formErrors
+{
+    font-size: 0.7rem;
+    margin-bottom: 0.7rem;
+    background: rgb(255, 115, 115);
+    color: #fff;
 }
