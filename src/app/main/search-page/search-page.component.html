@@ -68,11 +68,11 @@
           <mat-icon (click)="incrementNP()">add_box</mat-icon>
         </div>
         <mat-hint>
-          <div *ngIf="NOP.invalid && NOP.touched ; else elseBlck">
+          <div *ngIf="NOP.invalid && NOP.touched ; else elsBlk">
             <div *ngIf="NOP.errors?.required" class="text-danger">SELECT ATLEAST ONE PASSENGER</div>
             <div *ngIf="NOP.errors?.min" class="text-danger">INVALID NUMBER OF PASSENGERS</div>
           </div>
-          <ng-template #elseBlck>NO. OF PASSENGERS</ng-template>
+          <ng-template #elsBlk>NO. OF PASSENGERS</ng-template>
         </mat-hint>      
       </mat-form-field>
       <button class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
