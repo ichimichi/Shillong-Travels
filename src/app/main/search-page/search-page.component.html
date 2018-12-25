@@ -3,7 +3,8 @@
     <h2>SEARCH</h2>
     <div class="inputs" [formGroup]="searchForm">
       <div *ngIf="searchForm.invalid && searchForm.touched">
-        <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION CANNOT BE THE SAME</div>
+        <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION
+          CANNOT BE THE SAME</div>
       </div>
       <mat-form-field appearance="outline" class="form-group">
 
@@ -62,7 +63,16 @@
         </mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
-        <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="3" formControlName="no_of_passengers" value={{this.clickinput}} class="form-control">
+        <input matInput [class.is-invalid]="return_date.invalid && return_date.touched" formControlName="return_date" [matDatepicker]="pickerone" class="form-control">
+        <mat-datepicker-toggle matSuffix [for]="pickerone"></mat-datepicker-toggle>
+        <mat-datepicker #pickerone></mat-datepicker>
+        <mat-hint>
+          RETURN DATE
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-group">
+        <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="1" formControlName="no_of_passengers"
+          value={{this.clickinput}} class="form-control">
         <div matSuffix class="inrdcr">
           <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
           <mat-icon (click)="incrementNP()">add_box</mat-icon>
@@ -73,7 +83,7 @@
             <div *ngIf="NOP.errors?.min" class="text-danger">INVALID NUMBER OF PASSENGERS</div>
           </div>
           <ng-template #elsBlk>NO. OF PASSENGERS</ng-template>
-        </mat-hint>      
+        </mat-hint>
       </mat-form-field>
       <button class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
     </div>
