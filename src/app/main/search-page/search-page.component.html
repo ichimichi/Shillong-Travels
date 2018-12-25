@@ -7,7 +7,6 @@
           CANNOT BE THE SAME</div>
       </div>
       <mat-form-field appearance="outline" class="form-group">
-
         <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin" aria-label="State"
           [matAutocomplete]="auto" class="form-control">
         <mat-autocomplete #auto="matAutocomplete">
@@ -52,7 +51,8 @@
         </mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
-        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure_date" [matDatepicker]="picker" class="form-control">
+        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure_date"
+          [matDatepicker]="picker" class="form-control">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-hint>
@@ -63,7 +63,8 @@
         </mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
-        <input matInput [class.is-invalid]="return_date.invalid && return_date.touched" formControlName="return_date" [matDatepicker]="pickerone" class="form-control">
+        <input matInput [class.is-invalid]="return_date.invalid && return_date.touched" formControlName="return_date"
+          [matDatepicker]="pickerone" class="form-control">
         <mat-datepicker-toggle matSuffix [for]="pickerone"></mat-datepicker-toggle>
         <mat-datepicker #pickerone></mat-datepicker>
         <mat-hint>
