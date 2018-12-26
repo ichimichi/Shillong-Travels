@@ -4,61 +4,70 @@
     <div class="inputs">
       <form [formGroup]="registrationForm">
       <p>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="form-group">
           <mat-label>Enter your first name</mat-label>
-          <input formControlName="firstName" matInput placeholder="FIRST NAME">
+          <input [class.is-invalid]="firstName.invalid && firstName.touched" formControlName="firstName" matInput placeholder="FIRST NAME">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
+          <mat-error *ngIf="firstName.invalid && firstName.touched">
+            <small *ngIf="firstName.errors?.required" class="text-danger">First-name is required</small>
+            <small *ngIf="firstName.errors?.minlength" class="text-danger">First-name must be at least 2 characters</small>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your last name</mat-label>
-          <input formControlName="lastName" matInput placeholder="LAST NAME">
+          <input [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" matInput placeholder="LAST NAME">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
+          <mat-error *ngIf="lastName.invalid && lastName.touched">
+            <small *ngIf="lastName.errors?.required" class="text-danger">Last-name is required</small>
+            <small *ngIf="lastName.errors?.minlength" class="text-danger">Last-name must be at least 2 characters</small>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
-        <mat-radio-group formControlName="gender">
-          Gender:
-          <mat-radio-button  value="F">Female</mat-radio-button>
-          <mat-radio-button value="M">Male</mat-radio-button>
-        </mat-radio-group>
+        <mat-form-field>
+          <select matNativeControl required formControlName="gender">
+            <option value=male>Male</option>
+            <option value="female">Female</option>
+          </select>
+          <mat-error *ngIf="gender.invalid && gender.touched">
+            <small *ngIf="gender.errors?.required" class="text-danger">Gender is required</small>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <small>Select the gender</small>
       </p>
       <p>
         <mat-form-field>
           <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Enter your Date of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="date.invalid && date.touched">
+            <small *ngIf="date.errors?.required" class="text-danger">Date of Birth is required</small>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your phone number</mat-label>
-          <input formControlName="phone" matInput placeholder="PHONE NO.">
+          <input pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" formControlName="phone" matInput placeholder="PHONE NO.">
           <mat-icon matSuffix>settings_phone</mat-icon>
-          <mat-hint>Hint</mat-hint>
+          <mat-error *ngIf="phone.invalid && phone.touched">
+            <small *ngIf="phone.errors?.required" class="text-danger">Phone number is required</small>
+            <small *ngIf="phone.errors?.pattern" class="text-danger">Phone number must be 10 digits</small>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your email-id</mat-label>
-          <input formControlName="email" matInput placeholder="EMAIL-ID">
+          <input pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" [class.is-invalid]="email.invalid && email.touched" formControlName="email" matInput placeholder="EMAIL-ID">
           <mat-icon matSuffix>email</mat-icon>
-          <mat-hint>Hint</mat-hint>
+          <mat-error *ngIf="email.invalid && email.touched">
+            <small *ngIf="email.errors?.pattern" class="text-danger">E-mail is invalid. Hint: test@test.com</small>
+          </mat-error>
         </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field>
-          <select matNativeControl required formControlName="user_type">
-            <option value="independent-driver">Independent Driver</option>
-            <option value="driver-under-agency">Driver Under Agency</option>
-            <option value="customer">Customer</option>
-          </select>
-        </mat-form-field>
-        <br>
-        <small>Select a User Type</small>
       </p>
       <div class="align">
         <button color="accent" mat-raised-button><a href="#">SIGN UP</a></button><br>
