@@ -43,6 +43,10 @@ export class AccountRegistrationComponent implements OnInit {
     phone: ['',[Validators.required,Validators.minLength(10)]],
     email: ['',[Validators.required]],
   });
+
+  onSubmit(){
+    console.log(this.registrationForm.value);
+  }
   ngOnInit() {
   }
 
