@@ -16,10 +16,9 @@ export interface State {
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  clickinput = 1;
   stateCtrl = new FormControl();
   filteredStates: Observable<State[]>;
-
+  searchForm: FormGroup;
   states: State[] = [
     {
       name: 'Shillong',
@@ -44,29 +43,37 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchForm = this.fb.group({
+      origin: ['', Validators.required],
+      destination: ['', Validators.required],
+      type: ['', Validators.required],
+      departure_date: ['', Validators.required],
+      return_date: [{ value: '', disabled: true }],
+      no_of_passengers: [1, Validators.min(1)]
+    }, { validator: DestinationValidator });
+
+    this.searchForm.controls['type'].valueChanges.subscribe(val => {
+      if (val === 'option2') {
+        this.searchForm.controls.return_date.enable();
+      }
+      else {
+        this.searchForm.controls.return_date.disable();
+      }
+    })
   }
 
   incrementNP() {
-    this.clickinput = this.clickinput + 1;
+    this.searchForm.controls['no_of_passengers'].setValue(<number>this.searchForm.controls['no_of_passengers'].value + 1);
   }
   decrementNP() {
-    if (this.clickinput > 1) {
-      this.clickinput = this.clickinput - 1;
+    if (this.searchForm.controls['no_of_passengers'].value > 1) {
+      this.searchForm.controls['no_of_passengers'].setValue(<number>this.searchForm.controls['no_of_passengers'].value - 1);
     }
   }
   private _filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
     return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
   }
-
-  searchForm = this.fb.group({
-    origin: ['', Validators.required],
-    destination: ['', Validators.required],
-    type: ['', Validators.required],
-    departure_date: ['', Validators.required],
-    return_date: [''],
-    no_of_passengers: ['', Validators.min(1)]
-  }, { validator: DestinationValidator })
 
   get origin() {
     return this.searchForm.get('origin');
@@ -88,8 +95,8 @@ export class SearchPageComponent implements OnInit {
     return this.searchForm.get('no_of_passengers');
   }
 
-  get return_date()
-  {
+  get return_date() {
     return this.searchForm.get('return_date');
   }
+
 }

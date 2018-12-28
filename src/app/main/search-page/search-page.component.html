@@ -2,11 +2,13 @@
   <div class="content align-left">
     <h2>SEARCH</h2>
     <div class="inputs" [formGroup]="searchForm">
+      {{searchForm.value|json}}
       <div *ngIf="searchForm.invalid && searchForm.touched">
         <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION
           CANNOT BE THE SAME</div>
       </div>
       <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter your origin</mat-label>
         <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin" aria-label="State"
           [matAutocomplete]="auto" class="form-control">
         <mat-autocomplete #auto="matAutocomplete">
@@ -15,14 +17,12 @@
             <small>Country: {{state.country}}</small>
           </mat-option>
         </mat-autocomplete>
-        <mat-hint>
-          <div *ngIf="origin.invalid && origin.touched; else elseBlock">
-            <div *ngIf="origin.errors?.required" class="text-danger">ORIGIN is required</div>
-          </div>
-          <ng-template #elseBlock>ORIGIN</ng-template>
-        </mat-hint>
+        <mat-error *ngIf="origin.invalid && origin.touched">
+          <small *ngIf="origin.errors?.required" class="text-danger">Origin is required</small>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter your destination</mat-label>
         <input matInput [class.is-invalid]="destination.invalid && destination.touched && searchForm.errors?.misMatch"
           formControlName="destination" aria-label="State" [matAutocomplete]="auto" class="form-control">
         <mat-autocomplete #auto="matAutocomplete">
@@ -31,62 +31,51 @@
             <small>Country: {{state.country}}</small>
           </mat-option>
         </mat-autocomplete>
-        <mat-hint>
-          <div *ngIf="destination.invalid && destination.touched; else elseBlck">
-            <div *ngIf="destination.errors?.required" class="text-danger">DESTINATION is required</div>
-          </div>
-          <ng-template #elseBlck>DESTINATION</ng-template>
-        </mat-hint>
+        <mat-error *ngIf="origin.invalid && origin.touched">
+          <small *ngIf="origin.errors?.required" class="text-danger">Origin is required</small>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Select type</mat-label>
         <mat-select [class.is-invalid]="type.invalid && type.touched" formControlName="type" [(value)]="selected" class="form-control">
           <mat-option value="option1">One Way</mat-option>
           <mat-option value="option2">Round Trip</mat-option>
         </mat-select>
-        <mat-hint>
-          <div *ngIf="type.invalid && type.touched; else elseBlk">
-            <div *ngIf="type.errors?.required" class="text-danger">TYPE is required</div>
-          </div>
-          <ng-template #elseBlk>TYPE</ng-template>
-        </mat-hint>
+        <mat-error *ngIf="type.invalid && type.touched">
+          <small *ngIf="type.errors?.required" class="text-danger">Type is required</small>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter departure date</mat-label>
         <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure_date"
           [matDatepicker]="picker" class="form-control">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-hint>
-          <div *ngIf="dept_date.invalid && dept_date.touched; else elsBlock">
-            <div *ngIf="dept_date.errors?.required" class="text-danger">DEPARTURE DATE is required</div>
-          </div>
-          <ng-template #elsBlock>DEPARTURE DATE</ng-template>
-        </mat-hint>
+        <mat-error *ngIf="dept_date.invalid && dept_date.touched">
+          <small *ngIf="dept_date.errors?.required" class="text-danger">Departure Date is required</small>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter return date</mat-label>
         <input matInput [class.is-invalid]="return_date.invalid && return_date.touched" formControlName="return_date"
-          [matDatepicker]="pickerone" class="form-control">
+          [matDatepicker]="pickerone" selected class="form-control">
         <mat-datepicker-toggle matSuffix [for]="pickerone"></mat-datepicker-toggle>
         <mat-datepicker #pickerone></mat-datepicker>
-        <mat-hint>
-          RETURN DATE
-        </mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
+
         <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="1" formControlName="no_of_passengers"
-          value={{this.clickinput}} class="form-control">
+          class="form-control">
         <div matSuffix class="inrdcr">
           <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>
           <mat-icon (click)="incrementNP()">add_box</mat-icon>
         </div>
-        <mat-hint>
-          <div *ngIf="NOP.invalid && NOP.touched ; else elsBlk">
-            <div *ngIf="NOP.errors?.required" class="text-danger">SELECT ATLEAST ONE PASSENGER</div>
-            <div *ngIf="NOP.errors?.min" class="text-danger">INVALID NUMBER OF PASSENGERS</div>
-          </div>
-          <ng-template #elsBlk>NO. OF PASSENGERS</ng-template>
-        </mat-hint>
+        <mat-error *ngIf="NOP.invalid && NOP.touched">
+          <small *ngIf="NOP.errors?.required" class="text-danger">No. of passengers is required</small>
+          <small *ngIf="NOP.errors?.min " class="text-danger">Invalid no. of passengers</small>
+        </mat-error>
       </mat-form-field>
-      <button class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
+      <button [disabled]="searchForm.invalid" class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
     </div>
   </div>
 </div>
