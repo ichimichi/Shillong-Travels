@@ -6,6 +6,7 @@ import { SearchResultComponent } from './main/search-result/search-result.compon
 import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
 import { SearchPageComponent } from './main/search-page/search-page.component';
 import { ContactComponent } from './main/contact/contact.component';
+import { MyProfileComponent } from './main/my-profile/my-profile.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'account-registration',component:AccountRegistrationComponent},
   {path:'search',component: SearchPageComponent},
   {path:'contact',component: ContactComponent},
+  {path:'my-profile',component: MyProfileComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 

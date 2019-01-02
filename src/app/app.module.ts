@@ -17,6 +17,7 @@ import { HourPipe } from './pipes/hour.pipe';
 import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
 import { SearchPageComponent } from './main/search-page/search-page.component';
 import { ContactComponent } from './main/contact/contact.component';
+import { MyProfileComponent } from './main/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ContactComponent } from './main/contact/contact.component';
     DialogOverviewExampleDialog,
     AccountRegistrationComponent,
     SearchPageComponent,
-    ContactComponent
+    ContactComponent,
+    MyProfileComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [

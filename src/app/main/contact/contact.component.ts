@@ -29,7 +29,7 @@ export class ContactComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.messageForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      subject: [''],
+      subject: ['', Validators.compose([Validators.required])],
       message: ['', Validators.compose([Validators.required])]
     });
 

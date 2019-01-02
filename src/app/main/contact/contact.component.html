@@ -3,43 +3,37 @@
     <h1><i>CONTACT US</i></h1>
     <h5 *ngIf="success">Your message has been sent!</h5>
 
-
     <div class="inputs">
-      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form">
-
-              <mat-form-field class="full-width">
-                <input matInput placeholder="Email" formControlName="email">
-                <mat-error *ngIf="submitted && messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
-                  Please enter a valid email address
-                </mat-error>
-                <mat-error *ngIf="submitted && messageForm.controls.email.required">
-                  Email is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field>
-                  <mat-select placeholder="Issue" ng-required= true>
-                    <mat-option *ngFor="let subject of subjects" [value]="subject.value">
-                      {{subject.viewValue}}
-                    </mat-option>
-                  </mat-select>
-              </mat-form-field>
-
-              <mat-form-field class="full-width">
-                  <textarea matInput placeholder="Leave a message" formControlName="message"></textarea>
-                  <mat-error *ngIf="submitted && messageForm.controls.email.required">
-                      Message <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
-
-              <div class="align">
-                  <button mat-raised-button color="accent" type="submit" >Send Message</button><br>
-              </div>
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-group">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="submitted && messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="submitted && messageForm.controls.email.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-select placeholder="Issue" ng-required=true formControlName="subject">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+              {{subject.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="submitted && messageForm.controls.subject.hasError('required')">
+           Required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <textarea matInput placeholder="Leave a message" formControlName="message"></textarea>
+          <mat-error *ngIf="submitted && messageForm.controls.message.hasError('required')">
+            Message required
+          </mat-error>
+        </mat-form-field>
+        <div class="align">
+          <button mat-raised-button color="accent" type="submit">Send Message</button>
+        </div>
 
       </form>
-
-      <!--{{messageForm.value | json}} -->
-
     </div>
   </div>
-</div>
