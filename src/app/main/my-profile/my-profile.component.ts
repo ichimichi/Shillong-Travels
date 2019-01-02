@@ -12,4 +12,22 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  myprofile: Profile = {
+      firstName: "Andrew",
+      lastName: "Black",
+      gender: "Male",
+      dob: "04/11/1992",
+      phoneNo: 9085578906,
+      email: "andrew@gmail.com"
+    };
+
+}
+
+export interface Profile{
+  firstName:string,
+  lastName: string,
+  gender: string,
+  dob: string,
+  phoneNo: number,
+  email : string
 }
