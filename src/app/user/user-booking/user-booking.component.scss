@@ -1,0 +1,97 @@
+.section-one
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+h2{
+margin: 10px 0px 0px 0px;
+}
+
+.icon
+{
+    background: #3F51b5;
+    color: white;
+}
+
+.rounded-box
+{
+    padding: 5px;
+}
+
+h3
+{
+    font-size: 1rem;
+    color: rgb(148, 144, 144);
+}
+
+.source-destination{
+    color: rgb(27, 22, 22);
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.right-arrow{
+    margin: 0.5rem 0 0 0 ;
+    vertical-align: bottom;
+}
+
+.details
+{
+    color: rgb(73, 70, 70);
+    font-weight: 400;
+}
+
+.button
+{
+    background: orange;
+    color: white;
+}
+
+h4
+{
+    color: black;
+    font-weight: 500;
+}
+
+.button-click
+{
+    color: rgb(199, 140, 32);
+    border: none;
+    background: white;
+}
+
+.button-two
+{
+    background: rgb(77, 192, 238);
+    color: white;
+}
+
+.section-b{
+    display: flex;
+    justify-content: space-between;
+}
+
+ol
+{
+    padding: 0px;
+}
+
+@media only screen and (min-width: 768px) {
+.container-one
+{
+display: flex;
+flex-wrap: wrap;
+}
+.container-one > ol{
+    margin: 15px 15px 15px 0px;
+}
+.container-two
+{
+display: flex;
+flex-wrap: wrap;
+}
+.container-two > ol{
+    margin: 15px 15px 15px 0px;
+}
+}

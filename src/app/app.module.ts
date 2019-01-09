@@ -5,7 +5,7 @@ import{ ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule,} from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule} from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -16,6 +16,7 @@ import { TimePipe } from './pipes/time.pipe';
 import { HourPipe } from './pipes/hour.pipe';
 import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
 import { SearchPageComponent } from './main/search-page/search-page.component';
+import { UserBookingComponent } from './user/user-booking/user-booking.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SearchPageComponent } from './main/search-page/search-page.component';
     HourPipe,
     DialogOverviewExampleDialog,
     AccountRegistrationComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    UserBookingComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
@@ -52,6 +54,7 @@ import { SearchPageComponent } from './main/search-page/search-page.component';
     MatAutocompleteModule,
     MatRadioModule,
     ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

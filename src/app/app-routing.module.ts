@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
 import { SearchResultComponent } from './main/search-result/search-result.component';
 import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
 import { SearchPageComponent } from './main/search-page/search-page.component';
+import { UserBookingComponent } from './user/user-booking/user-booking.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'results',component:SearchResultComponent},
   {path:'account-registration',component:AccountRegistrationComponent},
   {path:'search',component: SearchPageComponent},
+  { path: 'bookings', component: UserBookingComponent },
   {path:'**',component:PageNotFoundComponent}
 ];
 
@@ -22,7 +24,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponents = [
-  HomePageComponent, AccountRegistrationComponent,
+  HomePageComponent, AccountRegistrationComponent
 ];exports: [RouterModule]
 
 
