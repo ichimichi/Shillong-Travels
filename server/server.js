@@ -9,6 +9,6 @@ app.use(bodyParser.json());
 
 app.use('/api', require('./routes/api'));
 
-app.listen(PORT,()=>{
-    console.log('Server running on localhost:'+ PORT);
+app.listen(PORT, () => {
+    console.log('Server running on localhost:' + PORT);
 })
