@@ -8,6 +8,7 @@ import { SearchPageComponent } from './main/search-page/search-page.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
 import { ContactComponent } from './main/contact/contact.component';
 import { MyProfileComponent } from './main/my-profile/my-profile.component';
+import { OfferPageComponent } from './offer/offer-page.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'bookings', component: UserBookingComponent },
   {path:'contact',component: ContactComponent},
   {path:'my-profile',component: MyProfileComponent},
+  {path:'offer',component: OfferPageComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 
