@@ -69,15 +69,14 @@ export class AccountRegistrationComponent implements OnInit {
     // this.registrationForm.patchValue({
     //   dateOfBirth: this.registrationForm.value.dateOfBirth.toString()
     // });
-    let temp = this.registrationForm.value;
-    temp.dateOfBirth = this.registrationForm.value.dateOfBirth.toString();
+    // let temp = this.registrationForm.value;
+    // temp.dateOfBirth = this.registrationForm.value.dateOfBirth.toString();
     // console.log(temp);
 
-    this.auth.postUser(temp).subscribe(
+    this.auth.postUser(this.registrationForm.value).subscribe(
       res => {console.log(res);alert('User Registered')},
       error => {console.log(error);}
     )
-    console.log(temp);
   }
 
   ngOnInit() {
