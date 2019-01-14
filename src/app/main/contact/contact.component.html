@@ -7,10 +7,10 @@
       <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-group">
         <mat-form-field class="full-width" appearance="outline">
           <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="submitted && messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
+          <mat-error *ngIf="messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
             Please enter a valid email address
           </mat-error>
-          <mat-error *ngIf="submitted && messageForm.controls.email.hasError('required')">
+          <mat-error *ngIf="messageForm.controls.email.hasError('required')">
             Email is required
           </mat-error>
         </mat-form-field>
@@ -20,13 +20,13 @@
               {{subject.viewValue}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="submitted && messageForm.controls.subject.hasError('required')">
+          <mat-error *ngIf="messageForm.controls.subject.hasError('required')">
            Required
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width" appearance="outline">
           <textarea matInput placeholder="Leave a message" formControlName="message"></textarea>
-          <mat-error *ngIf="submitted && messageForm.controls.message.hasError('required')">
+          <mat-error *ngIf="messageForm.controls.message.hasError('required')">
             Message required
           </mat-error>
         </mat-form-field>
