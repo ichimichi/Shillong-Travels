@@ -2,31 +2,29 @@
   <div class="content align-left">
     <h2><i>CREATE AN ACCOUNT</i></h2>
     <div class="inputs">
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-          {{registrationForm.value | json}}
-      <p>
+      <form [formGroup]="registrationForm">
+        <!-- (ngSubmit)="onSubmit()"> -->
+        {{registrationForm.value | json}}
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Enter your first name</mat-label>
-          <input [class.is-invalid]="firstName.invalid && firstName.touched" formControlName="firstName" matInput placeholder="FIRST NAME">
+          <input formControlName="firstName" matInput placeholder="FIRST NAME">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-error *ngIf="firstName.invalid && firstName.touched">
             <small *ngIf="firstName.errors?.required" class="text-danger">First-name is required</small>
-            <small *ngIf="firstName.errors?.minlength" class="text-danger">First-name must be at least 2 characters</small>
+            <small *ngIf="firstName.errors?.minlength"> <a class="text-deco" href="#">Login</a>
+              class="text-danger">First-name must be at least 2 characters</small>
           </mat-error>
         </mat-form-field>
-      </p>
-      <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your last name</mat-label>
-          <input [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" matInput placeholder="LAST NAME">
+          <input [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" matInput
+            placeholder="LAST NAME">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-error *ngIf="lastName.invalid && lastName.touched">
             <small *ngIf="lastName.errors?.required" class="text-danger">Last-name is required</small>
             <small *ngIf="lastName.errors?.minlength" class="text-danger">Last-name must be at least 2 characters</small>
           </mat-error>
         </mat-form-field>
-      </p>
-      <p>
         <mat-form-field appearance="outline">
           <mat-label>Select the Gender</mat-label>
           <mat-select matNativeControl required formControlName="gender">
@@ -39,46 +37,61 @@
         </mat-form-field>
         <br>
         <small>Select the gender</small>
-      </p>
-      <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your Date of Birth</mat-label>
-          <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Enter your Date of Birth">
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Enter your Date of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="date.invalid && date.touched">
             <small *ngIf="date.errors?.required" class="text-danger">Date of Birth is required</small>
           </mat-error>
         </mat-form-field>
-      </p>
-      <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your phone number</mat-label>
-          <input pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" formControlName="phone" matInput placeholder="PHONE NO.">
+          <input pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" formControlName="phone"
+            matInput placeholder="PHONE NO.">
           <mat-icon matSuffix>settings_phone</mat-icon>
           <mat-error *ngIf="phone.invalid && phone.touched">
             <small *ngIf="phone.errors?.required" class="text-danger">Phone number is required</small>
             <small *ngIf="phone.errors?.pattern" class="text-danger">Phone number must be 10 digits</small>
           </mat-error>
         </mat-form-field>
-      </p>
-      <p>
         <mat-form-field appearance="outline">
           <mat-label>Enter your email-id</mat-label>
-          <input pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" [class.is-invalid]="email.invalid && email.touched" formControlName="email" matInput placeholder="EMAIL-ID">
+          <input pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" [class.is-invalid]="email.invalid && email.touched"
+            formControlName="email" matInput placeholder="EMAIL-ID">
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="email.invalid && email.touched">
             <small *ngIf="email.errors?.required" class="text-danger">E-mail is required.</small>
             <small *ngIf="email.errors?.pattern" class="text-danger">E-mail is invalid. Hint: test@test.com</small>
           </mat-error>
         </mat-form-field>
-      </p>
-      <div class="align">
-        <button [disabled]="registrationForm.invalid" color="accent" type="submit" mat-raised-button><a href="">SIGN UP</a></button><br>
-        <small>By signing up, you agree to the terms and conditions</small><br>
-        <small><b>Have an account? <a class="text-deco" href="#">Login</a></b></small>
-      </div>
-    </form>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input formControlName="password" matInput placeholder="PASSWORD" type="password">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-error *ngIf="password.invalid && password.touched">
+
+            <small *ngIf="password.errors?.required" class="text-danger">Password is required.</small>
+            <small *ngIf="password.errors?.minlength" class="text-danger">Password should be at least 8 characters</small>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input formControlName="cpassword" matInput placeholder="PASSWORD" type="password" [errorStateMatcher]="errorMatcher">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-error *ngIf="registrationForm.errors?.misMatch">
+              <small class="text-danger">Passwords do not match</small>
+            </mat-error>
+        </mat-form-field>
+        
+        <div class="align-center mt">
+          <button (click)="registerUser()" [disabled]="registrationForm.invalid" color="accent" type="submit"
+            mat-raised-button>SIGN UP</button><br>
+          <small>By signing up, you agree to the terms and conditions</small><br>
+          <small><b>Have an account? <a class="text-deco" href="#">Login</a></b></small>
+        </div>
+      </form>
     </div>
   </div>
 </div>

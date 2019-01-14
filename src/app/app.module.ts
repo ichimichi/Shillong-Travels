@@ -20,6 +20,8 @@ import { UserBookingComponent } from './user/user-booking/user-booking.component
 import { ContactComponent } from './main/contact/contact.component';
 import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,9 +62,10 @@ import { OfferPageComponent } from './offer/offer-page.component';
     MatAutocompleteModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
