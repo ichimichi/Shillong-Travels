@@ -16,6 +16,7 @@ export interface State {
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
+  searched=false;
   stateCtrl = new FormControl();
   filteredStates: Observable<State[]>;
   searchForm: FormGroup;
@@ -53,7 +54,7 @@ export class SearchPageComponent implements OnInit {
     }, { validator: DestinationValidator });
 
     this.searchForm.controls['type'].valueChanges.subscribe(val => {
-      if (val === 'option2') {
+      if (val === 'round') {
         this.searchForm.controls.return_date.enable();
       }
       else {
@@ -99,4 +100,7 @@ export class SearchPageComponent implements OnInit {
     return this.searchForm.get('return_date');
   }
 
+  onSubmit() {
+    this.searched = true;
+  }
 }

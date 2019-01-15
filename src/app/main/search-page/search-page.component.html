@@ -1,4 +1,4 @@
-<div class="rounded-box drop-shadow">
+<div class="rounded-box drop-shadow" *ngIf="!searched">
   <div class="content align-left">
     <h2>SEARCH</h2>
     <div class="inputs" [formGroup]="searchForm">
@@ -38,8 +38,8 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Select type</mat-label>
         <mat-select [class.is-invalid]="type.invalid && type.touched" formControlName="type" [(value)]="selected" class="form-control">
-          <mat-option value="option1">One Way</mat-option>
-          <mat-option value="option2">Round Trip</mat-option>
+          <mat-option value="one">One Way</mat-option>
+          <mat-option value="round">Round Trip</mat-option>
         </mat-select>
         <mat-error *ngIf="type.invalid && type.touched">
           <small *ngIf="type.errors?.required" class="text-danger">Type is required</small>
@@ -75,7 +75,8 @@
           <small *ngIf="NOP.errors?.min " class="text-danger">Invalid no. of passengers</small>
         </mat-error>
       </mat-form-field>
-      <button [disabled]="searchForm.invalid" class="submit" mat-raised-button color="accent" routerLink='/results'>SUBMIT</button>
+      <button [disabled]="searchForm.invalid" class="submit" mat-raised-button color="accent" (click)="onSubmit()">SUBMIT</button>
     </div>
   </div>
 </div>
+<app-search-result *ngIf="searched" [searchQuery]="searchForm.value"></app-search-result>

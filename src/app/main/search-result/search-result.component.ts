@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Order } from '../../../../server/models/order';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
-  styleUrls: ['./search-result.component.scss']
+  styleUrls: ['./search-result.component.scss'],
+  inputs:['searchQuery']
 })
 export class SearchResultComponent implements OnInit {
 
@@ -18,5 +20,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @Input() searchQuery:any;
 
 }
