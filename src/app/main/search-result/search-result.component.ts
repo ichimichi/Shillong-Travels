@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order } from '../../../../server/models/order';
 
 @Component({
   selector: 'app-search-result',

@@ -75,8 +75,7 @@
           <small *ngIf="NOP.errors?.min " class="text-danger">Invalid no. of passengers</small>
         </mat-error>
       </mat-form-field>
-      <button [disabled]="searchForm.invalid" class="submit" mat-raised-button color="accent" (click)="onSubmit()">SUBMIT</button>
+      <button [disabled]="searchForm.invalid" class="submit" mat-raised-button color="accent" (click)="onSubmit()" routerLink='/results'>SUBMIT</button>
     </div>
   </div>
 </div>
-<app-search-result *ngIf="searched" [searchQuery]="searchForm.value"></app-search-result>
