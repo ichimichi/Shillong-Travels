@@ -1,6 +1,6 @@
 export class Query {
-    origin: string;
-    destination: string;
-    departure: string;
+    origin: String;
+    destination: String;
+    departure: String;
     passengers: number;
 }

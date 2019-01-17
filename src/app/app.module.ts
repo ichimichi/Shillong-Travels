@@ -26,6 +26,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { environment } from '../environments/environment';
     UserBookingComponent,
     ContactComponent,
     MyProfileComponent,
-    OfferPageComponent
+    OfferPageComponent,
+    DatePipe
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
