@@ -4,6 +4,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DestinationValidator } from './destination-validator';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/reducers';
+import { AddSearchQuery } from 'src/app/store/actions/search-query.actions';
 
 export interface State {
   name: string;
@@ -22,20 +25,20 @@ export class SearchPageComponent implements OnInit {
   searchForm: FormGroup;
   states: State[] = [
     {
-      name: 'Shillong',
+      name: 'shillong',
       country: 'India'
     },
     {
-      name: 'Guwahati',
+      name: 'guwahati',
       country: 'India'
     },
     {
-      name: 'Tura',
+      name: 'tura',
       country: 'India'
     }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
@@ -44,33 +47,39 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.searchForm = this.fb.group({
       origin: ['', Validators.required],
       destination: ['', Validators.required],
       type: ['', Validators.required],
-      departure_date: ['', Validators.required],
-      return_date: [{ value: '', disabled: true }],
-      no_of_passengers: [1, Validators.min(1)]
-    }, { validator: DestinationValidator });
+      departure: ['', Validators.required],
+      return: [{ value: '', disabled: true }],
+      passengers: [1, Validators.min(1)]
+      }, { validator: DestinationValidator });
 
     this.searchForm.controls['type'].valueChanges.subscribe(val => {
       if (val === 'round') {
-        this.searchForm.controls.return_date.enable();
+        this.searchForm.controls.return.enable();
       }
       else {
-        this.searchForm.controls.return_date.disable();
+        this.searchForm.controls.return.disable();
       }
-    })
+    });
+  }
+
+  onSubmit() {
+    this.store.dispatch(new AddSearchQuery(this.searchForm.value));
   }
 
   incrementNP() {
-    this.searchForm.controls['no_of_passengers'].setValue(<number>this.searchForm.controls['no_of_passengers'].value + 1);
+    this.searchForm.controls['passengers'].setValue(<number>this.searchForm.controls['passengers'].value + 1);
   }
   decrementNP() {
-    if (this.searchForm.controls['no_of_passengers'].value > 1) {
-      this.searchForm.controls['no_of_passengers'].setValue(<number>this.searchForm.controls['no_of_passengers'].value - 1);
+    if (this.searchForm.controls['passengers'].value > 1) {
+      this.searchForm.controls['passengers'].setValue(<number>this.searchForm.controls['passengers'].value - 1);
     }
   }
+
   private _filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
     return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
@@ -89,18 +98,16 @@ export class SearchPageComponent implements OnInit {
   }
 
   get dept_date() {
-    return this.searchForm.get('departure_date');
+    return this.searchForm.get('departure');
   }
 
   get NOP() {
-    return this.searchForm.get('no_of_passengers');
+    return this.searchForm.get('passengers');
   }
 
-  get return_date() {
-    return this.searchForm.get('return_date');
+  get return() {
+    return this.searchForm.get('return');
   }
 
-  onSubmit() {
-    this.searched = true;
-  }
+  
 }

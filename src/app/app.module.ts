@@ -23,6 +23,11 @@ import { OfferPageComponent } from './offer/offer-page.component';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, metaReducers } from './store/reducers';
+import { environment } from '../environments/environment';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,8 @@ import { PaymentsPageComponent } from './payment/payments-page/payments-page.com
     ContactComponent,
     MyProfileComponent,
     OfferPageComponent,
-    PaymentsPageComponent
+    PaymentsPageComponent,
+    DatePipe
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
@@ -65,7 +71,9 @@ import { PaymentsPageComponent } from './payment/payments-page/payments-page.com
     MatRadioModule,
     ReactiveFormsModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

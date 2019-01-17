@@ -1,18 +1,18 @@
-<div class="rounded-box align-left drop-shadow">
+<div class="rounded-box align-left drop-shadow" *ngIf="searched$ | async">
   <div class="section-a">
     <div class="source-destination">
-      {{source}}
+      {{query.origin | uppercase}}
       <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
-      {{destination}}
+      {{query.destination | uppercase}}
     </div>
     <div class="trip-options">
-      <mat-chip-list *ngFor="let option of searchOptions">
-        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{option}}</mat-chip>
+      <mat-chip-list>
+        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.departure | date}}</mat-chip>
+        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.passengers}}</mat-chip>
       </mat-chip-list>
     </div>
   </div>
 
-  {{searchQuery | json}}
   <!-- <button mat-flat-button color="primary">
         <mat-icon >keyboard_arrow_up</mat-icon>sort</button> -->
 
@@ -35,5 +35,14 @@
   </div>
 
 
-  <app-booking-card></app-booking-card>
+  <app-booking-card [availableBookings]="availableBookings"></app-booking-card>
+</div>
+
+<div class="rounded-box drop-shadow" *ngIf="!(searched$ | async)">
+  <div class="content">
+    <mat-icon>error</mat-icon>
+    <h2>OPPS</h2>
+    <p>You must first Search for Orders in the Search Page</p>
+    <button mat-raised-button color="accent" routerLink="/search">Click Here</button> to go to the Search Page
+  </div>
 </div>

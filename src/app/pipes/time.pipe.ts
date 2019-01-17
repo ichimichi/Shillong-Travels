@@ -7,18 +7,14 @@ import { String, StringBuilder } from 'typescript-string-operations';
 export class TimePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    let min = parseInt(value)%100;
-    let hour = parseInt(value)/100;
+    let min = value.substring(19,21);
+    let hour =  value.substring(16,18);
     let result = new StringBuilder("");
-    if(hour<9){
-      result.Append("0");
-    }
-    result.Append(hour.toString()+":");
-    if(min<10){
-      result.Append("0");
-    }
-    result.Append(min.toString());
-    if(hour<12){
+  
+    result.Append(hour+":");
+    
+    result.Append(min);
+    if(parseInt(hour)<12){
       result.Append(" AM");
     }else{
       result.Append(" PM");
