@@ -9,6 +9,7 @@ import { UserBookingComponent } from './user/user-booking/user-booking.component
 import { ContactComponent } from './main/contact/contact.component';
 import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
+import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'contact',component: ContactComponent},
   {path:'my-profile',component: MyProfileComponent},
   {path:'offer',component: OfferPageComponent},
+  {path: 'payments', component: PaymentsPageComponent },
   {path:'**',component:PageNotFoundComponent}
 ];
 

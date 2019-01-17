@@ -22,6 +22,7 @@ import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserBookingComponent,
     ContactComponent,
     MyProfileComponent,
-    OfferPageComponent
+    OfferPageComponent,
+    PaymentsPageComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
