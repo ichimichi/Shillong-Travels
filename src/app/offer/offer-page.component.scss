@@ -1,14 +1,41 @@
-.content
-{
-    padding: 0px;
-}
 
-.c
+  .main-img
   {
-      padding: 0px;
+      background:url(https://res.cloudinary.com/twenty20/private_images/t_watermark-criss-cross-10/v1443423838000/photosp/15edd4c1-d602-421b-99d4-a45a7cf351b4/stock-photo-winter-cold-night-campus-technology-girl-electronics-woman-phone-15edd4c1-d602-421b-99d4-a45a7cf351b4.jpg);
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: inherit;
   }
-
-img {
-width: 100%;
-    height: auto;
+  
+  .flex-1
+  {
+      display: flex;
+      justify-content: center;
   }
+  .sec-b{
+      font-size: 12px;
+      margin: 0px;
+      font-family: Brush Script MT, Brush Script Std, cursive;
+       letter-spacing: 1px;
+       word-spacing: 3px;
+       margin-bottom: 50px;
+  }
+  
+  .flex-3{
+      display:flex ;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  
+  .example-card {
+     margin: 20px 10px;
+     max-width: 300px;
+     color: aliceblue;
+     background: none;
+    }
+  
+  
+  
