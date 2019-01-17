@@ -7,9 +7,6 @@ import { DestinationValidator } from './destination-validator';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { AddSearchQuery } from 'src/app/store/actions/search-query.actions';
-// import { AppState } from './../../app.state';
-// import { SearchQuery } from './../../store/models/search.query.model'
-// import * as SearchQueryActions from './../../store/actions/search.query.action';
 
 export interface State {
   name: string;
@@ -28,15 +25,15 @@ export class SearchPageComponent implements OnInit {
   searchForm: FormGroup;
   states: State[] = [
     {
-      name: 'Shillong',
+      name: 'shillong',
       country: 'India'
     },
     {
-      name: 'Guwahati',
+      name: 'guwahati',
       country: 'India'
     },
     {
-      name: 'Tura',
+      name: 'tura',
       country: 'India'
     }
   ];
@@ -50,6 +47,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.searchForm = this.fb.group({
       origin: ['', Validators.required],
       destination: ['', Validators.required],
@@ -57,7 +55,7 @@ export class SearchPageComponent implements OnInit {
       departure: ['', Validators.required],
       return: [{ value: '', disabled: true }],
       passengers: [1, Validators.min(1)]
-    }, { validator: DestinationValidator });
+      }, { validator: DestinationValidator });
 
     this.searchForm.controls['type'].valueChanges.subscribe(val => {
       if (val === 'round') {
@@ -66,7 +64,11 @@ export class SearchPageComponent implements OnInit {
       else {
         this.searchForm.controls.return.disable();
       }
-    })
+    });
+  }
+
+  onSubmit() {
+    this.store.dispatch(new AddSearchQuery(this.searchForm.value));
   }
 
   incrementNP() {
@@ -77,6 +79,7 @@ export class SearchPageComponent implements OnInit {
       this.searchForm.controls['passengers'].setValue(<number>this.searchForm.controls['passengers'].value - 1);
     }
   }
+
   private _filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
     return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
@@ -106,10 +109,5 @@ export class SearchPageComponent implements OnInit {
     return this.searchForm.get('return');
   }
 
-  onSubmit() {
-    // this.store.dispatch(new SearchQueryActions.AddSearchQuery(this.searchForm.value));
-    // this.store.dispatch(new SearchQueryActions.RemoveSearchQuery(0));
-    // console.log(this.searchForm.value)
-    this.store.dispatch(new AddSearchQuery(this.searchForm.value));
-  }
+  
 }

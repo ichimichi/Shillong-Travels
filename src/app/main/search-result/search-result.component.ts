@@ -5,7 +5,8 @@ import { AppState } from 'src/app/store/reducers';
 import { map } from 'rxjs/operators';
 import { SearchQuery } from 'src/app/store/models/search-query.model';
 import { Query } from 'src/app/shared/query';
-import { Router } from '@angular/router';
+import { OrdersService } from 'src/app/services/orders.service';
+import { Order } from 'src/app/shared/order';
 
 @Component({
   selector: 'app-search-result',
@@ -17,7 +18,7 @@ export class SearchResultComponent implements OnInit {
   source = "SHILLONG";
   destination = "GUWAHATI";
 
-  searchOptions = ["One Way","12/12/2018","1"];
+  searchOptions : Array<String>;
 
   sortOptions = ["Time : Earliest","Time : Last","Price : Low to High","Price : High to Low"];
   selectedSortOption = "Time : Earliest";
@@ -26,22 +27,36 @@ export class SearchResultComponent implements OnInit {
   searchQuery$: Observable<SearchQuery>;
   searched$:Observable<boolean>;
   query$: Observable<Query>;
-  // query: Array<SearchQuery>;
+  availableBookings : Array<Order>;
+  query: Query;
 
-  constructor(private store:Store<AppState>) {
-   }
+  constructor(private store:Store<AppState>, private order: OrdersService) {
+  
+  }
 
   ngOnInit() {
-    // this.queryObs.subscribe( res => this.query = res)
-    // console.log(this.query[0]);
-
+    
     this.searchQuery$ = this.store
       .pipe(
         map(state => state.searchQuery)
       );
 
-    this.searched$ = this.searchQuery$.pipe(map(sq=>sq.searched));
-    this.query$ = this.searchQuery$.pipe(map(sq => sq.query));
+    this.searched$ = this.store
+    .pipe(
+      map(state => state.searchQuery.searched)
+    );
+
+    this.query$ = this.store
+    .pipe(
+      map(state => state.searchQuery.query)
+    );
+    
+    this.query$.subscribe( res => {this.query = res; this.searchOptions = [this.query.departure, this.query.passengers.toString()]});
+
+    this.order.getBookings(this.query).subscribe( 
+      res => {console.log("1",res); this.availableBookings = res; console.log("2",this.availableBookings)}, 
+      err => console.log(err)
+    );
     
   }
 
