@@ -8,6 +8,7 @@ const OrderSchema = new Schema({
     arrival: String,
     type: String,
     agency: String,
+    available: Array,
     price: Number,
     vehicle: {
         model: String,
