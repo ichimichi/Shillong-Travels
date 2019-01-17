@@ -47,7 +47,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter departure date</mat-label>
-        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure_date"
+        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure"
           [matDatepicker]="picker" class="form-control">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -57,14 +57,14 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter return date</mat-label>
-        <input matInput [class.is-invalid]="return_date.invalid && return_date.touched" formControlName="return_date"
+        <input matInput [class.is-invalid]="return.invalid && return.touched" formControlName="return"
           [matDatepicker]="pickerone" selected class="form-control">
         <mat-datepicker-toggle matSuffix [for]="pickerone"></mat-datepicker-toggle>
         <mat-datepicker #pickerone></mat-datepicker>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
 
-        <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="1" formControlName="no_of_passengers"
+        <input matInput [class.is-invalid]="NOP.invalid && NOP.touched" required min="1" formControlName="passengers"
           class="form-control">
         <div matSuffix class="inrdcr">
           <mat-icon (click)="decrementNP()"> indeterminate_check_box</mat-icon>

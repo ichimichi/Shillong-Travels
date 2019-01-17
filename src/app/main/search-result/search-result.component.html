@@ -1,4 +1,4 @@
-<div class="rounded-box align-left drop-shadow">
+<div class="rounded-box align-left drop-shadow" *ngIf="searched$ | async">
   <div class="section-a">
     <div class="source-destination">
       {{source}}
@@ -11,8 +11,9 @@
       </mat-chip-list>
     </div>
   </div>
-
-  {{searchQuery | json}}
+  <div class="right" *ngIf="queryObs">
+    {{ queryObs | async | json }}
+  </div>
   <!-- <button mat-flat-button color="primary">
         <mat-icon >keyboard_arrow_up</mat-icon>sort</button> -->
 
@@ -36,4 +37,13 @@
 
 
   <app-booking-card></app-booking-card>
+</div>
+
+<div class="rounded-box drop-shadow" *ngIf="!(searched$ | async)">
+  <div class="content">
+    <mat-icon>error</mat-icon>
+    <h2>OPPS</h2>
+    <p>You must first Search for Orders in the Search Page</p>
+    <button mat-raised-button color="accent" routerLink="/search">Click Here</button> to go to the Search Page
+  </div>
 </div>
