@@ -1,3 +1,40 @@
-<p>
-  account-login works!
-</p>
+<div class="rounded-box drop-shadow">
+  <div class="content align-center">
+    <h2>SIGN IN TO YOUR ACCOUNT</h2>
+    <div class="inputs">
+      <form [formGroup]="loginForm">
+        <!-- (ngSubmit)="onSubmit()"> -->
+        {{loginForm.value | json}}
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter your e-mail ID</mat-label>
+          <input formControlName="email" matInput placeholder="E-MAIL">
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          <mat-error *ngIf="email.invalid && email.touched">
+            <small *ngIf="email.errors?.required" class="text-danger">E-mail is required</small>
+            <small *ngIf="email.errors?.email" class="text-danger">Enter a valid E-mail</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput placeholder="PASSWORD">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-error *ngIf="password.invalid && password.touched">
+            <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
+            <small *ngIf="password.errors?.minlength" class="text-danger">Password can't be less that 8 characters</small>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="align-center">
+          <button (click)="registerUser()" class="fill-width" [disabled]="loginForm.invalid" color="accent" type="submit"
+            mat-raised-button>SIGN IN</button>
+          
+        </div>
+      </form>
+      <div class="mt">
+        <small >Don't have an account? <b><a class="text-deco" routerLink="/registration">Click here to Register</a></b></small>
+      </div>
+      
+    </div>
+  </div>
+</div>
