@@ -1,10 +1,9 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
     <h1><i>CONTACT US</i></h1>
-    <h5 *ngIf="success">Your message has been sent!</h5>
 
     <div class="inputs">
-      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-group">
+      <form [formGroup]="messageForm" class="form-group">
         <mat-form-field class="full-width" appearance="outline">
           <input matInput placeholder="Email" formControlName="email">
           <mat-error *ngIf="messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
@@ -31,7 +30,7 @@
           </mat-error>
         </mat-form-field>
         <div class="align">
-          <button mat-raised-button color="accent" type="submit">Send Message</button>
+          <button mat-raised-button color="accent" type="submit" (click)="onSubmit()" [disabled]="messageForm.invalid">Send Message</button>
         </div>
 
       </form>

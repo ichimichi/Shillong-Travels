@@ -38,8 +38,8 @@
   <app-booking-card [availableBookings]="availableBookings"></app-booking-card>
 </div>
 
-<div class="rounded-box drop-shadow" *ngIf="!(searched$ | async)">
-  <div class="content">
+<div class="bottom-space" *ngIf="!(searched$ | async)">
+  <div class="rounded-box drop-shadow content">
     <mat-icon>error</mat-icon>
     <h2>OPPS</h2>
     <p>You must first Search for Orders in the Search Page</p>

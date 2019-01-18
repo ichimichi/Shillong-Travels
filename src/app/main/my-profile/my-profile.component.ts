@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,22 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  editMail= false;
+  editPhone= false;
+  editPassword= false;
 
+  myProfileForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { 
+    this.myProfileForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.email])],
+      phoneNo: [''],
+      password: ['']
+    });
+  }
+  
   ngOnInit() {
   }
 
-  myprofile: Profile = {
-      firstName: "Andrew",
-      lastName: "Black",
+  myprofile= {
+      name:{"firstName": "Andrew", "lastName": "Black"},
       gender: "Male",
       dob: "04/11/1992",
       phoneNo: 9085578906,
-      email: "andrew@gmail.com"
+      email: "andrew@gmail.com",
+      password: "password"
     };
 
 }
 
+
+/*
 export interface Profile{
   firstName:string,
   lastName: string,
@@ -31,3 +46,4 @@ export interface Profile{
   phoneNo: number,
   email : string
 }
+*/

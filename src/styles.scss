@@ -98,7 +98,7 @@ h2{
 }
 
 .content {
-    min-height: calc(100vh - 70px);
+    //@errormin-height: calc(100vh - 70px);
 }
 
 .text-danger
@@ -115,5 +115,13 @@ h2{
 }
 
 .mt{
-    margin-top: 1rem;
+    margin-top: 2rem;
+}
+
+.fill-width{
+    width: 100%;
+}
+
+.bottom-space{
+    min-height: calc(100vh - 70px);
 }
