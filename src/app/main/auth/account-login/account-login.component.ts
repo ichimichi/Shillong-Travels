@@ -23,6 +23,7 @@ export class AccountLoginComponent implements OnInit {
       res => {
         console.log("success", res);
         localStorage.setItem('token', res.token);
+        this.router.navigate(['/welcome']);
       },
       error => { console.log("error", error); alert('Invalid Password or Email'); }
     )

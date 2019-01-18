@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { PasswordValidator } from 'src/app/shared/password.validator';
 import { AuthService } from 'src/app/services/auth.service';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher, MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 class CrossFieldErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -18,6 +19,45 @@ class CrossFieldErrorMatcher implements ErrorStateMatcher {
 export class AccountRegistrationComponent implements OnInit {
 
   errorMatcher = new CrossFieldErrorMatcher();
+
+  registrationForm = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(2)]],
+    lastName: ['', [Validators.required]],
+    gender: ['', [Validators.required]],
+    dateOfBirth: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.minLength(10)]],
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    cpassword: ['']
+  }, { validator: PasswordValidator });
+
+
+  constructor(private fb: FormBuilder,
+              private auth: AuthService,
+              private router: Router,
+              public snackbar: MatSnackBar) { }
+
+  ngOnInit() {
+  }
+
+  registerUser() {
+
+    this.auth.registerUser(this.registrationForm.value)
+      .subscribe(
+        res => {
+          console.log("success", res);
+          localStorage.setItem('token', res.token);
+          this.snackbar.open('Registration Successfull, ' + this.registrationForm.value.firstName,'',{duration:1000});
+          this.router.navigate(['/welcome']);
+        },
+        error => { 
+          this.snackbar.open('ERROR!','',{duration:1000});
+          console.log("error", error); 
+        }
+      );
+  }
+
+
 
   get firstName() {
     return this.registrationForm.get('firstName');
@@ -49,41 +89,6 @@ export class AccountRegistrationComponent implements OnInit {
 
   get cpassword() {
     return this.registrationForm.get('cpassword');
-  }
-
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
-
-  registrationForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(2)]],
-    lastName: ['', [Validators.required]],
-    gender: ['', [Validators.required]],
-    dateOfBirth: ['', [Validators.required]],
-    phone: ['', [Validators.required, Validators.minLength(10)]],
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    cpassword: ['']
-  }, { validator: PasswordValidator });
-
-  registerUser() {
-    //console.log({date:this.registrationForm.value.dateOfBirth.toString()});
-    // this.registrationForm.patchValue({
-    //   dateOfBirth: this.registrationForm.value.dateOfBirth.toString()
-    // });
-    // let temp = this.registrationForm.value;
-    // temp.dateOfBirth = this.registrationForm.value.dateOfBirth.toString();
-    // console.log(temp);
-
-    this.auth.registerUser(this.registrationForm.value).subscribe(
-      res => {
-        console.log("success", res);
-        localStorage.setItem('token', res.token);
-        alert('User Registered')
-      },
-      error => { console.log("error", error); }
-    )
-  }
-
-  ngOnInit() {
   }
 
 }

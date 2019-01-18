@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import{ ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule} from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -21,7 +21,7 @@ import { ContactComponent } from './main/contact/contact.component';
 import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -29,6 +29,9 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { DatePipe } from './pipes/date.pipe';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
+import { WelcomeComponent } from './main/welcome/welcome.component';
+import { AuthGuard } from './guard/auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { AccountLoginComponent } from './main/auth/account-login/account-login.c
     OfferPageComponent,
     PaymentsPageComponent,
     DatePipe,
-    AccountLoginComponent
+    AccountLoginComponent,
+    WelcomeComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
@@ -75,9 +79,17 @@ import { AccountLoginComponent } from './main/auth/account-login/account-login.c
     MatCardModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    MatSnackBarModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
