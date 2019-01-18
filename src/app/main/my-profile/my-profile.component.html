@@ -1,22 +1,28 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
+
     <h1><i>MY PROFILE</i></h1><br>
     <div class="image">
       <img src="../../../assets/images/unknown-person.png" alt="Avatar">
     </div>
 
-    <div class="profile">
+    <!-- {{myprofile | json}} -->
+
+    <div class="profile"> 
       <div class="header">
-        <h3>Username: {{myprofile.firstName}} {{myprofile.lastName}}</h3>
-        <h4><span style="color:grey">Email: {{myprofile.email}}</span></h4>
-      </div>
+        <h3> <span style="color:#5a5a5a">username: </span>{{myprofile.name.firstName}} {{myprofile.name.lastName}}</h3>
+        <h3> <span style="color:#5a5a5a">email: </span>{{myprofile.email}}</h3>
     
-      <div class="info">
-        <h5>Gender: <span style="color:rgb(75, 75, 75)">{{myprofile.gender}}</span></h5>
-        <h5>Date of Birth: <span style="color:rgb(75, 75, 75)">{{myprofile.dob}}</span></h5>
-        <h5>Phone Number: <span style="color:rgb(75, 75, 75)">+91 - {{myprofile.phoneNo}}</span></h5>
+      </div><br> <hr>
+    
+      <div class="info"> 
+        <h4><span style="color:#5a5a5a">Gender: </span>{{myprofile.gender}}</h4>
+        <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dob}}</h4>
+        <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phoneNo}}</h4><br>
+        <a mat-raised-button routerLink="/edit-profile" color="accent">Edit Profile</a>
       </div>
     </div>
-    
+
   </div>
 </div>
+
