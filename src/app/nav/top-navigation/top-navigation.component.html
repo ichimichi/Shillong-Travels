@@ -4,38 +4,69 @@
     <span class="example-spacer"></span>
     <div class="desktop-links">
         <a mat-button routerLink="/home">
-          Home
+          HOME
         </a>
-        <a mat-button routerLink="/offer">
-          Offers
+        <a mat-button routerLink="/my-profile">
+          PROFILE
+        </a>
+        <a mat-button routerLink="/bookings">
+          MY BOOKINGS
+        </a>
+        <a mat-button routerLink="/registration">
+          REGISTER
+        </a>
+        <a mat-button routerLink="/login">
+          SIGN IN
         </a>
         <a mat-button routerLink="/home">
-          SIGN IN / REGISTER
+          SIGN OUT
+        </a>
+        <a mat-button routerLink="/offer">
+          OFFERS
         </a>
         <a mat-button routerLink="/payments">
-          Payments
+          PAYMENTS
         </a>
     </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/home">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
+    
+    <div class="mobile-links">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+        <mat-icon>menu</mat-icon>
       </button>
-      <button mat-menu-item routerLink="/my-profile">
-        <mat-icon>face</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-menu-item routerLink="/bookings">
-        <mat-icon>favorite_border</mat-icon>
-        <span>My Bookings</span>
-      </button>
-      <button mat-menu-item routerLink="/home">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Log Out</span>
-      </button>
-    </mat-menu>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/home">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-menu-item routerLink="/my-profile">
+          <mat-icon>face</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item routerLink="/bookings">
+          <mat-icon>favorite_border</mat-icon>
+          <span>My Bookings</span>
+        </button>
+        <button mat-menu-item routerLink="/registration">
+          <mat-icon>person_add</mat-icon>
+          <span>Register</span>
+        </button>
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>fingerprint</mat-icon>
+          <span>Sign In</span>
+        </button>
+        <button mat-menu-item routerLink="/home">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign Out</span>
+        </button>
+        <button mat-menu-item routerLink="/offer">
+          <mat-icon>favorite</mat-icon>
+          <span>Offers</span>
+        </button>
+        <button mat-menu-item routerLink="/payments">
+          <mat-icon>payment</mat-icon>
+          <span>Payments</span>
+        </button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 </div>
