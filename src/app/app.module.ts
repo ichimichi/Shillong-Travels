@@ -14,7 +14,7 @@ import { SearchResultComponent } from './main/search-result/search-result.compon
 import { BookingCardComponent } from './main/search-result/booking-card/booking-card.component';
 import { TimePipe } from './pipes/time.pipe';
 import { HourPipe } from './pipes/hour.pipe';
-import { AccountRegistrationComponent } from './main/account-registration/account-registration.component';
+import { AccountRegistrationComponent } from './main/auth/account-registration/account-registration.component';
 import { SearchPageComponent } from './main/search-page/search-page.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
 import { ContactComponent } from './main/contact/contact.component';
@@ -28,6 +28,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { DatePipe } from './pipes/date.pipe';
+import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DatePipe } from './pipes/date.pipe';
     MyProfileComponent,
     OfferPageComponent,
     PaymentsPageComponent,
-    DatePipe
+    DatePipe,
+    AccountLoginComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],
   imports: [
