@@ -45,6 +45,8 @@ export class ContactComponent implements OnInit {
     }
 
     this.success = true;
+    alert('Your message has been sent!');
+    location.href = '/home';
   }
 
   ngOnInit() {
