@@ -30,7 +30,10 @@ export class AccountLoginComponent implements OnInit {
         this.snakcbar.open('Welcome Back, '+res.name,'',{duration:1500});
         this.router.navigate(['/welcome']);
       },
-      error => { console.log("error", error); alert('Invalid Password or Email'); }
+      error => { 
+        console.log("error", error); 
+        this.snakcbar.open('Invalid E-mail or Password','',{duration:1500});
+      }
     )
   }
 
