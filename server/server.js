@@ -1,12 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cosr');
 
 const PORT = 3000;
 
 const app = express();
 
 app.use(express.static(path.join(__dirname,'../dist/shillong-travels')));
+
+app.use(cors());
 
 app.use(bodyParser.json());
 

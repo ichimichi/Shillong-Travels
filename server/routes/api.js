@@ -36,7 +36,7 @@ router.post('/login', (req,res)=>{
     let userData = req.body;
 
     User.findOne({email:userData.email}, (err,user)=>{
-        if(error){
+        if(err){
             console.log(err);
         }else{
             if(!user) {
@@ -48,7 +48,7 @@ router.post('/login', (req,res)=>{
             else {
                 let payload = { subject : user._id};
                 let token = jwt.sign(payload , '14ri80k');
-                res.send(200).send({token});
+                res.status(200).send({token});
             }
                 
             
