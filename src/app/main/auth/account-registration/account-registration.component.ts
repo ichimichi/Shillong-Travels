@@ -51,7 +51,7 @@ export class AccountRegistrationComponent implements OnInit {
     return this.registrationForm.get('cpassword');
   }
 
-  constructor(private fb: FormBuilder, private auth:AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService) { }
 
   registrationForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -73,9 +73,13 @@ export class AccountRegistrationComponent implements OnInit {
     // temp.dateOfBirth = this.registrationForm.value.dateOfBirth.toString();
     // console.log(temp);
 
-    this.auth.postUser(this.registrationForm.value).subscribe(
-      res => {console.log(res);alert('User Registered')},
-      error => {console.log(error);}
+    this.auth.registerUser(this.registrationForm.value).subscribe(
+      res => {
+        console.log("success", res);
+        localStorage.setItem('token', res.token);
+        alert('User Registered')
+      },
+      error => { console.log("error", error); }
     )
   }
 
