@@ -12,20 +12,20 @@
         <a mat-button routerLink="/bookings">
           MY BOOKINGS
         </a>
-        <a mat-button routerLink="/registration">
+        <a mat-button routerLink="/registration" *ngIf="!authService.isLoggedIn()">
           REGISTER
         </a>
-        <a mat-button routerLink="/login">
+        <a mat-button routerLink="/login" *ngIf="!authService.isLoggedIn()">
           SIGN IN
-        </a>
-        <a mat-button routerLink="/home">
-          SIGN OUT
         </a>
         <a mat-button routerLink="/offer">
           OFFERS
         </a>
         <a mat-button routerLink="/payments">
           PAYMENTS
+        </a>
+        <a mat-button *ngIf="authService.isLoggedIn()" (click)="authService.logoutUser()">
+          SIGN OUT
         </a>
     </div>
     
@@ -46,17 +46,13 @@
           <mat-icon>favorite_border</mat-icon>
           <span>My Bookings</span>
         </button>
-        <button mat-menu-item routerLink="/registration">
+        <button mat-menu-item routerLink="/registration"  *ngIf="!authService.isLoggedIn()">
           <mat-icon>person_add</mat-icon>
           <span>Register</span>
         </button>
-        <button mat-menu-item routerLink="/login">
+        <button mat-menu-item routerLink="/login"  *ngIf="!authService.isLoggedIn()">
           <mat-icon>fingerprint</mat-icon>
           <span>Sign In</span>
-        </button>
-        <button mat-menu-item routerLink="/home">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Sign Out</span>
         </button>
         <button mat-menu-item routerLink="/offer">
           <mat-icon>favorite</mat-icon>
@@ -65,6 +61,10 @@
         <button mat-menu-item routerLink="/payments">
           <mat-icon>payment</mat-icon>
           <span>Payments</span>
+        </button>
+        <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="authService.logoutUser()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign Out</span>
         </button>
       </mat-menu>
     </div>
