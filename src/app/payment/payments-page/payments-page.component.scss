@@ -1,0 +1,25 @@
+.inputs > * {
+    width: 100%;
+}
+
+.expiry-date
+{
+    display: flex;
+}
+
+.month
+{
+    width: 100px;
+}
+
+.year
+{
+    width:100px;
+    margin-left: 8px;
+}
+
+.cvv
+{
+    width: 4.5rem;
+    margin-left: 35px;
+}
