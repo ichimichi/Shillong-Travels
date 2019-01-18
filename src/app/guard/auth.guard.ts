@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }else{
       this.snackBar.open('You must login to access this page','',{duration:1000});
-      this.router.navigate(['/login'])
+      //this.router.navigate(['/login'])
       return false;
     }
   }
