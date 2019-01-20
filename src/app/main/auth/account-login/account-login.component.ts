@@ -28,7 +28,7 @@ export class AccountLoginComponent implements OnInit {
         console.log("success", res);
         localStorage.setItem('token', res.token);
         this.snakcbar.open('Welcome Back, '+res.name,'',{duration:1500});
-        this.router.navigate(['/welcome']);
+        this.router.navigate(['/home']);
       },
       error => { 
         console.log("error", error); 

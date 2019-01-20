@@ -29,7 +29,6 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { DatePipe } from './pipes/date.pipe';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
-import { WelcomeComponent } from './main/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
@@ -56,7 +55,6 @@ import { SeatSelectionComponent } from './main/seat-selection/seat-selection.com
     PaymentsPageComponent,
     DatePipe,
     AccountLoginComponent,
-    WelcomeComponent,
     SeatSelectionComponent
   ],
   entryComponents: [DialogOverviewExampleDialog],

@@ -11,7 +11,6 @@ import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
 import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
-import { WelcomeComponent } from './main/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 
@@ -27,7 +26,6 @@ const routes: Routes = [
   { path: 'profile', component: MyProfileComponent, canActivate: [AuthGuard] },
   { path: 'offer', component: OfferPageComponent },
   { path: 'payments', component: PaymentsPageComponent, canActivate: [AuthGuard] },
-  { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
   { path: 'selection', component: SeatSelectionComponent, canActivate: [AuthGuard]},
   { path: '**', component: PageNotFoundComponent }
 ];

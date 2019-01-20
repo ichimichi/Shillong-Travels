@@ -48,7 +48,7 @@ export class AccountRegistrationComponent implements OnInit {
           console.log("success", res);
           localStorage.setItem('token', res.token);
           this.snackbar.open('Registration Successfull, ' + this.registrationForm.value.firstName,'',{duration:1000});
-          this.router.navigate(['/welcome']);
+          this.router.navigate(['/home']);
         },
         error => { 
           this.snackbar.open('ERROR!','',{duration:1000});
