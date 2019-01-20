@@ -17,7 +17,7 @@ import { SeatSelectionComponent } from './main/seat-selection/seat-selection.com
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
-  { path: 'results', component: SearchResultComponent, canActivate: [AuthGuard] },
+  { path: 'results', component: SearchResultComponent },
   { path: 'registration', component: AccountRegistrationComponent },
   { path: 'login', component: AccountLoginComponent },
   { path: 'search', component: SearchPageComponent },

@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -32,6 +32,7 @@ import { AccountLoginComponent } from './main/auth/account-login/account-login.c
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
+import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 
 @NgModule({
   declarations: [
@@ -55,9 +56,10 @@ import { SeatSelectionComponent } from './main/seat-selection/seat-selection.com
     PaymentsPageComponent,
     DatePipe,
     AccountLoginComponent,
-    SeatSelectionComponent
+    SeatSelectionComponent,
+    DetailsComponent
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -81,7 +83,8 @@ import { SeatSelectionComponent } from './main/seat-selection/seat-selection.com
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSnackBarModule,
-    MatRippleModule
+    MatRippleModule,
+    MatBottomSheetModule
   ],
   providers: [
     AuthService,

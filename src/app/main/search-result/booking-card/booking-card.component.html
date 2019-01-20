@@ -13,11 +13,12 @@
                 <div class="agency">
                     <h1>{{booking.agency | uppercase }}</h1>
                 </div>
-                <a class="details" href="">click for more details</a>
+                <a class="details" (click)="openBottomSheet(booking)">click for more details</a>
                 <span class="price">{{booking.price | currency:'INR'}}</span>
-                <button mat-raised-button color="accent" class="book-btn">BOOK</button>
+                <button mat-raised-button color="accent" class="book-btn" (click)="bookingSelected(booking)">BOOK</button>
             </div>
 
         </li>
     </ol>
+
 </div>
