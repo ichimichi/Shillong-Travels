@@ -87,26 +87,6 @@ h1{
     color: #FB5A1D;
 }
 
-@media(min-width:780px) and (max-width:1000px){
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        grid-auto-columns: minmax(250px,auto);
-    }
-}
-
-@media(min-width:1000px) and (max-width:1400px){
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-auto-columns: minmax(250px,auto);
-    }
-}
-
-@media(min-width:1400px){
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(4,1fr);
-        grid-auto-columns: minmax(250px,auto);
-    }
+.empty-space{
+    margin-top: 10rem;
 }

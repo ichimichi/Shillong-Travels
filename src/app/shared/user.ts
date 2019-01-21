@@ -1,3 +1,5 @@
+import { Bookings } from './bookings';
+
 export class User {
     firstName: String;
     lastName: String;
@@ -7,4 +9,5 @@ export class User {
     email: String;
     password: String;
     cpassword: String;
+    bookings: Array<Bookings>;
 }

@@ -11,13 +11,13 @@ import { MyProfileComponent } from './main/my-profile/my-profile.component';
 import { OfferPageComponent } from './offer/offer-page.component';
 import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
-import { WelcomeComponent } from './main/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
+import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
-  { path: 'results', component: SearchResultComponent, canActivate: [AuthGuard] },
+  { path: 'results', component: SearchResultComponent },
   { path: 'registration', component: AccountRegistrationComponent },
   { path: 'login', component: AccountLoginComponent },
   { path: 'search', component: SearchPageComponent },
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'profile', component: MyProfileComponent, canActivate: [AuthGuard] },
   { path: 'offer', component: OfferPageComponent },
   { path: 'payments', component: PaymentsPageComponent, canActivate: [AuthGuard] },
-  { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
+  { path: 'selection', component: SeatSelectionComponent, canActivate: [AuthGuard]},
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -29,10 +29,11 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { DatePipe } from './pipes/date.pipe';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
-import { WelcomeComponent } from './main/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
+import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +57,10 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     PaymentsPageComponent,
     DatePipe,
     AccountLoginComponent,
-    WelcomeComponent
+    SeatSelectionComponent,
+    DetailsComponent
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -82,7 +84,9 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSnackBarModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatRippleModule,
+    MatBottomSheetModule
   ],
   providers: [
     AuthService,

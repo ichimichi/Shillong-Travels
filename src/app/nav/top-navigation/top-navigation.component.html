@@ -24,6 +24,9 @@
         <a mat-button routerLink="/payments">
           PAYMENTS
         </a>
+        <a mat-button routerLink="/selection">
+          SELECTION
+        </a>
         <a mat-button *ngIf="authService.isLoggedIn()" (click)="authService.logoutUser()">
           SIGN OUT
         </a>
@@ -61,6 +64,10 @@
         <button mat-menu-item routerLink="/payments">
           <mat-icon>payment</mat-icon>
           <span>Payments</span>
+        </button>
+        <button mat-menu-item routerLink="/selection">
+          <mat-icon>payment</mat-icon>
+          <span>Selection</span>
         </button>
         <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="authService.logoutUser()">
           <mat-icon>exit_to_app</mat-icon>

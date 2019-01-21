@@ -1,0 +1,17 @@
+<div class="info">
+    <div class="dept-time">
+        <h1>Departure Time</h1>
+        <span class="time">{{booking.departure | time}}</span>
+    </div>
+    <div class="duration">
+        <h1><span>Duration : </span> {{booking.arrival + booking.departure | hour}}</h1>
+    </div>
+
+    <div class="agency">
+        <h1>{{booking.agency | uppercase }}</h1>
+    </div>
+    <a class="details" (click)="openBottomSheet(booking)">click for more details</a>
+    <span class="price">{{booking.price | currency:'INR'}}</span>
+    <button mat-raised-button color="accent" class="book-btn" (click)="bookingSelected()">BOOK</button>
+    <div class="empty-space"></div>
+</div>

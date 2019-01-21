@@ -35,7 +35,8 @@
   </div>
 
 
-  <app-booking-card [availableBookings]="availableBookings"></app-booking-card>
+  <app-booking-card [availableBookings]="availableBookings$ | async"></app-booking-card>
+  <div class="empty-space"></div>
 </div>
 
 <div class="bottom-space" *ngIf="!(searched$ | async)">
@@ -45,4 +46,5 @@
     <p>You must first Search for Orders in the Search Page</p>
     <button mat-raised-button color="accent" routerLink="/search">Click Here</button> to go to the Search Page
   </div>
+  <div class="empty-space"></div>
 </div>

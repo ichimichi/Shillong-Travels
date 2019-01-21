@@ -18,46 +18,53 @@ export class SearchResultComponent implements OnInit {
   source = "SHILLONG";
   destination = "GUWAHATI";
 
-  searchOptions : Array<String>;
+  searchOptions: Array<String>;
 
-  sortOptions = ["Time : Earliest","Time : Last","Price : Low to High","Price : High to Low"];
+  sortOptions = ["Time : Earliest", "Time : Last", "Price : Low to High", "Price : High to Low"];
   selectedSortOption = "Time : Earliest";
 
-  
+
   searchQuery$: Observable<SearchQuery>;
-  searched$:Observable<boolean>;
+  searched$: Observable<boolean>;
   query$: Observable<Query>;
-  availableBookings : Array<Order>;
+
+  availableBookings$: Observable<Order[]>;
+  availableBookings: Array<Order>;
+
   query: Query;
 
-  constructor(private store:Store<AppState>, private order: OrdersService) {
-  
+  constructor(private store: Store<AppState>, private orderService: OrdersService) {
+
   }
 
   ngOnInit() {
-    
+
     this.searchQuery$ = this.store
       .pipe(
         map(state => state.searchQuery)
       );
 
     this.searched$ = this.store
-    .pipe(
-      map(state => state.searchQuery.searched)
-    );
+      .pipe(
+        map(state => state.searchQuery.searched)
+      );
 
     this.query$ = this.store
-    .pipe(
-      map(state => state.searchQuery.query)
-    );
-    
-    this.query$.subscribe( res => {this.query = res; this.searchOptions = [this.query.departure, this.query.passengers.toString()]});
+      .pipe(
+        map(state => state.searchQuery.query)
+      );
 
-    this.order.getBookings(this.query).subscribe( 
-      res => {console.log("1",res); this.availableBookings = res; console.log("2",this.availableBookings)}, 
-      err => console.log(err)
-    );
-    
+    this.query$.subscribe(res => { this.query = res; this.searchOptions = [this.query.departure, this.query.passengers.toString()] });
+
+    this.availableBookings$ = this.orderService.getBookings(this.query);
+
+    // this.orderService.getBookings(this.query).subscribe( 
+    //   res => {console.log("1",res); this.availableBookings = res; console.log("2",this.availableBookings)}, 
+    //   err => console.log(err)
+    // );
+
   }
+
+
 
 }
