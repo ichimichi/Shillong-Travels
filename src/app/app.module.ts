@@ -32,6 +32,7 @@ import { AccountLoginComponent } from './main/auth/account-login/account-login.c
 import { WelcomeComponent } from './main/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    MatSnackBarModule
+    MatSnackBarModule,
+    ScrollDispatchModule
   ],
   providers: [
     AuthService,
