@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DestinationValidator } from './destination-validator';
@@ -8,10 +8,17 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { AddSearchQuery } from 'src/app/store/actions/search-query.actions';
 
-export interface State {
-  name: string;
-  country: string;
+export interface StateGroup {
+  letter:string;
+  locations: string[];
 }
+
+export const _filter = (opt: string[], value: string): string[] => {
+  const filterValue = value.toLowerCase();
+
+  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
+
 
 @Component({
   selector: 'app-search-page',
@@ -20,30 +27,39 @@ export interface State {
 })
 export class SearchPageComponent implements OnInit {
   searched=false;
-  stateCtrl = new FormControl();
-  filteredStates: Observable<State[]>;
   searchForm: FormGroup;
-  states: State[] = [
-    {
-      name: 'shillong',
-      country: 'India'
-    },
-    {
-      name: 'guwahati',
-      country: 'India'
-    },
-    {
-      name: 'tura',
-      country: 'India'
-    }
-  ];
+
+  stateGroups: StateGroup[] = [{
+    letter: 'D',
+    locations: ['Dimapur']
+  }, {
+    letter: 'G',
+    locations: ['Guwahati']
+  },
+{
+  letter: 'J',
+  locations: ['Jorhat','Jowai']
+},
+{
+  letter:'N',
+  locations:['Nongpoh']
+},
+{
+  letter: 'S',
+  locations:['Shillong','Sohra','Siliguri']
+},
+{
+  letter:'T',
+  locations:['Tura']
+},
+{
+  letter:'W',
+  locations:['Williamnagar']
+}];
+
+stateGroupOptions: Observable<StateGroup[]>;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
-    this.filteredStates = this.stateCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice())
-      );
   }
 
   ngOnInit() {
@@ -56,6 +72,18 @@ export class SearchPageComponent implements OnInit {
       return: [{ value: '', disabled: true }],
       passengers: [1, Validators.min(1)]
       }, { validator: DestinationValidator });
+
+      this.stateGroupOptions = this.searchForm.get('origin')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
+
+      this.stateGroupOptions = this.searchForm.get('destination')!.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterGroup(value))
+      );
 
     this.searchForm.controls['type'].valueChanges.subscribe(val => {
       if (val === 'round') {
@@ -78,11 +106,6 @@ export class SearchPageComponent implements OnInit {
     if (this.searchForm.controls['passengers'].value > 1) {
       this.searchForm.controls['passengers'].setValue(<number>this.searchForm.controls['passengers'].value - 1);
     }
-  }
-
-  private _filterStates(value: string): State[] {
-    const filterValue = value.toLowerCase();
-    return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   get origin() {
@@ -109,5 +132,14 @@ export class SearchPageComponent implements OnInit {
     return this.searchForm.get('return');
   }
 
+  private _filterGroup(value: string): StateGroup[] {
+    if (value) {
+      return this.stateGroups
+        .map(group => ({letter: group.letter, locations: _filter(group.locations, value)}))
+        .filter(group => group.locations.length > 0);
+    }
+
+    return this.stateGroups;
+  }
   
 }

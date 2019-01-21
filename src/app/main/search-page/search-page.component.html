@@ -2,7 +2,7 @@
   <div class="content align-left">
     <h2>SEARCH</h2>
     <div class="inputs" [formGroup]="searchForm">
-      {{searchForm.value|json}}
+      {{searchForm.value|json}} 
       <div *ngIf="searchForm.invalid && searchForm.touched">
         <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION
           CANNOT BE THE SAME</div>
@@ -10,12 +10,13 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter your origin</mat-label>
         <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin" aria-label="State"
-          [matAutocomplete]="auto" class="form-control">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-            <span>{{state.name}}</span> |
-            <small>Country: {{state.country}}</small>
+          [matAutocomplete]="autoGroup" class="form-control">
+        <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+          <mat-option *ngFor="let location of group.locations" [value]="location">
+          {{location}}
           </mat-option>
+        </mat-optgroup>
         </mat-autocomplete>
         <mat-error *ngIf="origin.invalid && origin.touched">
           <small *ngIf="origin.errors?.required" class="text-danger">Origin is required</small>
@@ -24,15 +25,16 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter your destination</mat-label>
         <input matInput [class.is-invalid]="destination.invalid && destination.touched && searchForm.errors?.misMatch"
-          formControlName="destination" aria-label="State" [matAutocomplete]="auto" class="form-control">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-            <span>{{state.name}}</span> |
-            <small>Country: {{state.country}}</small>
+          formControlName="destination" aria-label="State" [matAutocomplete]="autoGroup" class="form-control">
+        <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let location of group.locations" [value]="location">
+                {{location}}
           </mat-option>
+          </mat-optgroup>
         </mat-autocomplete>
-        <mat-error *ngIf="origin.invalid && origin.touched">
-          <small *ngIf="origin.errors?.required" class="text-danger">Origin is required</small>
+        <mat-error *ngIf="destination.invalid && destination.touched">
+          <small *ngIf="destination.errors?.required" class="text-danger">Destination is required</small>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
