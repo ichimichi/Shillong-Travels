@@ -1,17 +1,15 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
     <h2>PAYMENTS</h2>
-    <div class="inputs" [formGroup]="stateForm">
+    <div class="inputs">
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Select Your Bank</mat-label>
-        <input type="text" matInput placeholder="States Group" formControlName="stateGroup" required [matAutocomplete]="autoGroup">
-      <mat-autocomplete #autoGroup="matAutocomplete">
-        <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
-          <mat-option *ngFor="let name of group.names" [value]="name">
-            {{name}}
-          </mat-option>
-      </mat-optgroup>
-    </mat-autocomplete>
+        <mat-select [(value)]="selected" class="form-control">
+          <mat-option value="sbi">State Bank Of India</mat-option>
+          <mat-option value="axis">Axis Bank</mat-option>
+          <mat-option value="icici">ICICI</mat-option>
+          <mat-option value="hdfc">HDFC</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter Name on Credit/Debit Card</mat-label>
@@ -23,22 +21,41 @@
       </mat-form-field>
       <div class="expiry-date">
         <mat-form-field appearance="outline" class="month">
-          <mat-hint>Expiry Date</mat-hint>
           <mat-label>Month</mat-label>
-          <input matInput placeholder="Month" aria-label="Month" [matAutocomplete]="auto" [formControl]="monthCtrl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let month of filteredMonths|async" [value]="month.number"> <span>{{month.name}}</span></mat-option>
-          </mat-autocomplete>
+          <mat-select placeholder="mm">
+            <mat-option value="01">JANUARY</mat-option>
+            <mat-option value="02">FEBRUARY</mat-option>
+            <mat-option value="03">MARCH</mat-option>
+            <mat-option value="04">APRIL</mat-option>
+            <mat-option value="05">MAY</mat-option>
+            <mat-option value="06">JUNE</mat-option>
+            <mat-option value="07">JULY</mat-option>
+            <mat-option value="08">AUGUST</mat-option>
+            <mat-option value="09">SEPTEMBER</mat-option>
+            <mat-option value="10">OCTOBER</mat-option>
+            <mat-option value="11">NOVEMBER</mat-option>
+            <mat-option value="12">DECEMBER</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline" class="year">
           <mat-label>Year</mat-label>
-          <input matInput placeholder="yy">
+          <mat-select placeholder="yy">
+            <mat-option value="01">JANUARY</mat-option>
+            <mat-option value="02">FEBRUARY</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline" class="cvv">
           <mat-label>CVV</mat-label>
           <input matInput placeholder="cvv">
         </mat-form-field>
+        
+        
       </div>
+    </div>
+    <div class="align-center mt">
+      <button routerLink='/success_payment' color="accent" type="submit"mat-raised-button>
+        Confirm Payment
+      </button><br>
     </div>
   </div>
 </div>

@@ -34,6 +34,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
+import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DetailsComponent } from './main/search-result/booking-card/details/deta
     DatePipe,
     AccountLoginComponent,
     SeatSelectionComponent,
-    DetailsComponent
+    DetailsComponent,
+    SuccessfulPaymentComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
