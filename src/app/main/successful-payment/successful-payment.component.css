@@ -1,0 +1,14 @@
+i.material-icons {
+    font-size: 16px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+.inputs *{
+    width: 100%;
+}
+.icon_align{
+        text-align: center;
+        font-weight: 100;
+}

@@ -1,0 +1,50 @@
+<div class="rounded-box drop-shadow">
+  <div class="content align-left">
+    <div class="inputs">
+      <!-- div for displaying successful booking -->
+      <div *ngIf="success  && !failed && !loading">
+
+        <h2><i>BOOKING SUCCESSFUL</i></h2>
+        <i class="material-icons icon_align" style="font-size:80px;color:blue;">check_circle</i>
+        <p>Congratulations,</p>
+
+        <p>Your {{info.origin}}-{{info.destination}} {{info.type}} trip has successfully been booked.</p>
+        <p>Your Booking ID is {{info.bookingId}}</p><br><br>
+
+        <h4>Passengers:</h4>
+        <p>{{info.name.firstName}} {{info.name.lastName}}</p>
+        <p>Thank you for booking with Shillong Travels.</p><br>
+        <button class="submit" mat-raised-button color="accent" routerLink=''>Go To My Bookings</button>
+
+      </div>
+       <!-- END of div for displaying successful booking -->
+
+      <!-- div for displaying failed booking -->
+      <div *ngIf="failed && !success && !loading">
+          <h2><i>BOOKING FAILED</i></h2>
+          <i class="material-icons icon_align" style="font-size:80px;color:red;">highlight_off</i>
+          <p>Oops!! Your transaction has failed.</p>
+  
+          <p>We are sorry for the inconvenience.</p>
+          <p>If you still want to book please click the button below.</p><br><br>
+  
+          <button class="submit" mat-raised-button color="accent" routerLink='/search'>Book Again</button>
+  
+        </div>
+         <!-- END of div for displaying failed booking -->
+
+          <!-- div for displaying pending booking -->
+      <div *ngIf="loading && !success && !failed">
+          <h2><i>BOOKING IS PENDING</i></h2>
+          <i class="material-icons icon_align" style="font-size:80px;color:yellow;">notification_important</i>
+          <p>Your seat-booking is still pending.</p>
+  
+          <p>We are sorry for the inconvenience.</p>
+          <p>Please login later for confirmation.</p><br><br>
+  
+        </div>
+         <!-- END of div for displaying pending booking -->
+
+      <div class="inputs"></div>
+    </div>
+  </div>
