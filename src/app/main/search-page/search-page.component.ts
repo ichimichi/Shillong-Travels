@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import {FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DestinationValidator } from './destination-validator';
@@ -8,28 +8,17 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { AddSearchQuery } from 'src/app/store/actions/search-query.actions';
 
-export interface StateGroup {
-  letter:string;
-  locations: string[];
-}
-
-export const _filter = (opt: string[], value: string): string[] => {
-  const filterValue = value.toLowerCase();
-
-  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
-};
-
-
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
+
 export class SearchPageComponent implements OnInit {
   searched=false;
   searchForm: FormGroup;
 
-  stateGroups: StateGroup[] = [{
+  originGroups: OriginGroup[] = [{
     letter: 'D',
     locations: ['Dimapur']
   }, {
@@ -57,7 +46,37 @@ export class SearchPageComponent implements OnInit {
   locations:['Williamnagar']
 }];
 
-stateGroupOptions: Observable<StateGroup[]>;
+destinationGroups: DestinationGroup[] = [{
+  letter: 'D',
+  places: ['Dimapur']
+}, {
+  letter: 'G',
+  places: ['Guwahati']
+},
+{
+letter: 'J',
+places: ['Jorhat','Jowai']
+},
+{
+letter:'N',
+places:['Nongpoh']
+},
+{
+letter: 'S',
+places:['Shillong','Sohra','Siliguri']
+},
+{
+letter:'T',
+places:['Tura']
+},
+{
+letter:'W',
+places:['Williamnagar']
+}];
+
+originGroupOptions: Observable<OriginGroup[]>;
+  destinationGroupOptions: Observable<DestinationGroup[]>;
+  
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
   }
@@ -73,16 +92,16 @@ stateGroupOptions: Observable<StateGroup[]>;
       passengers: [1, Validators.min(1)]
       }, { validator: DestinationValidator });
 
-      this.stateGroupOptions = this.searchForm.get('origin')!.valueChanges
+      this.originGroupOptions = this.searchForm.get('origin')!.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filterGroup(value))
       );
 
-      this.stateGroupOptions = this.searchForm.get('destination')!.valueChanges
+      this.destinationGroupOptions = this.searchForm.get('destination')!.valueChanges
       .pipe(
         startWith(''),
-        map(value => this._filterGroup(value))
+        map(value => this._filterG(value))
       );
 
     this.searchForm.controls['type'].valueChanges.subscribe(val => {
@@ -132,14 +151,38 @@ stateGroupOptions: Observable<StateGroup[]>;
     return this.searchForm.get('return');
   }
 
-  private _filterGroup(value: string): StateGroup[] {
+  private _filterGroup(value: string): OriginGroup[] {
     if (value) {
-      return this.stateGroups
+      return this.originGroups
         .map(group => ({letter: group.letter, locations: _filter(group.locations, value)}))
         .filter(group => group.locations.length > 0);
     }
+    return this.originGroups;
+  }
 
-    return this.stateGroups;
+  private _filterG(value: string): DestinationGroup[] {
+    if (value) {
+      return this.destinationGroups
+        .map(group => ({letter: group.letter, places: _filter(group.places, value)}))
+        .filter(group => group.places.length > 0);
+    }
+    return this.destinationGroups;
   }
   
 }
+
+export interface OriginGroup {
+  letter:string;
+  locations: string[];
+}
+
+export interface DestinationGroup {
+  letter:string;
+  places: string[];
+}
+
+export const _filter = (opt: string[], value: string): string[] => {
+  const filterValue = value.toLowerCase();
+  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
+

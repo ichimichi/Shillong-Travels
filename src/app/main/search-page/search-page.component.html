@@ -9,10 +9,10 @@
       </div>
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter your origin</mat-label>
-        <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin" aria-label="State"
+        <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin"
           [matAutocomplete]="autoGroup" class="form-control">
         <mat-autocomplete #autoGroup="matAutocomplete">
-            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+            <mat-optgroup *ngFor="let group of originGroupOptions | async" [label]="group.letter">
           <mat-option *ngFor="let location of group.locations" [value]="location">
           {{location}}
           </mat-option>
@@ -25,10 +25,10 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter your destination</mat-label>
         <input matInput [class.is-invalid]="destination.invalid && destination.touched && searchForm.errors?.misMatch"
-          formControlName="destination" aria-label="State" [matAutocomplete]="autoGroup" class="form-control">
-        <mat-autocomplete #autoGroup="matAutocomplete">
-            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
-                <mat-option *ngFor="let location of group.locations" [value]="location">
+          formControlName="destination" [matAutocomplete]="autoGrp" class="form-control">
+        <mat-autocomplete #autoGrp="matAutocomplete">
+            <mat-optgroup *ngFor="let group of destinationGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let location of group.places" [value]="location">
                 {{location}}
           </mat-option>
           </mat-optgroup>
