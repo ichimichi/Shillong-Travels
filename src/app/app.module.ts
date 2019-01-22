@@ -35,6 +35,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
+import { AboutComponent } from './main/about/about.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SuccessfulPaymentComponent } from './main/successful-payment/successful
     AccountLoginComponent,
     SeatSelectionComponent,
     DetailsComponent,
-    SuccessfulPaymentComponent
+    SuccessfulPaymentComponent,
+    AboutComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
