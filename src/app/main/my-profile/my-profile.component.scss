@@ -1,23 +1,35 @@
 .header {
-    text-align: center;
+    position: relative;
+    width: 100%;
+    padding-left: 15px;
 }
-    
-.image {
-    text-align: center;
-    padding: 20px;
-}
-    
+
 .info {
     text-align: center;
 }
 
-hr {
-    width:50%; 
-    height:1px; 
-    background: #3F51B5;
+.header-image {
+  background-image: url("../../../assets/images/unknown-person.png");
+  background-size: cover;
 }
 
-img {
-    border-radius: 50%;
-    width: 100px;
+.header-info {
+    border-bottom: lightgray solid;
+    border-width: 1px;
+    padding-top: 2%;
+}
+
+.card {
+  max-width: 100%;
+  padding: 0px;
+  padding-bottom: 20px;
+}
+
+.editButton {
+    text-align: center;
+}
+
+button {
+    border: lightgray solid;
+    border-width: 1px;
 }

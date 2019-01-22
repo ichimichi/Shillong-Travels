@@ -1,27 +1,32 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
 
-    <h1><i>MY PROFILE</i></h1><br>
-    <div class="image">
-      <img src="../../../assets/images/unknown-person.png" alt="Avatar">
-    </div>
-
-    <!-- {{myprofile | json}} -->
-
-    <div class="profile"> 
-      <div class="header">
-        <h3> <span style="color:#5a5a5a">username: </span>{{myprofile.name.firstName}} {{myprofile.name.lastName}}</h3>
-        <h3> <span style="color:#5a5a5a">email: </span>{{myprofile.email}}</h3>
-    
-      </div><br> <hr>
-    
-      <div class="info"> 
-        <h4><span style="color:#5a5a5a">Gender: </span>{{myprofile.gender}}</h4>
-        <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dob}}</h4>
-        <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phoneNo}}</h4><br>
-        <a mat-raised-button routerLink="/edit-profile" color="accent">Edit Profile</a>
+    <mat-card class="card">
+      <div class="header-info">
+        <mat-card-header class="header">
+          <div mat-card-avatar class="header-image"> </div>
+          <mat-card-title>{{myprofile.name.firstName}} {{myprofile.name.lastName}}</mat-card-title>
+          <mat-card-subtitle>user</mat-card-subtitle>
+        </mat-card-header>
+      </div> <br>
+      
+      <mat-card-content>
+        <div class="info">
+          <h4> <span style="color:#5a5a5a">email: </span>{{myprofile.email}}</h4>
+          <h4><span style="color:#5a5a5a">Gender: </span>{{myprofile.gender}}</h4>
+          <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dob}}</h4>
+          <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phoneNo}}</h4><br>
+        </div>
+      </mat-card-content>
+      <div class="editButton">
+        <button mat-button routerLink="/edit_profile" color="accent">Edit Profile</button>
       </div>
-    </div>
+      
+    </mat-card>
+
+    <!-- mat-card-actions -->
+
+
 
   </div>
 </div>
