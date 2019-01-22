@@ -1,4 +1,4 @@
-<div class="rounded-box align-left drop-shadow" >
+<div class="rounded-box align-left drop-shadow">
   <div class="section-a">
     <div class="source-destination">
       Shillong
@@ -13,102 +13,170 @@
     </div>
   </div>
 
-  <div class="car mt" *ngIf="availability.length===5">
 
-    <div *ngFor="let available of availability; let i = index" class="seat">
-      <div (click)="select(i)" *ngIf="available" class="enabled card rounded-box" [class.selected]="selected.includes(i)"
-        >
-        <!-- <mat-icon (click)="select(i)">event_seat</mat-icon> -->
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
+
+
+  <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="seatSelectForm">
+      <div>
+        <ng-template matStepLabel>Select your seat</ng-template>
+
+        <div class="car mt" *ngIf="availability.length===5">
+
+          <div *ngFor="let available of availability; let i = index" class="seat">
+            <div (click)="select(i)" *ngIf="available" class="enabled card rounded-box" [class.selected]="selected.includes(i)">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+            </div>
+            <div (click)="showOccupied()" *ngIf="!available && i!==(availability.length-2)" class="disabled card rounded-box">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+            </div>
+            <div (click)="showDriver()" *ngIf="!available && i===(availability.length-2)" class="driver card rounded-box">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+              <p>Driver</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sumo mt" *ngIf="availability.length===10">
+
+          <div *ngFor="let available of availability; let i = index" class="seat ">
+            <div (click)="select(i)" *ngIf="available" class="enabled card rounded-box" [class.selected]="selected.includes(i)">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+            </div>
+            <div (click)="showOccupied()" *ngIf="!available && i!==(availability.length-2)" class="disabled card rounded-box">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+            </div>
+            <div (click)="showDriver()" *ngIf="!available && i===(availability.length-2)" class="driver card rounded-box">
+              <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 24 24">
+                <defs>
+                  <path id="a" d="M0 0h24v24H0V0z" />
+                </defs>
+                <clipPath id="b">
+                  <use xlink:href="#a" overflow="visible" />
+                </clipPath>
+                <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
+                  clip-path="url(#b)" />
+              </svg>
+              <p>Driver</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="selected.length>0" class="mt">
+          <strong>selected :</strong>
+          <span *ngFor="let select of selected">
+            {{select}}
+          </span>
+
+        </div>
+
+        <div class="bookButton">
+          <button mat-button matStepperNext color="accent" [disabled]="!book" (click)="save()">Next</button>
+        </div>
+
       </div>
-      <div (click)="showOccupied()" *ngIf="!available && i!==(availability.length-2)" class="disabled card rounded-box">
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
+    </mat-step>
+
+    <mat-step [stepControl]="passengersForm" errorMessage="Fill all the details">
+        
+      <form [formGroup]="passengersForm">
+          {{passengersForm.value | json }}
+        <ng-template matStepLabel>Fill in Details of Passengers</ng-template>
+
+        <div formArrayName="passenger" *ngFor="let passenger of passenger.controls; let i=index" class="formPassenger">
+          <h4>Passenger {{i+1}}</h4>
+          <div [formGroupName]="i">
+          
+            <mat-form-field class="Gender">
+              <mat-select placeholder="Mr/Miss" required formControlName="gender">
+                <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                  {{gender.viewValue}}
+                </mat-option>
+              </mat-select>          
+            </mat-form-field>
+          
+            <mat-form-field class="PName">
+              <input matInput placeholder="Name" required formControlName="name">
+            </mat-form-field>          
+          
+            <mat-form-field class="Age">
+              <input matInput placeholder="Age" formControlName="age">
+            </mat-form-field>               
+          
+          </div>
+        </div>
+
+
+        <div>
+          <button mat-button matStepperPrevious color="accent">Back</button>
+          <button mat-button matStepperNext color="accent">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
-      <div (click)="showDriver()" *ngIf="!available && i===(availability.length-2)" class="driver card rounded-box">
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
-        <p>Driver</p>
-      </div>
-    </div>
+    </mat-step>
+  </mat-vertical-stepper>
 
-  </div>
 
-  <div class="sumo mt" *ngIf="availability.length===10">
-
-    <div *ngFor="let available of availability; let i = index" class="seat ">
-      <div (click)="select(i)" *ngIf="available" class="enabled card rounded-box" [class.selected]="selected.includes(i)">
-        <!-- <mat-icon (click)="select(i)">event_seat</mat-icon> -->
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
-      </div>
-      <div (click)="showOccupied()" *ngIf="!available && i!==(availability.length-2)" class="disabled card rounded-box">
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
-      </div>
-      <div (click)="showDriver()" *ngIf="!available && i===(availability.length-2)" class="driver card rounded-box">
-        <svg class="seat-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-          <defs>
-            <path id="a" d="M0 0h24v24H0V0z" />
-          </defs>
-          <clipPath id="b">
-            <use xlink:href="#a" overflow="visible" />
-          </clipPath>
-          <path d="M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm15 3H7V5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v8z"
-            clip-path="url(#b)" />
-        </svg>
-        <p>Driver</p>
-      </div>
-    </div>
-
-  </div>
-
-  <div *ngIf="selected.length>0" class="mt">
-    <strong>selected :</strong>
-    <span *ngFor="let select of selected">
-      {{select}}
-    </span>
-
-  </div>
 </div>
