@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,10 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
+import { AboutComponent } from './main/about/about.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { SuccessfulPaymentComponent } from './main/successful-payment/successful
     AccountLoginComponent,
     SeatSelectionComponent,
     DetailsComponent,
-    SuccessfulPaymentComponent
+    SuccessfulPaymentComponent,
+    AboutComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
@@ -88,7 +92,9 @@ import { SuccessfulPaymentComponent } from './main/successful-payment/successful
     MatSnackBarModule,
     ScrollDispatchModule,
     MatRippleModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatStepperModule,
+    FormsModule 
   ],
   providers: [
     AuthService,

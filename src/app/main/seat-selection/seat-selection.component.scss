@@ -81,20 +81,6 @@
     grid-column: 3/4;
 }
 
-// .style {
-//     display: grid;
-//     grid-template-columns: repeat(3,1fr);
-//     grid-template-rows: repeat(2,minmax(150px,auto));
-//     grid-column-gap: 5%;
-//     grid-row-gap: 5%;
-//     /* start at 1 and end at column line 3 */
-//     grid-column: 1/3;
-
-// }
-
-
-//sumo
-
 .sumo{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -127,4 +113,29 @@
     text-align: center;
     margin: 0;
     color: #3F51B5;
+}
+
+.bookButton{
+    text-align:center; 
+    margin-top: 50px;
+}
+
+.formPassenger {
+    border: rgb(134, 152, 253) solid;
+    padding: 5%;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border-radius: 3%;
+}
+
+.Gender {
+    width: 100%;
+}
+
+.PName {
+    width: 100%;
+}
+
+.Age {
+    width: 100%;
 }

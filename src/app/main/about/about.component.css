@@ -1,0 +1,27 @@
+p{
+    color: white;
+    font-weight: 500;
+}
+
+.main-img
+  {
+      background:url(https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80);
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: inherit;
+     
+  }
+  
+  .flex-1
+  {
+      display: flex;
+      justify-content: center;
+  }
+
+ .para{
+     text-align: center;
+ }
+
+  
