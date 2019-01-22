@@ -31,10 +31,12 @@ import { DatePipe } from './pipes/date.pipe';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 import {MatStepperModule} from '@angular/material/stepper';
 
+import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     DatePipe,
     AccountLoginComponent,
     SeatSelectionComponent,
-    DetailsComponent
+    DetailsComponent,
+    SuccessfulPaymentComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
@@ -85,6 +88,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatSnackBarModule,
+    ScrollDispatchModule,
     MatRippleModule,
     MatBottomSheetModule,
     MatStepperModule,
