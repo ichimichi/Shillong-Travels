@@ -1,0 +1,26 @@
+<div class="rounded-box drop-shadow">
+  <div class="content align-left">
+    <div class="inputs">
+
+      <!-- div for displaying successful booking -->
+      <div *ngIf="success">
+
+        <h2><i>BOOKING SUCCESSFUL</i></h2>
+        <i class="material-icons icon_align" style="font-size:80px;color:blue;">check_circle</i>
+        <p>Congratulations,</p>
+
+        <p>Your {{info.origin}}-{{info.destination}} {{info.type}} trip has successfully been booked.</p>
+        <p>Your Booking ID is {{info.bookingId}}.</p><br><br>
+
+        <h4>Passengers:</h4>
+        <p>{{info.title}} {{info.name.firstName}} {{info.name.lastName}}</p><br>
+        
+        <p>Thank you for booking with Shillong Travels.</p><br>
+        <button class="submit" mat-raised-button color="accent" routerLink=''>Go To My Bookings</button>
+
+      </div>
+       <!-- END of div for displaying successful booking -->
+
+      <div class="inputs"></div>
+    </div>
+  </div>
