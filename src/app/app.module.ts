@@ -37,6 +37,7 @@ import { DetailsComponent } from './main/search-result/booking-card/details/deta
 import {MatStepperModule} from '@angular/material/stepper';
 
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
+import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SuccessfulPaymentComponent } from './main/successful-payment/successful
     AccountLoginComponent,
     SeatSelectionComponent,
     DetailsComponent,
-    SuccessfulPaymentComponent
+    SuccessfulPaymentComponent,
+    EditProfileComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
