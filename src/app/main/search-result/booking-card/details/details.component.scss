@@ -28,10 +28,10 @@ h1{
 }
 
 .info{
-     display: grid;
-     grid-template-columns: 3fr 1fr 1fr 1fr;
-     grid-gap: 3px;
-     position: relative;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-gap: 3px;
+    position: relative;
 }
 
 .dept-time{
@@ -46,30 +46,12 @@ h1{
 .agency{
     grid-column: 1/5;
 }
-.details{
-    grid-column: 1/4;
-    grid-row: 4/5;
-    justify-self: start;
-    align-self: end;
-}
-.details:hover{
-    cursor: pointer;
-}
-
-.price{
-    grid-column: 1/5;
-    align-self: center;
-    justify-self: end;
-    padding-right: 5px;
-}
-.book-btn{
-    grid-column: 4/5;
-    justify-self: end;
-}
-
-.book-btn:hover{
-    cursor: pointer;
-}
+// .details{
+//     grid-column: 1/4;
+//     grid-row: 4/5;
+//     justify-self: start;
+//     align-self: end;
+// }
 
 
 .cards{
@@ -77,16 +59,46 @@ h1{
     gap: 5px;
 }
 
-.info a{
-    text-decoration: none;
-    font-weight: 900;
-    color: #3F51B5;
+
+.details{
+    padding: 1rem;
 }
 
-.info a:hover{
-    color: #FB5A1D;
+
+h2{
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 0.3rem;
+    margin-bottom: 0rem; 
+}
+
+h3{
+    font-size: 0.8rem;
+    color: #777;
+    margin: 0;
 }
 
 .empty-space{
-    margin-top: 10rem;
+    margin-top: 5rem;
+}
+
+.bottom{
+   
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+
+.price{
+    grid-column: 1/6;
+    align-self: center;
+    justify-self: end;
+    padding-right: 5px;
+}
+.book-btn{
+    grid-column: 6/7;
+    justify-self: end;
+}
+
+.book-btn:hover{
+    cursor: pointer;
 }
