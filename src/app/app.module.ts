@@ -35,9 +35,9 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 import {MatStepperModule} from '@angular/material/stepper';
-
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 import { AboutComponent } from './main/about/about.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -94,7 +94,8 @@ import { AboutComponent } from './main/about/about.component';
     MatRippleModule,
     MatBottomSheetModule,
     MatStepperModule,
-    FormsModule 
+    FormsModule ,
+    NgxPayPalModule
   ],
   providers: [
     AuthService,

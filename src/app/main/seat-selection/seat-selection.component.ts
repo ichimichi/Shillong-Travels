@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { NgModule } from '@angular/core';
-import { Order } from 'src/app/shared/order';
 import { AppState } from 'src/app/store/reducers';
 import { MatVerticalStepper } from '@angular/material';
-import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -17,6 +17,9 @@ import { FormBuilder, FormControl, FormGroup, Validators, FormArray } from '@ang
 })
 export class SeatSelectionComponent implements OnInit {
 
+  public payPalConfig?: PayPalConfig;
+  addScript: boolean = false;
+
   @ViewChild(MatVerticalStepper) stepper: MatVerticalStepper;
 
   selected: Array<number> = [];
@@ -24,10 +27,13 @@ export class SeatSelectionComponent implements OnInit {
   passengersForm: FormGroup;
   seatSelectForm: FormGroup;
 
-  //availability= [true, false, true, false, true];
   availability = [true, false, true, false, true, true, false, true, false, true];
-  passengers = 2;
+  passengers: number;
+  price: number;
   book = false;
+
+  passengers$: Observable<number>;
+  price$: Observable<number>;
 
   genders: gender[] = [
     { value: 'female', viewValue: 'Miss' },
@@ -39,34 +45,63 @@ export class SeatSelectionComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    this.store.pipe(map(state => state.searchQuery.query.passengers))
+      .subscribe(passenger => this.passengers = passenger);
+
+    this.store.pipe(map(state => state.selectedBooking.order.price))
+      .subscribe(price => this.price = price);
 
     this.passengersForm = this.fb.group({
       passenger: this.fb.array([])
     });
 
-    for(let i = 0; i< this.passengers ; i++){
+    for (let i = 0; i < this.passengers; i++) {
       this.passenger.push(this.createPassenger());
     }
-
-
 
     this.seatSelectForm = this.fb.group({
       selected: ['', [Validators.required]]
     })
 
-
+    this.initConfig();
   }
 
-  createPassenger():FormGroup{
+  private initConfig(): void {
+    this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
+      commit: true,
+      client: {
+        sandbox: 'Ae-9HVagUn-u9WTli6aAElOUf_A1hRR8AhT26TMraDwKQXiZQFd5mLfu9CEb_xCFXaUaTWLMmJUH8hbq'
+      },
+      button: {
+        label: 'paypal',
+      },
+      onPaymentComplete: (data, actions) => {
+        console.log('OnPaymentComplete');
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel');
+      },
+      onError: (err) => {
+        console.log('OnError');
+      },
+      transactions: [{
+        amount: {
+          currency: 'INR',
+          total: this.price
+        }
+      }]
+    });
+  }
+  
+  createPassenger(): FormGroup {
     return this.fb.group({
-      gender:[''],
-      name:[''],
-      age:['']
+      gender: [''],
+      name: [''],
+      age: ['']
     });
   }
 
-  get passenger(){
+  get passenger() {
     return this.passengersForm.get('passenger') as FormArray;
   }
 
@@ -82,11 +117,11 @@ export class SeatSelectionComponent implements OnInit {
     }
 
     if (this.selected.length === this.passengers) {
-      this.book = true;   
+      this.book = true;
       this.seatSelectForm.controls['selected'].setErrors(null)
     } else {
       this.book = false;
-      this.seatSelectForm.controls['selected'].setErrors({required: true})
+      this.seatSelectForm.controls['selected'].setErrors({ required: true })
 
     }
   }
@@ -102,9 +137,7 @@ export class SeatSelectionComponent implements OnInit {
   save() {
     console.log("Saving..");
   }
-
 }
-
 export interface gender {
   value: string;
   viewValue: string;

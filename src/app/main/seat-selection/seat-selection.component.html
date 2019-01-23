@@ -167,16 +167,14 @@
       </form>
     </mat-step>
 
-
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
+      <ng-template matStepLabel>Payment</ng-template>
+      Proceed to Pay
       <div>
-        <button mat-button matStepperPrevious>Back</button>
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
-
 
 </div>
