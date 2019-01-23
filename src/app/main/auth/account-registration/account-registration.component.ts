@@ -28,7 +28,7 @@ export class AccountRegistrationComponent implements OnInit {
     phone: ['', [Validators.required, Validators.minLength(10)]],
     email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    cpassword: ['']
+    cpassword: ['',[Validators.required, Validators.minLength(8)]]
   }, { validator: PasswordValidator });
 
 
