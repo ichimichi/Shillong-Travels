@@ -5,28 +5,43 @@
       <div class="header-info">
         <mat-card-header class="header">
           <div mat-card-avatar class="header-image"> </div>
-          <mat-card-title>{{myprofile.name.firstName}} {{myprofile.name.lastName}}</mat-card-title>
+          <mat-card-title>{{myprofile.firstName}} {{myprofile.lastName}}</mat-card-title>
           <mat-card-subtitle>user</mat-card-subtitle>
         </mat-card-header>
       </div> <br>
       
       <mat-card-content>
+        <!-- <form [formGroup]="editForm" class="form-group"> -->
+
         <div class="info">
           <h4> <span style="color:#5a5a5a">email: </span>{{myprofile.email}}</h4>
+          <div class="editButton" *ngIf= "!editMail" (click)="EditMail()">
+            <button mat-button routerLink="/edit_email" color="accent">Edit Email</button>
+          </div>
+          <div class="editButton" *ngIf= "editMail" (click)="EditMail()">
+            <button mat-button routerLink="/edit_email" color="accent">Edit Email</button>
+            <!-- <mat-form-field class="full-width" appearance="outline">
+              <textarea matInput placeholder="Enter new email" formControlName="email"></textarea>
+              <mat-error *ngIf="messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="messageForm.controls.email.hasError('required')">
+                Email is required
+              </mat-error>
+            </mat-form-field> -->
+          </div>
+
           <h4><span style="color:#5a5a5a">Gender: </span>{{myprofile.gender}}</h4>
-          <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dob}}</h4>
-          <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phoneNo}}</h4><br>
+          <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dateOfBirth| date}}</h4>
+          <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phone}}</h4><br>
+          <div class="editButton">
+            <button mat-button routerLink="/edit_phone" color="accent">Edit Phone number</button>
+          </div>
         </div>
-      </mat-card-content>
-      <div class="editButton">
-        <button mat-button routerLink="/edit_profile" color="accent">Edit Profile</button>
-      </div>
+      <!-- </form> -->
+      </mat-card-content>  
       
     </mat-card>
-
-    <!-- mat-card-actions -->
-
-
 
   </div>
 </div>

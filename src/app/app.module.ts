@@ -36,7 +36,6 @@ import { SeatSelectionComponent } from './main/seat-selection/seat-selection.com
 import { DetailsComponent } from './main/search-result/booking-card/details/details.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
-import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
 import { AboutComponent } from './main/about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 
@@ -65,7 +64,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
     SeatSelectionComponent,
     DetailsComponent,
     SuccessfulPaymentComponent,
-    EditProfileComponent,
     AboutComponent
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
