@@ -1,14 +1,14 @@
 <div class="rounded-box align-left drop-shadow">
   <div class="section-a">
     <div class="source-destination">
-      Shillong
+      {{query.origin | uppercase}}
       <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
-      Guwahati
+      {{query.destination | uppercase}}
     </div>
     <div class="trip-options">
       <mat-chip-list>
-        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">12/12/2019</mat-chip>
-        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">2</mat-chip>
+        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.departure | date}}</mat-chip>
+        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.passengers}}</mat-chip>
       </mat-chip-list>
     </div>
   </div>
@@ -131,31 +131,34 @@
     </mat-step>
 
     <mat-step [stepControl]="passengersForm" errorMessage="Fill all the details">
-        
+
       <form [formGroup]="passengersForm">
-          {{passengersForm.value | json }}
+        {{passengersForm.value | json }}
         <ng-template matStepLabel>Fill in Details of Passengers</ng-template>
 
         <div formArrayName="passenger" *ngFor="let passenger of passenger.controls; let i=index" class="formPassenger">
           <h4>Passenger {{i+1}}</h4>
           <div [formGroupName]="i">
-          
-            <mat-form-field class="Gender">
-              <mat-select placeholder="Mr/Miss" required formControlName="gender">
+
+            <mat-form-field class="Gender" appearance="outline">
+              <mat-label>Mr/Miss</mat-label>
+              <mat-select required formControlName="gender">
                 <mat-option *ngFor="let gender of genders" [value]="gender.value">
                   {{gender.viewValue}}
                 </mat-option>
-              </mat-select>          
+              </mat-select>
             </mat-form-field>
-          
-            <mat-form-field class="PName">
-              <input matInput placeholder="Name" required formControlName="name">
-            </mat-form-field>          
-          
-            <mat-form-field class="Age">
-              <input matInput placeholder="Age" formControlName="age">
-            </mat-form-field>               
-          
+
+            <mat-form-field class="PName" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput required formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="Age" appearance="outline">
+              <mat-label>Age</mat-label>
+              <input matInput formControlName="age">
+            </mat-form-field>
+
           </div>
         </div>
 
@@ -168,13 +171,14 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>Payment</ng-template>
-      Proceed to Pay
+      <ng-template matStepLabel>Select Payment Method</ng-template>
+      <button mat-raised-button color="accent">NORMAL</button>
       <div>
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-        <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
+
     </mat-step>
+
   </mat-vertical-stepper>
 
 </div>

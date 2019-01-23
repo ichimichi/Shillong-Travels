@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Query } from 'src/app/shared/query';
+import { Order } from 'src/app/shared/order';
 
 
 @Component({
@@ -31,9 +33,8 @@ export class SeatSelectionComponent implements OnInit {
   passengers: number;
   price: number;
   book = false;
-
-  passengers$: Observable<number>;
-  price$: Observable<number>;
+  query: Query;
+  order: Order;
 
   genders: gender[] = [
     { value: 'female', viewValue: 'Miss' },
@@ -50,6 +51,12 @@ export class SeatSelectionComponent implements OnInit {
 
     this.store.pipe(map(state => state.selectedBooking.order.price))
       .subscribe(price => this.price = price);
+
+    this.store.pipe(map(state => state.searchQuery.query))
+      .subscribe(res => this.query = res);
+
+    this.store.pipe(map(state => state.selectedBooking.order))
+      .subscribe(res => this.order = res);
 
     this.passengersForm = this.fb.group({
       passenger: this.fb.array([])
@@ -92,7 +99,7 @@ export class SeatSelectionComponent implements OnInit {
       }]
     });
   }
-  
+
   createPassenger(): FormGroup {
     return this.fb.group({
       gender: [''],
