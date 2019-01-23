@@ -38,6 +38,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 import { AboutComponent } from './main/about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { CancelComponent } from './payment/cancel/cancel.component';
+import { SuccessComponent } from './payment/success/success.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { NgxPayPalModule } from 'ngx-paypal';
     SeatSelectionComponent,
     DetailsComponent,
     SuccessfulPaymentComponent,
-    AboutComponent
+    AboutComponent,
+    CancelComponent,
+    SuccessComponent,
+
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [

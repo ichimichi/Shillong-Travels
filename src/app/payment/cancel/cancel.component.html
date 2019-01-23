@@ -1,0 +1,25 @@
+<div class="rounded-box drop-shadow">
+    <div class="content align-left">
+      <div class="inputs">
+  
+        <!-- div for displaying canceled booking -->
+        <div *ngIf="canceled">
+            <h2><i>BOOKING CANCELED</i></h2>
+            <i class="material-icons icon_align" style="font-size:80px;color:red;">highlight_off</i>
+            
+            <h3>Oops!! Something went wrong.</h3>
+
+            <p>{{info.title}} {{info.name.firstName}} {{info.name.lastName}},<br>
+            Your booking has been canceled.</p>
+    
+            <p>We are sorry for the inconvenience.</p><br>
+            <p>If you still want to book please click the button below.</p><br>
+    
+            <p>Thank you for booking with Shillong Travels.</p>
+            <button class="submit" mat-raised-button color="accent" routerLink='/search'>Book Again</button>
+    
+          </div>
+           <!-- END of div for displaying canceled booking -->
+  
+      </div>
+    </div>

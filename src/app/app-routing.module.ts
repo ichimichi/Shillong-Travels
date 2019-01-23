@@ -15,6 +15,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 import { AboutComponent } from './main/about/about.component';
+import { SuccessComponent } from './payment/success/success.component';
+import { CancelComponent } from './payment/cancel/cancel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -31,6 +33,8 @@ const routes: Routes = [
   { path: 'selection', component: SeatSelectionComponent, canActivate: [AuthGuard]},
   { path: 'success_payment', component: SuccessfulPaymentComponent},
   { path: 'about', component: AboutComponent },
+  { path: 'success', component: SuccessComponent },
+  { path: 'cancel', component: CancelComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
