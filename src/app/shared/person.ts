@@ -1,6 +1,5 @@
 export interface Person{
-    firstName: string;
-    lastName: string;
+    name: string;
     gender: string;
     age: number;
 }

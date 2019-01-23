@@ -10,7 +10,7 @@ router.put('/edit', (req, res) => {
 });
 
 
-router.get('/boookings', (req, res) => {
+router.get('/bookings', (req, res) => {
     
 });
 
