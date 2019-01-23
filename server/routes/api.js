@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const Order = require('../models/order');
 const jwt = require('jsonwebtoken');
-
+ 
 const db = "mongodb://ichimichi:1ch1m1ch1@ds155294.mlab.com:55294/root";
 
 mongoose.connect(db, { useNewUrlParser: true }, (err) => {
@@ -79,9 +79,10 @@ router.post('/login', (req, res) => {
 
 router.get('/orders', (req, res) => {
     let exp = new RegExp('^' + req.query.dep); // ----> /^2019-01-15/
+
     Order.find({
-        origin: req.query.o,
-        destination: req.query.d,
+        origin: req.query.o.toLowerCase(),
+        destination: req.query.d.toLowerCase(),
         departure: { $regex: exp },
         available: { $exists: true },
         $where: 'this.available.filter(value=> value).length>=' + req.query.n

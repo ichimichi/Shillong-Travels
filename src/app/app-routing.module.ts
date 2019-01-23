@@ -15,6 +15,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { SeatSelectionComponent } from './main/seat-selection/seat-selection.component';
 import { SuccessfulPaymentComponent } from './main/successful-payment/successful-payment.component';
 import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
+import { AboutComponent } from './main/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'selection', component: SeatSelectionComponent, canActivate: [AuthGuard]},
   { path: 'edit_profile', component: EditProfileComponent, canActivate: [AuthGuard]},
   { path: 'success_payment', component: SuccessfulPaymentComponent},
+  { path: 'about', component: AboutComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
