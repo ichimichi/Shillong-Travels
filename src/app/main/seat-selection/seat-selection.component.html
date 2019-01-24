@@ -172,7 +172,8 @@
 
     <mat-step>
       <ng-template matStepLabel>Select Payment Method</ng-template>
-      <button mat-raised-button color="accent">NORMAL</button>
+      <button mat-raised-button color="accent" (click)="normalPayment()">NORMAL PAYMENT</button>
+      <br>
       <div>
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
       </div>
