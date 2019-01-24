@@ -27,7 +27,6 @@ const BookingSchema = new Schema({
     status: String,
     booking: String,
     passengers: [PersonSchema],
-    id: String,
     payment: Boolean,
     selection: Array
 });
