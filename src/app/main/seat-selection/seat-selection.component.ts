@@ -104,7 +104,6 @@ export class SeatSelectionComponent implements OnInit {
       status : "pending",
       booking : (new Date()).toString(),
       passengers : this.passengersForm.value.passenger,
-      id : "1221321ds213s",
       payment : false,
       selection : this.selected
     };
