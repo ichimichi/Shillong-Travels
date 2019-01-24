@@ -3,13 +3,13 @@
     <h2>COMPLETE PAYMENT TO CONFIRM BOOKING</h2>
     <div class="order-details card rounded-box">
       <h3>BOOKING DETAILS</h3>
-      <div>{{selectedBooking.origin | uppercase}} <span>to</span> {{selectedBooking.destination | uppercase}}</div>
-      <div>{{selectedBooking.agency}}</div>
-      <div><span>Departure Date : </span>{{selectedBooking.departure | date }}</div>
+      <div>{{ticket.origin | uppercase}} <span>to</span> {{ticket.destination | uppercase}}</div>
+      <div>{{ticket.agency}}</div>
+      <div><span>Departure Date : </span>{{ticket.departure | date }}</div>
       <div><span>Passengers : </span></div>
-      <!-- <div *ngFor="let passenger of passengers">
-        <div><span>{{passenger}}</span></div>
-      </div> -->
+      <div *ngFor="let passenger of passengers; let i = index">
+        <div><span class="passenger"> {{i+1}}. </span>{{passenger.name}}</div>
+      </div>
       <div><span>Amount to be paid : </span> {{ amount | currency:'INR'}}</div>
     </div>
     <form  [formGroup]="paymentForm">

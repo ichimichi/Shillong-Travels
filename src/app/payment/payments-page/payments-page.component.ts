@@ -8,6 +8,8 @@ import { monthValidator } from './month.validator';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Order } from 'src/app/shared/order';
+import { Bookings } from 'src/app/shared/bookings';
+import { Person } from 'src/app/shared/person';
 
 @Component({
   selector: 'app-payments-page',
@@ -18,9 +20,9 @@ import { Order } from 'src/app/shared/order';
 export class PaymentsPageComponent implements OnInit {
 
   paymentForm: FormGroup;
-  selectedBooking: Order;
+  ticket: Bookings;
   price: number;
-  passengers: number;
+  passengers: Person[];
   amount: number;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
@@ -37,18 +39,14 @@ export class PaymentsPageComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(
-      map(state => state.selectedBooking.order)
-    ).subscribe(res => this.selectedBooking = res);
+      map(state => state.selectedTicket.ticket)
+    ).subscribe(res =>{ 
+      this.ticket = res;
+      this.price = res.price;
+      this.passengers = res.passengers;
+      this.amount = this.price * this.passengers.length;
 
-    this.store.pipe(
-      map(state => state.selectedBooking.order)
-    ).subscribe(res => this.price = res.price);
-
-    this.store.pipe(
-      map(state => state.searchQuery.query)
-    ).subscribe(res => this.passengers = res.passengers);
-    
-    this.amount = this.passengers * this.price;
+    });
   }
 
 
