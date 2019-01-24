@@ -1,0 +1,24 @@
+h2{
+    color: white;
+}
+.main-img
+  {
+      background:url(../../../assets/images/home-1.jpg);
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: inherit;
+     
+  }
+  
+  .flex-1
+  {
+      display: flex;
+      justify-content: center;
+  }
+
+ .para{
+     color: white;
+     font-weight: 500;
+ }

@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule, MatProgressSpinnerModule, MatProgressBarModule } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -40,6 +40,8 @@ import { AboutComponent } from './main/about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CancelComponent } from './payment/cancel/cancel.component';
 import { SuccessComponent } from './payment/success/success.component';
+import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
+
 
 
 @NgModule({
@@ -70,7 +72,7 @@ import { SuccessComponent } from './payment/success/success.component';
     AboutComponent,
     CancelComponent,
     SuccessComponent,
-
+    TermsConditionsComponent,
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
@@ -101,7 +103,9 @@ import { SuccessComponent } from './payment/success/success.component';
     MatBottomSheetModule,
     MatStepperModule,
     FormsModule ,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthService,

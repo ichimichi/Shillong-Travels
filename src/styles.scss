@@ -125,3 +125,29 @@ h2{
 .bottom-space{
     min-height: calc(100vh - 70px);
 }
+
+.loading{
+    width: 100%;
+    min-height: 300px;
+    position: relative;
+}
+
+.loading mat-spinner{
+    position: absolute;
+    left: 35%;
+    top: 35%;
+}
+
+@media(min-width:780px){
+    .loading{
+        width: 100%;
+        min-height: 300px;
+        position: relative;
+    }
+    
+    .loading mat-spinner{
+        position: absolute;
+        left: 45%;
+        top: 35%;
+    }
+  }

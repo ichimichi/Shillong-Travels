@@ -58,12 +58,22 @@ router.put('/password', (req, res) => {
 
 });
 
-router.post('/boookings', (req, res) => {
+router.post('/bookings', (req, res) => {
 
 });
 
-router.get('/boookings', (req, res) => {
-
+router.get('/bookings',verifyToken, (req, res) => {
+    let token = req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+    User.findOne({ _id: id }, 'bookings', (err, bookings) => {
+        if (err) {
+            res.status(501).send(err);
+        }
+        else {
+            // console.log(bookings);
+            res.status(200).send(bookings);
+        }
+    })
 });
 
 module.exports = router;

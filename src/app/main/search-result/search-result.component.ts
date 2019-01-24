@@ -15,8 +15,8 @@ import { Order } from 'src/app/shared/order';
 })
 export class SearchResultComponent implements OnInit {
 
-  source = "SHILLONG";
-  destination = "GUWAHATI";
+  loaded = false;
+  searchError = false;
 
   searchOptions: Array<String>;
 
@@ -28,7 +28,7 @@ export class SearchResultComponent implements OnInit {
   searched$: Observable<boolean>;
   query$: Observable<Query>;
 
-  availableBookings$: Observable<Order[]>;
+  // availableBookings$: Observable<Order[]>;
   availableBookings: Array<Order>;
 
   query: Query;
@@ -38,6 +38,13 @@ export class SearchResultComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    setTimeout(() => {
+      if(!this.loaded){
+        this.loaded = true;
+        this.searchError = true;
+      }
+    }, 7000);
 
     this.searchQuery$ = this.store
       .pipe(
@@ -56,15 +63,19 @@ export class SearchResultComponent implements OnInit {
 
     this.query$.subscribe(res => { this.query = res; this.searchOptions = [this.query.departure, this.query.passengers.toString()] });
 
-    this.availableBookings$ = this.orderService.getBookings(this.query);
+    // this.availableBookings$ = this.orderService.getBookings(this.query);
 
-    // this.orderService.getBookings(this.query).subscribe( 
-    //   res => {console.log("1",res); this.availableBookings = res; console.log("2",this.availableBookings)}, 
-    //   err => console.log(err)
-    // );
+    this.orderService.getBookings(this.query).subscribe( 
+      res => { 
+        this.availableBookings = res; 
+        if(this.availableBookings.length>0){
+          this.loaded = true
+        }
+      }, 
+      err => console.log(err)
+    );
 
   }
-
 
 
 }
