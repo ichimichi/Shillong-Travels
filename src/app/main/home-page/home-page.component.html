@@ -14,6 +14,9 @@
       <small>otherwise you can register and create and account now</small>
       <button color="accent" mat-raised-button routerLink="/registration">REGISTER</button>
     </div>
+
+    <div class="section-d" *ngIf="authService.isLoggedIn()">
+    </div>
   
   </div>
   
