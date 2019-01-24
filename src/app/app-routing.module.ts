@@ -17,6 +17,7 @@ import { SuccessfulPaymentComponent } from './main/successful-payment/successful
 import { AboutComponent } from './main/about/about.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { CancelComponent } from './payment/cancel/cancel.component';
+import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'cancel', component: CancelComponent },
+  { path: 'tandc', component: TermsConditionsComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

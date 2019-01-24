@@ -40,6 +40,8 @@ import { AboutComponent } from './main/about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CancelComponent } from './payment/cancel/cancel.component';
 import { SuccessComponent } from './payment/success/success.component';
+import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
+
 
 
 @NgModule({
@@ -70,7 +72,7 @@ import { SuccessComponent } from './payment/success/success.component';
     AboutComponent,
     CancelComponent,
     SuccessComponent,
-
+    TermsConditionsComponent,
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
   imports: [
