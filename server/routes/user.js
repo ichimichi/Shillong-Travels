@@ -25,7 +25,7 @@ function verifyToken(req, res, next) {
 }
 
 router.get('/profile', verifyToken, (req, res) => {
-    console.log('profile acccessed');
+    // console.log('profile acccessed');
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
     // console.log('id:', id);
@@ -39,7 +39,22 @@ router.get('/profile', verifyToken, (req, res) => {
 
 });
 
-router.put('/edit', (req, res) => {
+router.put('/edit', verifyToken, (req, res) => {
+    console.log('edit acccessed');
+    let token = req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+    User.findOneAndUpdate({_id: id},{
+       email: req.body.email, phone: req.body.phone
+    }, (err)=> {
+        if(err) {
+            res.status(501).send({update:false});
+        } else {
+            res.status(200).send({update:true});
+        }
+    });
+});
+
+router.put('/password', (req, res) => {
 
 });
 
