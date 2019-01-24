@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+import { ReactiveFormsModule } from '@angular/forms'
+import { CustomValidators } from 'ngx-custom-validators';
+import { monthValidator } from './month.validator';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/reducers';
+import { Order } from 'src/app/shared/order';
 
 @Component({
   selector: 'app-payments-page',
@@ -10,80 +16,66 @@ import { startWith, map } from 'rxjs/operators';
 })
 
 export class PaymentsPageComponent implements OnInit {
-  monthCtrl = new FormControl();
-  filteredMonths: Observable <Month[]>;
-  
-  constructor(private fb: FormBuilder) { 
-    this.filteredMonths = this.monthCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(month => month ? this._filterMonths(month) : this.months.slice())
-      );
+
+  paymentForm: FormGroup;
+  selectedBooking: Order;
+  price: number;
+  passengers: number;
+  amount: number;
+
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+    this.paymentForm = this.fb.group({
+      bank: ['', Validators.required],
+      name: ['', Validators.required],
+      cardNo: ['', [Validators.required, CustomValidators.creditCard]],
+      month: ['', Validators.required],
+      year: ['', Validators.required],
+      cvv: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]]
+    });
 
   }
 
   ngOnInit() {
+    this.store.pipe(
+      map(state => state.selectedBooking.order)
+    ).subscribe(res => this.selectedBooking = res);
+
+    this.store.pipe(
+      map(state => state.selectedBooking.order)
+    ).subscribe(res => this.price = res.price);
+
+    this.store.pipe(
+      map(state => state.searchQuery.query)
+    ).subscribe(res => this.passengers = res.passengers);
+    
+    this.amount = this.passengers * this.price;
   }
 
-  months: Month[] = [
-    {
-      name: 'January',
-      number: '01'
-    },
-    {
-      name: 'February',
-      number: '02'
-    },
-    {
-      name: 'March',
-      number: '03'
-    },
-    {
-      name: 'April',
-      number: '04'
-    },
-    {
-      name: 'May',
-      number: '05'
-    },
-    {
-      name: 'June',
-      number: '06'
-    },
-    {
-      name: 'July',
-      number: '07'
-    },
-    {
-      name: 'August',
-      number: '08'
-    },
-    {
-      name: 'September',
-      number: '09'
-    },
-    {
-      name: 'October',
-      number: '10'
-    },{
-      name: 'November',
-      number: '11'
-    },
-    {
-      name: 'December',
-      number: '12'
-    }
-  ];
 
-  private _filterMonths(value: string): Month[] {
-    const filterValue = value.toLowerCase();
-    return this.months.filter(month => month.name.toLowerCase().indexOf(filterValue) === 0);
+  get bank() {
+    return this.paymentForm.get('bank');
+  }
+
+  get name() {
+    return this.paymentForm.get('name');
+  }
+
+  get cardNo() {
+    return this.paymentForm.get('cardNo');
+  }
+
+  get month() {
+    return this.paymentForm.get('month');
+  }
+
+  get year() {
+    return this.paymentForm.get('year');
+  }
+
+  get cvv() {
+    return this.paymentForm.get('cvv');
   }
 
 }
 
-export interface Month {
-  name: string;
-  number: string;
-}
 

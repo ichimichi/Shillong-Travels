@@ -42,8 +42,6 @@ import { CancelComponent } from './payment/cancel/cancel.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

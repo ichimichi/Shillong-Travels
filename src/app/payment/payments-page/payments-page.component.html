@@ -1,59 +1,70 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
-    <h2>PAYMENTS</h2>
-    <div class="inputs">
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Select Your Bank</mat-label>
-        <mat-select [(value)]="selected" class="form-control">
-          <mat-option value="sbi">State Bank Of India</mat-option>
-          <mat-option value="axis">Axis Bank</mat-option>
-          <mat-option value="icici">ICICI</mat-option>
-          <mat-option value="hdfc">HDFC</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Enter Name on Credit/Debit Card</mat-label>
-        <input matInput placeholder="Card Holder Name">
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="form-group">
-        <mat-label>Enter Your Card Number</mat-label>
-        <input matInput placeholder="Card Number">
-      </mat-form-field>
-      <div class="expiry-date">
-        <mat-form-field appearance="outline" class="month">
-          <mat-label>Month</mat-label>
-          <mat-select placeholder="mm">
-            <mat-option value="01">JANUARY</mat-option>
-            <mat-option value="02">FEBRUARY</mat-option>
-            <mat-option value="03">MARCH</mat-option>
-            <mat-option value="04">APRIL</mat-option>
-            <mat-option value="05">MAY</mat-option>
-            <mat-option value="06">JUNE</mat-option>
-            <mat-option value="07">JULY</mat-option>
-            <mat-option value="08">AUGUST</mat-option>
-            <mat-option value="09">SEPTEMBER</mat-option>
-            <mat-option value="10">OCTOBER</mat-option>
-            <mat-option value="11">NOVEMBER</mat-option>
-            <mat-option value="12">DECEMBER</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="year">
-          <mat-label>Year</mat-label>
-          <mat-select placeholder="yy">
-            <mat-option value="01">JANUARY</mat-option>
-            <mat-option value="02">FEBRUARY</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="cvv">
-          <mat-label>CVV</mat-label>
-          <input matInput placeholder="cvv">
-        </mat-form-field>
-        
-        
-      </div>
+    <h2>COMPLETE PAYMENT TO CONFIRM BOOKING</h2>
+    <div class="order-details card rounded-box">
+      <h3>BOOKING DETAILS</h3>
+      <div>{{selectedBooking.origin | uppercase}} <span>to</span> {{selectedBooking.destination | uppercase}}</div>
+      <div>{{selectedBooking.agency}}</div>
+      <div><span>Departure Date : </span>{{selectedBooking.departure | date }}</div>
+      <div><span>Passengers : </span></div>
+      <!-- <div *ngFor="let passenger of passengers">
+        <div><span>{{passenger}}</span></div>
+      </div> -->
+      <div><span>Amount to be paid : </span> {{ amount | currency:'INR'}}</div>
     </div>
+    <form  [formGroup]="paymentForm">
+      <div class="inputs">
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Select Your Bank</mat-label>
+          <mat-select [(value)]="selected" class="form-control"  formControlName="bank">
+            <mat-option value="sbi">State Bank Of India</mat-option>
+            <mat-option value="axis">Axis Bank</mat-option>
+            <mat-option value="icici">ICICI</mat-option>
+            <mat-option value="hdfc">HDFC</mat-option>
+          </mat-select>
+          <mat-error *ngIf="bank.invalid && bank.touched">
+            <small *ngIf="bank.errors?.required" class="text-danger">Bank must be selected</small>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter Name on Credit/Debit Card</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="name.invalid && name.touched">
+            <small *ngIf="name.errors?.required" class="text-danger">Name must be entered</small>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter Your Card Number</mat-label>
+          <input matInput type="tel" formControlName="cardNo" maxlength="16">
+          <mat-error *ngIf="cardNo.invalid && cardNo.touched">
+            <small *ngIf="cardNo.errors?.required" class="text-danger">Card No. is required</small>
+            <small *ngIf="cardNo.errors?.creditCard" class="text-danger">Invalid Card No.</small>
+          </mat-error>
+        </mat-form-field>
+        <div class="expiry-date">
+          <mat-form-field appearance="outline" class="month">
+            <mat-label>Month</mat-label>
+            <input matInput type="tel" formControlName="month">
+            <mat-error *ngIf="month.invalid && month.touched">
+              <small *ngIf="month.errors?.required" class="text-danger">Month is required</small>
+              <small *ngIf="month.errors?.lt" class="text-danger">invalid month</small>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="year" >
+            <mat-label>Year</mat-label>
+            <input matInput type="tel" formControlName="year">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="cvv">
+            <mat-label>CVV</mat-label>
+            <input matInput placeholder="cvv" formControlName="cvv">
+          </mat-form-field>
+  
+  
+        </div>
+      </div>
+    </form>
     <div class="align-center mt">
-      <button routerLink='/success_payment' color="accent" type="submit"mat-raised-button>
+      <button [disabled]="paymentForm.invalid" routerLink='/success_payment' color="accent" type="submit" mat-raised-button>
         Confirm Payment
       </button><br>
     </div>
