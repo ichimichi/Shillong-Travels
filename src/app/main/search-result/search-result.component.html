@@ -1,41 +1,57 @@
 <div class="rounded-box align-left drop-shadow" *ngIf="searched$ | async">
-  <div class="section-a">
-    <div class="source-destination">
-      {{query.origin | uppercase}}
-      <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
-      {{query.destination | uppercase}}
+  <div *ngIf="!searchError">
+    <div class="section-a">
+      <div class="source-destination">
+        {{query.origin | uppercase}}
+        <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
+        {{query.destination | uppercase}}
+      </div>
+      <div class="trip-options">
+        <mat-chip-list>
+          <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.departure | date}}</mat-chip>
+          <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.passengers}}</mat-chip>
+        </mat-chip-list>
+      </div>
     </div>
-    <div class="trip-options">
-      <mat-chip-list>
-        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.departure | date}}</mat-chip>
-        <mat-chip style="margin: 0.5rem 0.4rem 0 0.4rem;">{{query.passengers}}</mat-chip>
-      </mat-chip-list>
+
+    <div class="section-b">
+      <div class="sorting">
+        <mat-form-field>
+          <mat-select [(value)]="selectedSortOption">
+            <mat-option *ngFor="let sortOption of sortOptions" [value]="sortOption">
+              {{sortOption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="filtering">
+        <button mat-flat-button color="primary">
+          <mat-icon>filter_list</mat-icon>Filter
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- <button mat-flat-button color="primary">
-        <mat-icon >keyboard_arrow_up</mat-icon>sort</button> -->
-
-  <div class="section-b">
-    <div class="sorting">
-      <mat-form-field>
-        <mat-select [(value)]="selectedSortOption">
-          <mat-option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-            {{sortOption}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="filtering">
-      <button mat-flat-button color="primary">
-        <mat-icon>filter_list</mat-icon>Filter
-      </button>
-    </div>
+  <div *ngIf="!loaded" class="loading">
+    <mat-spinner color="accent"></mat-spinner>
   </div>
 
+  <div *ngIf="searchError">
+    <mat-icon>error</mat-icon>
+    <h2>No Results Found</h2>
+    <p>
+      Sorry, It looks like there are currently no tickets from {{query.origin | uppercase}} to {{query.destination |
+      uppercase}} on {{query.departure | date}} for {{query.passengers}}
+    </p>
+    <p>
+      Please, Try again with different options or try again after some time
+    </p>
+    <button mat-raised-button color="accent" routerLink="/search">Click Here</button> to try with a different search
 
-  <app-booking-card [availableBookings]="availableBookings$ | async"></app-booking-card>
+  </div>
+
+  <app-booking-card [availableBookings]="availableBookings" *ngIf="loaded"></app-booking-card>
   <div class="empty-space"></div>
 </div>
 
