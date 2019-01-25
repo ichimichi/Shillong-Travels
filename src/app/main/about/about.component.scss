@@ -1,0 +1,49 @@
+h2{
+    color: white;
+} 
+
+img {
+    border-radius: 50%;
+    width:  90%;
+    height: 90%;
+  }
+
+.main-img
+  {
+      background:url(https://images.unsplash.com/photo-1487538831164-d5e50d117efc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: inherit;
+     
+  }
+  
+  .flex-1
+  {
+      display: flex;
+      justify-content: center;
+  }
+
+ .para{
+     text-align: center;
+     color: white;
+     font-weight: 500;
+ }
+
+ .boxes {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .box {
+    text-align: center;
+    padding: 1.5rem 2rem
+  }
+
+  .p_quotes{
+      color: red;
+  }
+  
+  

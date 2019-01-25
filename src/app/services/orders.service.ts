@@ -11,6 +11,8 @@ import { Order } from '../shared/order';
 export class OrdersService {
 
   getOrdersUrl = "http://localhost:3000/api/orders";
+
+  postOrdersUrl = "http://localhost:3000/api/orders";
   
   constructor(private _http : HttpClient) { }
 
@@ -20,5 +22,9 @@ export class OrdersService {
     this.getOrdersUrl = this.getOrdersUrl + "?o=" + query.origin + "&d=" + query.destination + "&dep=" + query.departure + "&n=" + query.passengers; 
     console.log(this.getOrdersUrl);
     return this._http.get<any>(this.getOrdersUrl);
+  }
+
+  postOrder(order: Order){
+    return this._http.post<any>(this.postOrdersUrl, order);
   }
 }

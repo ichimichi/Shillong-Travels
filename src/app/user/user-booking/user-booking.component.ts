@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Bookings } from 'src/app/shared/bookings';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-booking',
@@ -7,68 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserBookingComponent implements OnInit {
 
-  constructor() { }
+  loaded = false;
+  myBookings: Bookings[];
+  upcoming: Bookings[];
+  completed: Bookings[];
+  cancelled: Bookings[];
+
+  constructor(private userService:UserService) { }
 
   ngOnInit() {
+    this.userService.getBooking().subscribe(
+      res => { 
+        this.myBookings = res.bookings;
+        // this.available.filter(value=> value).length>=
+        this.upcoming = this.myBookings.filter( booking => booking.status === "upcoming");
+        this.completed = this.myBookings.filter( booking => booking.status === "completed");
+        this.cancelled = this.myBookings.filter( booking => booking.status === "cancelled");
+        this.loaded = true;
+        console.log(res); 
+      },
+      err => { console.log(err) }
+    );
   }
 
   sortOptions = ["Time : Earliest", "Time : Last", "Price : Low to High", "Price : High to Low"];
   selectedSortOption = "Time : Earliest";
 
-  UpcomingBookings: MyBooking[] = [
-    {
-      source: "Shillong",
-      destination: "Guwahati",
-      Status: "CONFIRMED",
-      TravelDate: new Date("2019/01/12"),
-      DepartureTime: new Date('06:00 00'),
-    },
-    {
-      source: "Shillong",
-      destination: "Tura",
-      Status: "CONFIRMED",
-      TravelDate: new Date("2019/1/25"),
-      DepartureTime: new Date('07:00 00'),
-    },
-    {
-      source: "Shillong",
-      destination: "Guwahati",
-      Status: "CONFIRMED",
-      TravelDate: new Date("2019/01/14"),
-      DepartureTime: new Date('08:00 00'),
-    }
-  ];
+ }
 
-  PastBookings: MyBooking[] = [
-    {
-      source: "Shillong",
-      destination: "Guwahati",
-      Status: "COMPLETED",
-      TravelDate: new Date("2018/11/12"),
-      DepartureTime: new Date('06:00 00'),
-    },
-    {
-      source: "Shillong",
-      destination: "Tura",
-      Status: "COMPLETED",
-      TravelDate: new Date("2018/4/23"),
-      DepartureTime: new Date('07:00 00'),
-    },
-    {
-      source: "Shillong",
-      destination: "Guwahati",
-      Status: "CONFIRMED",
-      TravelDate: new Date("2019/01/01"),
-      DepartureTime: new Date('08:00 00'),
-    }
-  ];
 
-}
-
-export interface MyBooking {
-  source: string,
-  destination: string,
-  Status: string,
-  TravelDate: any,
-  DepartureTime: any
-}

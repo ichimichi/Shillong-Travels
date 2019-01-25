@@ -1,0 +1,65 @@
+<div class="cards">
+    <div class="container-one">
+        <div *ngIf="bookings.length===0">
+            <mat-card>
+                <h4> No bookings</h4>
+            </mat-card>
+        </div>
+        <ol *ngFor="let booking of bookings">
+            <mat-card class="mat-card">
+                <div class="source-destination">
+                    {{booking.origin|uppercase}}
+                    <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
+                    {{booking.destination|uppercase}}
+                </div>
+                <div class="id">
+                    <h4><span class="details">Id: </span>{{booking._id}}</h4>
+                </div>
+                <div class="travel-date">
+                    <h4><span class="details">Departure Date : </span>{{booking.departure| date:'dd-MM-yy'}}</h4>
+                </div>
+                <div class="agency">
+                    <h4><span class="details">Agency: </span>{{booking.agency}}</h4>
+                </div>
+                <div class="vehicle-no">
+                    <h4><span class="details">Plate number: </span>{{booking.vehicle.plateNumber}}</h4>
+                </div>
+                <details close>
+                    <summary style="color:#3F51b5">Click for more details</summary>
+                    <div class="booking">
+                        <h4><span class="details">Booking Date: </span>{{booking.booking| date:'dd-MM-yy'}}</h4>
+                    </div>
+                    <div class="departure-time">
+                        <h4><span class="details">Departure Time : </span>{{booking.departure| time}}</h4>
+                    </div>
+                    <div class="arrival-date">
+                        <h4><span class="details">Arrival Date : </span>{{booking.arrival| date:'dd-MM-yy'}}</h4>
+                    </div>
+                    <div class="type">
+                        <h4><span class="details">Type : </span>{{booking.type}}</h4>
+                    </div>
+                    <div class="price">
+                        <h4><span class="details">Price : </span>{{booking.price|currency: 'INR'}}</h4>
+                    </div>
+                    <div class="vehicle">
+                        <h4><span class="details">Model : </span>{{booking.vehicle.model}}</h4>
+                        <h4><span class="details">Plate Number : </span>{{booking.vehicle.plateNumber}}</h4>
+                        <h4><span class="details">AC : </span>{{booking.vehicle.ac}}</h4>
+                    </div>
+                    <div>
+                        Passengers:
+                        <div class="passengers" *ngFor="let passenger of booking.passengers; let i=index">
+                            <h4>{{i+1}}. {{passenger.name}}</h4>
+                        </div>
+                    </div>
+                    <div class="selection">
+                        <h4><span class="details">Seats: </span>{{booking.selection}}</h4>
+                    </div>
+                </details>
+                <div class="cancel-button" *ngIf="booking.status === 'upcoming'">
+                    <button mat-raised-button color="warn" (click)="booking.status = 'cancelled'">Cancel</button>
+                </div>
+            </mat-card>
+        </ol>
+    </div>
+</div>

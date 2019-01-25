@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Query } from 'src/app/shared/query';
 import { Order } from 'src/app/shared/order';
+import { Bookings } from 'src/app/shared/bookings';
+import { Router } from '@angular/router';
+import { AddSelectedTicket } from 'src/app/store/actions/ticket.action';
 
 
 @Component({
@@ -42,7 +45,10 @@ export class SeatSelectionComponent implements OnInit {
     { value: 'male', viewValue: 'Mr.' }
   ];
 
-  constructor(public snackbar: MatSnackBar, private store: Store<AppState>, private fb: FormBuilder) { }
+  constructor(public snackbar: MatSnackBar,
+    private store: Store<AppState>,
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -71,6 +77,40 @@ export class SeatSelectionComponent implements OnInit {
     })
 
     this.initConfig();
+  }
+
+  normalPayment() {
+    let ticket: Bookings = {
+      origin : this.order.origin,
+      destination: this.order.destination,
+      departure : this.order.departure,
+      agency : this.order.agency,
+      arrival : this.order.arrival,
+      type : this.order.type,
+      price : this.order.price,
+      vehicle :{
+        model:  this.order.vehicle.model,
+        plateNumber : this.order.vehicle.plateNumber,
+        ac: this.order.vehicle.ac
+      },
+      driver:{
+        firstName: this.order.driver.firstName,
+        lastName: this.order.driver.lastName,
+        gender: this.order.driver.gender,
+        dateOfBirth: this.order.driver.dateOfBirth,
+        email: this.order.driver.email,
+        contact: this.order.driver.contact,
+      },
+      status : "pending",
+      booking : (new Date()).toString(),
+      passengers : this.passengersForm.value.passenger,
+      payment : false,
+      selection : this.selected
+    };
+
+
+    this.store.dispatch(new AddSelectedTicket(ticket));
+    this.router.navigate(['/payments']);
   }
 
   private initConfig(): void {

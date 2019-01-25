@@ -14,6 +14,10 @@
       display: flex;
       justify-content: center;
   }
+  .sec-a
+  {
+      color:rgb(29, 27, 27);
+  }
   .sec-b{
       font-size: 12px;
       margin: 0px;
@@ -37,5 +41,11 @@
      background: none;
     }
   
+    @media only screen and (min-width: 768px) {
+        .sec-a
+        {
+            color:white;
+        }
+    }
   
   

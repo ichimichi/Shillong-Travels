@@ -52,6 +52,7 @@ h4
 {
     color: black;
     font-weight: 500;
+    margin: 7px 0px 7px 0px;
 }
 
 .button-click
@@ -77,10 +78,15 @@ ol
     padding: 0px;
 }
 
-.section
+.cancel-button
 {
-    margin-top: 3rem;
+    margin-top: 8px;
 }
+
+.passengers{
+    margin-left:1rem;
+}
+
 
 @media only screen and (min-width: 768px) {
 .container-one
@@ -91,12 +97,10 @@ flex-wrap: wrap;
 .container-one > ol{
     margin: 15px 15px 15px 0px;
 }
-.container-two
+
+.mat-card
 {
-display: flex;
-flex-wrap: wrap;
-}
-.container-two > ol{
-    margin: 15px 15px 15px 0px;
+    width: 280px;
 }
 }
+
