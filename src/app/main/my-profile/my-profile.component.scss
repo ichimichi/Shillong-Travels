@@ -4,24 +4,30 @@
     padding-left: 15px;
 }
 
-.info {
-    text-align: center;
-}
-
 .header-m-image {
-  background-image: url("../../../assets/images/user_male.png");
-  background-size: cover;
-}
-
+    background-image: url("../../../assets/images/man.png");
+    background-size: cover;
+  }
+  
 .header-f-image {
-    background-image: url("../../../assets/images/user_female.png");
+    background-image: url("../../../assets/images/woman.png");
     background-size: cover;
 }
-
+  
 .header-info {
     border-bottom: lightgray solid;
     border-width: 1px;
     padding-top: 2%;
+}
+
+.info {
+    text-align: left;
+    padding-left: 30px;
+}
+
+button {
+    margin-left: 5px;
+    padding: 5px;
 }
 
 .card {
@@ -32,9 +38,18 @@
 
 .edit, .editButton {
     display: inline-block;
-    margin: 10px;
+}
+
+.editButton {
+    padding: 0px;
+    margin: 0px;
+    float: right;
 }
 
 .form {
     text-align: center;
+}
+
+.full-width {
+    width: 90%;
 }
