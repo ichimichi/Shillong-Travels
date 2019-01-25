@@ -58,16 +58,19 @@ router.put('/password', (req, res) => {
 
 });
 
-router.post('/bookings', (req, res) => {
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWM0MWQ2Yzg3NjVlMmY2ODBjYzU0ZmVhIiwiaWF0IjoxNTQ4MzUyMjUxfQ.wZaotwusCG3512O66w5Ff8BGubOW38MhaBLtJBES2BQ";//req.headers.authorization.split(' ')[1];
+router.post('/bookings', verifyToken, (req, res) => {
+    let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
-    User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, bookings) => {
+    User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
         if (err) {
             res.status(501).send(err);
         }
         else {
             // console.log(bookings);
-            res.status(200).send(bookings);
+            // res.status(200).send(bookings);
+            User.findOne({ _id: id }, 'bookings', (err, bookings) => {
+                res.status(200).send(bookings.bookings.slice(-1).pop());
+            })
         }
     })
 });
