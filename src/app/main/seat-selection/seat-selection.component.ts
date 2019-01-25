@@ -62,7 +62,7 @@ export class SeatSelectionComponent implements OnInit {
       .subscribe(res => this.query = res);
 
     this.store.pipe(map(state => state.selectedBooking.order))
-      .subscribe(res => {this.order = res; this.availability = res.available;console.log(this.availability)});
+      .subscribe(res => {this.order = res; this.availability = res.available});
 
     this.passengersForm = this.fb.group({
       passenger: this.fb.array([])
@@ -106,7 +106,8 @@ export class SeatSelectionComponent implements OnInit {
       passengers : this.passengersForm.value.passenger,
       payment : false,
       selection : this.selected,
-      amount: this.order.price * this.selected.length
+      amount: this.order.price * this.selected.length,
+      order_id: this.order._id
     };
 
 
