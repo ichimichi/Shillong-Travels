@@ -82,7 +82,11 @@ function selectedTicketReducer(state: SelectedTicketState = initialSelectedTicke
         completed: true,
         ticket: action.payload
       }
-
+    case selectedTicketActionTypes.RemoveTicket:
+      return {
+        completed: false,
+        ticket: undefined
+      }
     default:
       return state;
   }
