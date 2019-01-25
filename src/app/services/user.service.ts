@@ -8,14 +8,14 @@ import { User } from '../shared/user';
 })
 export class UserService {
 
-  getProfileURL = 'http://localhost:3000/user/profile'
-
+  getProfileUrl = 'http://localhost:3000/user/profile'
   updateProfileUrl= 'http://localhost:3000/user/edit'
+  updatePasswordUrl= 'http://localhost:3000/user/password'
 
   constructor(private _http: HttpClient) { }
 
   getProfile() {
-    return this._http.get<any>(this.getProfileURL);
+    return this._http.get<any>(this.getProfileUrl);
   }
 
   updateProfile(newProfile: Update) {
@@ -23,7 +23,7 @@ export class UserService {
   }
 
   updatePassword(newPass: Password) {
-    return this._http.put<any>(this.updateProfileUrl, newPass );
+    return this._http.put<any>(this.updatePasswordUrl, newPass );
   }
 
 }
