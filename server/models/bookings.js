@@ -29,7 +29,8 @@ const BookingSchema = new Schema({
     passengers: [PersonSchema],
     payment: Boolean,
     selection: Array,
-    amount: Number
+    amount: Number,
+    order_id: String
 });
 
 Booking = mongoose.model('booking', BookingSchema, 'bookings');
