@@ -9,10 +9,9 @@ import { Bookings } from '../shared/bookings';
 })
 export class UserService {
 
-  getProfileURL = 'http://localhost:3000/user/profile'
-
-  updateProfileUrl = 'http://localhost:3000/user/edit'
-
+  getProfileUrl = 'http://localhost:3000/user/profile'
+  updateProfileUrl= 'http://localhost:3000/user/edit'
+  updatePasswordUrl= 'http://localhost:3000/user/password'
   getBookingURL = 'http://localhost:3000/user/bookings'
 
   postBookingURL = 'http://localhost:3000/user/bookings'
@@ -20,7 +19,7 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
   getProfile() {
-    return this._http.get<any>(this.getProfileURL);
+    return this._http.get<any>(this.getProfileUrl);
   }
 
   getBooking() {
@@ -32,7 +31,7 @@ export class UserService {
   }
 
   updatePassword(newPass: Password) {
-    return this._http.put<any>(this.updateProfileUrl, newPass);
+    return this._http.put<any>(this.updatePasswordUrl, newPass );
   }
 
   postBooking(booking: Bookings) {

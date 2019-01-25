@@ -54,7 +54,34 @@ router.put('/edit', verifyToken, (req, res) => {
     });
 });
 
-router.put('/password', (req, res) => {
+router.put('/password', verifyToken, (req, res) => {
+    console.log('password acccessed');
+
+    let token = req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+
+    User.findOne({ _id: id },'password', (err, user) => {
+        if (err) {
+            res.status(501).send(err);
+        } else {
+            if(req.body.opassword == user.password)
+            {
+                console.log('password found');
+                User.findOneAndUpdate({_id: id},{
+                    password: req.body.npassword, cpassword: req.body.npassword
+                }, (err)=> {
+                     if(err) {
+                         res.status(501).send(err);
+                     } else {
+                         res.status(200).send({match: true});
+                     }
+                });
+            } else {
+                res.status(501).send({match: false})
+            }
+        }
+    });
+
 
 });
 
