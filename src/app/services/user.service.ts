@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/user';
+import { Bookings } from '../shared/bookings';
 
 
 @Injectable({
@@ -13,6 +14,8 @@ export class UserService {
   updateProfileUrl = 'http://localhost:3000/user/edit'
 
   getBookingURL = 'http://localhost:3000/user/bookings'
+
+  postBookingURL = 'http://localhost:3000/user/bookings'
   
   constructor(private _http: HttpClient) { }
 
@@ -30,6 +33,10 @@ export class UserService {
 
   updatePassword(newPass: Password) {
     return this._http.put<any>(this.updateProfileUrl, newPass);
+  }
+
+  postBooking(booking: Bookings) {
+    return this._http.post<any>(this.getBookingURL, booking);
   }
 
 }
