@@ -1,0 +1,23 @@
+{
+    "origin": "shillong",
+    "destination": "nongpog",
+    "departure": "Tue Jan 16 2019 06:00:00 GMT+0530 (India Standard Time)",
+    "arrival": "Tue Jan 16 2019 07:00:00 GMT+0530 (India Standard Time)",
+    "type": "sumo",
+    "agency": "Car Agency",
+    "available": [true,true,true,true,true,true,true,true,false,true],
+    "price": 120,
+    "vehicle": {
+        "model": "TaTa Safari",
+        "plateNumber": "ML 05C 2388",
+        "ac": true
+    },
+    "driver": {
+        "firstName": "string",
+        "lastName": "string",
+        "gender": "male",
+        "dateOfBirth": "Tue Jan 16 2001 07:00:00 GMT+0530 (India Standard Time)",
+        "email": "string@fdf.com",
+        "contact": 1112233388
+    }
+}
