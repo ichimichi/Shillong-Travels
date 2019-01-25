@@ -42,6 +42,8 @@ import { CancelComponent } from './payment/cancel/cancel.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { CardComponent } from './user/user-booking/card/card.component';
 import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
+import { PostOrderComponent } from './main/post-order/post-order.component';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { TermsConditionsComponent } from './main/terms-conditions/terms-conditio
     AboutComponent,
     CancelComponent,
     SuccessComponent,
+    TermsConditionsComponent,
+    PostOrderComponent,
     CardComponent,
     TermsConditionsComponent
 

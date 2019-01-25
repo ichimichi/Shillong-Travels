@@ -1,0 +1,26 @@
+
+.inputs > * {
+    width: 100%;
+}
+
+.submit
+{
+    margin-top: 2rem;
+}
+
+.content {
+    min-height: auto;
+}
+
+.inrdcr{
+    display: flex;
+}
+
+.mat-option {
+    color: #051357;
+}
+
+.selector {
+    width:90px;
+    margin-right: 0.5rem;
+}

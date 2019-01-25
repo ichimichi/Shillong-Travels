@@ -21,7 +21,17 @@ router.get('/orders', (req, res) => {
 });
 
 router.post('/orders', (req, res) => {
-    
-});
+    console.log('Post an order');
+    var newOrder = new Order(req.body);
+    newOrder.origin = newOrder.origin.toLowerCase();
+    newOrder.destination = newOrder.destination.toLowerCase();
+    newOrder.save((err, insertedOrder)=>{
+        if(err){
+            res.send('Error in Saving the order');
+        }else{
+            res.json(insertedOrder);
+        }
+    });
+})
 
 module.exports = router;

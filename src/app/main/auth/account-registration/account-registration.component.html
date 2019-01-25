@@ -11,7 +11,7 @@
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-error *ngIf="firstName.invalid && firstName.touched">
             <small *ngIf="firstName.errors?.required" class="text-danger">First-name is required</small>
-            <small *ngIf="firstName.errors?.minlength"> <a class="text-deco" href="#">Login</a>
+            <small *ngIf="firstName.errors?.minlength"
               class="text-danger">First-name must be at least 2 characters</small>
           </mat-error>
         </mat-form-field>
