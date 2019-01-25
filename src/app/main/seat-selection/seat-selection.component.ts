@@ -32,7 +32,7 @@ export class SeatSelectionComponent implements OnInit {
   passengersForm: FormGroup;
   seatSelectForm: FormGroup;
 
-  availability = [true, false, true, false, true, true, false, true, false, true];
+  availability : boolean[];
   passengers: number;
   price: number;
   book = false;
@@ -62,7 +62,7 @@ export class SeatSelectionComponent implements OnInit {
       .subscribe(res => this.query = res);
 
     this.store.pipe(map(state => state.selectedBooking.order))
-      .subscribe(res => this.order = res);
+      .subscribe(res => {this.order = res; this.availability = res.available;console.log(this.availability)});
 
     this.passengersForm = this.fb.group({
       passenger: this.fb.array([])
@@ -105,7 +105,8 @@ export class SeatSelectionComponent implements OnInit {
       booking : (new Date()).toString(),
       passengers : this.passengersForm.value.passenger,
       payment : false,
-      selection : this.selected
+      selection : this.selected,
+      amount: this.order.price * this.selected.length
     };
 
 
