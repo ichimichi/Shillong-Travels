@@ -26,4 +26,5 @@ export interface Bookings{
     passengers: Array<Person>;
     payment: boolean;
     selection: Array<number>;
+    amount: number;
 }
