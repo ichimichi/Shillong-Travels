@@ -1,0 +1,235 @@
+<div class="rounded-box drop-shadow" *ngIf="!postorder">
+  <div class="content align-left">
+    <h2>POST YOUR SERVICE</h2>
+    <!-- {{dep_selectedHour}}:{{dep_selectedMinutes}} {{dep_selectedAmPm}} -->
+    <p>Select Time of Departure</p>
+    <div class="time-picker">
+      <mat-form-field appearance="outline" class="selector">
+          <mat-label>Hour</mat-label>
+        <mat-select name="dep_selectedHour" [(ngModel)]="dep_selectedHour" (change)="changeTime()">
+          <mat-option *ngFor="let hour of hours" [value]="hour">{{hour}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="selector">
+          <mat-label>Minutes</mat-label>
+        <mat-select name="dep_selectedMinutes" [(ngModel)]="dep_selectedMinutes" (change)="changeTime()">
+          <mat-option *ngFor="let minute of minutes" [value]="minute">{{minute}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="selector">
+          <mat-label>AM/PM</mat-label>
+        <mat-select name="dep_selectedAmPm" [(ngModel)]="dep_selectedAmPm" (change)="changeTime()">
+          <mat-option [value]="0">AM</mat-option>
+          <mat-option [value]="1">PM</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- {{arr_selectedHour}}:{{arr_selectedMinutes}} {{arr_selectedAmPm}} -->
+    <p>Select Time of Arrival</p>
+    <div class="time-picker">
+        <mat-form-field appearance="outline" class="selector">
+            <mat-label>Hour</mat-label>
+          <mat-select name="arr_selectedHour" [(ngModel)]="arr_selectedHour" (change)="changeTime()">
+            <mat-option *ngFor="let hour of hours" [value]="hour">{{hour}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="selector">
+            <mat-label>Minutes</mat-label>
+          <mat-select name="arr_selectedMinutes" [(ngModel)]="arr_selectedMinutes" (change)="changeTime()">
+            <mat-option *ngFor="let minute of minutes" [value]="minute">{{minute}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="selector">
+            <mat-label>AM/PM</mat-label>
+          <mat-select name="arr_selectedAmPm" [(ngModel)]="arr_selectedAmPm" (change)="changeTime()">
+            <mat-option [value]="0">AM</mat-option>
+            <mat-option [value]="1">PM</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    <div class="inputs" [formGroup]="postOrderForm">
+      <!-- {{postOrderForm.value|json}}  -->
+      <div *ngIf="postOrderForm.invalid && postOrderForm.touched">
+        <div *ngIf="postOrderForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION
+          CANNOT BE THE SAME</div>
+      </div>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter your origin</mat-label>
+        <input matInput [class.is-invalid]="origin.invalid && origin.touched" formControlName="origin"
+          [matAutocomplete]="autoGroup" class="form-control">
+        <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of originGroupOptions | async" [label]="group.letter">
+          <mat-option *ngFor="let location of group.locations" [value]="location">
+          {{location}}
+          </mat-option>
+        </mat-optgroup>
+        </mat-autocomplete>
+        <mat-error *ngIf="origin.invalid && origin.touched">
+          <small *ngIf="origin.errors?.required" class="text-danger">Origin is required</small>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter your destination</mat-label>
+        <input matInput [class.is-invalid]="destination.invalid && destination.touched && postOrderForm.errors?.misMatch"
+          formControlName="destination" [matAutocomplete]="autoGrp" class="form-control">
+        <mat-autocomplete #autoGrp="matAutocomplete">
+            <mat-optgroup *ngFor="let group of destinationGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let location of group.places" [value]="location">
+                {{location}}
+          </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+        <mat-error *ngIf="destination.invalid && destination.touched">
+          <small *ngIf="destination.errors?.required" class="text-danger">Destination is required</small>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Select type</mat-label>
+        <mat-select [class.is-invalid]="carType.invalid && carType.touched" formControlName="type" class="form-control">
+          <mat-option value="sumo">Sumo</mat-option>
+          <mat-option value="bus">Bus</mat-option>
+          <mat-option value="car">Car</mat-option>
+        </mat-select>
+        <mat-error *ngIf="carType.invalid && carType.touched">
+          <small *ngIf="carType.errors?.required" class="text-danger">Type is required</small>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter departure date</mat-label>
+        <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure"
+          [matDatepicker]="picker" class="form-control">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="dept_date.invalid && dept_date.touched">
+          <small *ngIf="dept_date.errors?.required" class="text-danger">Departure Date is required</small>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter agency name(or 'driver' for independent driver)</mat-label>
+        <input formControlName="agency" matInput placeholder="AGENCY NAME">
+        <mat-icon matSuffix>call_to_action</mat-icon>
+        <mat-error *ngIf="agencyName.invalid && agencyName.touched">
+          <small *ngIf="agencyName.errors?.required" class="text-danger">Agency-name is required</small>
+          <small *ngIf="agencyName.errors?.minlength" class="text-danger">Agency-name must be at least 2 characters</small>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group">
+        <mat-label>Enter the price for each person</mat-label>
+        <input formControlName="price" matInput placeholder="PRICE">
+        <mat-icon matSuffix>event_seat</mat-icon>
+        <mat-error *ngIf="price.invalid && price.touched">
+          <small *ngIf="price.errors?.required" class="text-danger">Price is required</small>
+        </mat-error>
+      </mat-form-field>
+
+      <ng-container formGroupName="vehicle">
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter Vehicle Model</mat-label>
+          <input formControlName="model" matInput placeholder="MODEL OF VEHICLE">
+          <mat-icon matSuffix>commute</mat-icon>
+          <mat-error *ngIf="v_model.invalid && v_model.touched">
+            <small *ngIf="v_model.errors?.required" class="text-danger">Vehicle Model is required</small>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter the Plate Number of the vehicle</mat-label>
+          <input formControlName="plateNumber" matInput placeholder="PLATE NUMBER">
+          <mat-icon matSuffix>stay_current_landscape</mat-icon>
+          <mat-error *ngIf="v_plateNo.invalid && v_plateNo.touched">
+            <small *ngIf="v_plateNo.errors?.required" class="text-danger">Vehicle Plate Number is required</small>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>AC or non AC vehicle</mat-label>
+          <mat-select [class.is-invalid]="v_ac.invalid && v_ac.touched" formControlName="ac" class="form-control">
+            <mat-option value="yes">Yes</mat-option>
+            <mat-option value="no">No</mat-option>
+          </mat-select>
+          <mat-error *ngIf="v_ac.invalid && v_ac.touched">
+            <small *ngIf="v_ac.errors?.required" class="text-danger">This field is required</small>
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container formGroupName="driver">
+
+        <mat-form-field appearance="outline" class="form-group">
+          <mat-label>Enter the first name of the driver</mat-label>
+          <input formControlName="firstName" matInput placeholder="FIRST NAME">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngIf="d_firstName.invalid && d_firstName.touched">
+            <small *ngIf="d_firstName.errors?.required" class="text-danger">First-name is required</small>
+            <small *ngIf="d_firstName.errors?.minlength"
+              class="text-danger">First-name must be at least 2 characters</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter the last name of the driver</mat-label>
+          <input [class.is-invalid]="d_lastName.invalid && d_lastName.touched" formControlName="lastName" matInput
+            placeholder="LAST NAME">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngIf="d_lastName.invalid && d_lastName.touched">
+            <small *ngIf="d_lastName.errors?.required" class="text-danger">Last-name is required</small>
+            <small *ngIf="d_lastName.errors?.minlength" class="text-danger">Last-name must be at least 2 characters</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select the Gender</mat-label>
+          <mat-select matNativeControl required formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+          <mat-error *ngIf="d_gender.invalid && d_gender.touched">
+            <small *ngIf="d_gender.errors?.required" class="text-danger">Gender is required</small>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Enter the Date of Birth of the driver</mat-label>
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="pickertwo" placeholder="Enter your Date of Birth">
+          <mat-datepicker-toggle matSuffix [for]="pickertwo"></mat-datepicker-toggle>
+          <mat-datepicker #pickertwo></mat-datepicker>
+          <mat-error *ngIf="d_dob.invalid && d_dob.touched">
+            <small *ngIf="d_dob.errors?.required" class="text-danger">Date of Birth is required</small>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Enter the phone number of the driver</mat-label>
+          <input pattern="^\d{10}$" [class.is-invalid]="d_contact.invalid && d_contact.touched" formControlName="contact"
+            matInput placeholder="PHONE NO.">
+          <mat-icon matSuffix>settings_phone</mat-icon>
+          <mat-error *ngIf="d_contact.invalid && d_contact.touched">
+            <small *ngIf="d_contact.errors?.required" class="text-danger">Phone number is required</small>
+            <small *ngIf="d_contact.errors?.pattern" class="text-danger">Phone number must be 10 digits</small>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter the email-id of the driver</mat-label>
+          <input pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" [class.is-invalid]="d_email.invalid && d_email.touched"
+            formControlName="email" matInput placeholder="EMAIL-ID">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="d_email.invalid && d_email.touched">
+            <small *ngIf="d_email.errors?.required" class="text-danger">E-mail is required.</small>
+            <small *ngIf="d_email.errors?.pattern" class="text-danger">E-mail is invalid. Hint: test@test.com</small>
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+
+      <button [disabled]="postOrderForm.invalid" class="submit" mat-raised-button color="accent" (click)="onSubmit()">SUBMIT</button>
+    </div>
+  </div>
+</div>
+
