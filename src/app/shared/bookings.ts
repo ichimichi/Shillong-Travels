@@ -24,7 +24,6 @@ export interface Bookings{
     status: string;
     booking: string;
     passengers: Array<Person>;
-    id: string;
     payment: boolean;
     selection: Array<number>;
 }

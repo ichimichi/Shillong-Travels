@@ -8,9 +8,14 @@
     text-align: center;
 }
 
-.header-image {
-  background-image: url("../../../assets/images/unknown-person.png");
+.header-m-image {
+  background-image: url("../../../assets/images/user_male.png");
   background-size: cover;
+}
+
+.header-f-image {
+    background-image: url("../../../assets/images/user_female.png");
+    background-size: cover;
 }
 
 .header-info {
@@ -25,11 +30,11 @@
   padding-bottom: 20px;
 }
 
-.editButton {
-    text-align: center;
+.edit, .editButton {
+    display: inline-block;
+    margin: 10px;
 }
 
-button {
-    border: lightgray solid;
-    border-width: 1px;
+.form {
+    text-align: center;
 }

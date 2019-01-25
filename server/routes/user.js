@@ -39,15 +39,40 @@ router.get('/profile', verifyToken, (req, res) => {
 
 });
 
-router.put('/edit', (req, res) => {
+router.put('/edit', verifyToken, (req, res) => {
+    console.log('edit acccessed');
+    let token = req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+    User.findOneAndUpdate({ _id: id }, {
+        email: req.body.email, phone: req.body.phone
+    }, (err) => {
+        if (err) {
+            res.status(501).send({ update: false });
+        } else {
+            res.status(200).send({ update: true });
+        }
+    });
+});
+
+router.put('/password', (req, res) => {
 
 });
 
 router.post('/bookings', (req, res) => {
-
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWM0MWQ2Yzg3NjVlMmY2ODBjYzU0ZmVhIiwiaWF0IjoxNTQ4MzUyMjUxfQ.wZaotwusCG3512O66w5Ff8BGubOW38MhaBLtJBES2BQ";//req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+    User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, bookings) => {
+        if (err) {
+            res.status(501).send(err);
+        }
+        else {
+            // console.log(bookings);
+            res.status(200).send(bookings);
+        }
+    })
 });
 
-router.get('/bookings',verifyToken, (req, res) => {
+router.get('/bookings', verifyToken, (req, res) => {
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
     User.findOne({ _id: id }, 'bookings', (err, bookings) => {

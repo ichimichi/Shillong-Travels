@@ -4,45 +4,121 @@
     <mat-card class="card">
       <div class="header-info">
         <mat-card-header class="header">
-          <div mat-card-avatar class="header-image"> </div>
+          <div mat-card-avatar class="header-m-image" *ngIf="myprofile.gender==='male' "> </div>
+          <div mat-card-avatar class="header-f-image" *ngIf="myprofile.gender==='female'"> </div>
           <mat-card-title>{{myprofile.firstName}} {{myprofile.lastName}}</mat-card-title>
           <mat-card-subtitle>user</mat-card-subtitle>
         </mat-card-header>
       </div> <br>
-      
+
       <mat-card-content>
-        <!-- <form [formGroup]="editForm" class="form-group"> -->
+
 
         <div class="info">
-          <h4> <span style="color:#5a5a5a">email: </span>{{myprofile.email}}</h4>
-          <div class="editButton" *ngIf= "!editMail" (click)="EditMail()">
-            <button mat-button routerLink="/edit_email" color="accent">Edit Email</button>
-          </div>
-          <div class="editButton" *ngIf= "editMail" (click)="EditMail()">
-            <button mat-button routerLink="/edit_email" color="accent">Edit Email</button>
-            <!-- <mat-form-field class="full-width" appearance="outline">
-              <textarea matInput placeholder="Enter new email" formControlName="email"></textarea>
-              <mat-error *ngIf="messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error *ngIf="messageForm.controls.email.hasError('required')">
-                Email is required
-              </mat-error>
-            </mat-form-field> -->
+
+          <h4 class="edit"><mat-icon> alternate_email</mat-icon> : {{myprofile.email}}     </h4>
+
+          <button mat-button *ngIf="!editMail" (click)="EditMail()" class="editButton">
+            <mat-icon color="accent">create</mat-icon>
+          </button>
+
+          <div *ngIf="editMail" class="form">
+
+            <form [formGroup]="EmailForm" class="form-group">
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Enter new email" formControlName="email">
+                <mat-error *ngIf="EmailForm.controls.email.invalid && !EmailForm.controls.email.hasError('email')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="EmailForm.controls.email.hasError('required')">
+                  Email is required
+                </mat-error>
+              </mat-form-field> <br>
+              <button [disabled]="EmailForm.invalid" mat-button color="accent" (click)="SaveMail()">
+                <mat-icon>save</mat-icon>
+              </button>
+              <button mat-button color="accent" (click)="editMail=false;">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </form>
           </div>
 
-          <h4><span style="color:#5a5a5a">Gender: </span>{{myprofile.gender}}</h4>
-          <h4><span style="color:#5a5a5a">Date of Birth: </span>{{myprofile.dateOfBirth| date}}</h4>
-          <h4><span style="color:#5a5a5a">Phone Number: </span>+91 - {{myprofile.phone}}</h4><br>
-          <div class="editButton">
-            <button mat-button routerLink="/edit_phone" color="accent">Edit Phone number</button>
-          </div>
+          <h4>
+            <mat-icon>cake</mat-icon> : {{myprofile.dateOfBirth| date}}
+          </h4>
+
+          <h4 class="edit">
+            <mat-icon> call</mat-icon> : +91 - {{myprofile.phone}}
+          </h4>
+
+          <button mat-button *ngIf="!editPhone" (click)="EditPhone()" class="editButton">
+            <mat-icon color="accent">create</mat-icon>
+          </button>
+
+
+          <div *ngIf="editPhone" class="form">
+            <form [formGroup]="PhoneForm" class="form-group">                                 
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="Enter new Phone number" formControlName="phoneNo">
+                <mat-error *ngIf="PhoneForm.controls.phoneNo.hasError('required')">
+                  Phone is required
+                </mat-error>
+                <mat-error *ngIf="PhoneForm.controls.phoneNo.hasError('minlength') && PhoneForm.controls.phoneNo.hasError('maxlength')">
+                    Phone number should be of 10 digits
+                  </mat-error>
+              </mat-form-field>
+            </form> <br>
+            <button mat-button color="accent" [disabled]="PhoneForm.invalid" (click)="SavePhone()">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-button color="accent" (click)="editPhone=false;">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </div> <br>
+
+          <button mat-button  *ngIf="!editPassword">
+            <h5 (click)="EditPassword()" style="color:#fc6805">edit password</h5>
+          </button>
+          
+          <!-- <div *ngIf="editPassword" class="form">            
+            <form [formGroup]="PasswordForm" class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Enter your old password</mat-label>
+                <input formControlName="opassword" matInput placeholder="OLD PASSWORD" type="password">
+                <mat-error *ngIf="opassword.invalid && opassword.touched">
+
+                  <small *ngIf="PasswordForm.errors?.required" class="text-danger">Password is required.</small>
+                  <small *ngIf="PasswordForm.errors?.minlength" class="text-danger">Password should be at least 8
+                    characters</small>
+                </mat-error>
+              </mat-form-field><br>
+              <mat-form-field appearance="outline">
+                <mat-label>Enter your new password</mat-label>
+                <input formControlName="npassword" matInput placeholder="NEW PASSWORD" type="password">
+                <mat-error *ngIf="npassword.invalid && npassword.touched">
+
+                  <small *ngIf="PasswordForm.errors?.required" class="text-danger">Password is required.</small>
+                  <small *ngIf="PasswordForm.errors?.minlength" class="text-danger">Password should be at least 8
+                    characters</small>
+                </mat-error>
+              </mat-form-field> <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Confirm your password</mat-label>
+                <input formControlName="cpassword" matInput placeholder="CONFIRM NEW PASSWORD" type="password" [errorStateMatcher]="errorMatcher">
+                <mat-error *ngIf="PasswordForm.errors?.misMatch">
+                  <small class="text-danger">Passwords do not match</small>
+                </mat-error>
+              </mat-form-field>
+            </form>
+            <button mat-button color="accent" (click)="SavePassword()"><mat-icon color="accent">save</mat-icon></button>
+              <button mat-button color="accent" (click)="editPassword=false;"><mat-icon color="accent">clear</mat-icon></button>
+          </div> -->
         </div>
-      <!-- </form> -->
-      </mat-card-content>  
-      
+
+
+      </mat-card-content>
+
     </mat-card>
 
   </div>
 </div>
-
