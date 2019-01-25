@@ -27,5 +27,5 @@ export interface Bookings{
     payment: boolean;
     selection: Array<number>;
     amount: number;
-    order_id: number;
+    order_id: string;
 }
