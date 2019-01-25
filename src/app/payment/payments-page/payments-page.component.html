@@ -12,11 +12,11 @@
       </div>
       <div><span>Amount to be paid : </span> {{ amount | currency:'INR'}}</div>
     </div>
-    <form  [formGroup]="paymentForm">
+    <form [formGroup]="paymentForm">
       <div class="inputs">
         <mat-form-field appearance="outline" class="form-group">
           <mat-label>Select Your Bank</mat-label>
-          <mat-select [(value)]="selected" class="form-control"  formControlName="bank">
+          <mat-select [(value)]="selected" class="form-control" formControlName="bank">
             <mat-option value="sbi">State Bank Of India</mat-option>
             <mat-option value="axis">Axis Bank</mat-option>
             <mat-option value="icici">ICICI</mat-option>
@@ -50,7 +50,7 @@
               <small *ngIf="month.errors?.lt" class="text-danger">invalid month</small>
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="year" >
+          <mat-form-field appearance="outline" class="year">
             <mat-label>Year</mat-label>
             <input matInput type="tel" formControlName="year">
           </mat-form-field>
@@ -58,15 +58,18 @@
             <mat-label>CVV</mat-label>
             <input matInput placeholder="cvv" formControlName="cvv">
           </mat-form-field>
-  
-  
+
+
         </div>
       </div>
     </form>
-    <div class="align-center mt">
-      <button [disabled]="paymentForm.invalid" routerLink='/success_payment' color="accent" type="submit" mat-raised-button>
+    <div class="align-center mt btn">
+      <button (click)="cancel()" color="warn" mat-raised-button>
+        Cancel
+      </button>
+      <button [disabled]="paymentForm.invalid" (click)="confirm()" color="primary" mat-raised-button>
         Confirm Payment
-      </button><br>
+      </button>
     </div>
   </div>
 </div>

@@ -9,6 +9,8 @@ import { AppState } from 'src/app/store/reducers';
 import { Order } from 'src/app/shared/order';
 import { Bookings } from 'src/app/shared/bookings';
 import { Person } from 'src/app/shared/person';
+import { Router } from '@angular/router';
+import { RemoveSelectedTicket, AddSelectedTicket } from 'src/app/store/actions/ticket.action';
 
 @Component({
   selector: 'app-payments-page',
@@ -24,7 +26,9 @@ export class PaymentsPageComponent implements OnInit {
   passengers: Person[];
   amount: number;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+  constructor(private fb: FormBuilder, 
+    private store: Store<AppState>,
+    private router: Router) {
     this.paymentForm = this.fb.group({
       bank: ['', Validators.required],
       name: ['', Validators.required],
@@ -47,7 +51,18 @@ export class PaymentsPageComponent implements OnInit {
 
     });
   }
+  
+  confirm(){
+    this.ticket.status = "upcoming";
+    this.ticket.payment = true;
+    this.store.dispatch(new AddSelectedTicket(this.ticket));
+    this.router.navigate(['/success']);
+  }
 
+  cancel(){
+    this.store.dispatch(new RemoveSelectedTicket());
+    this.router.navigate(['/cancel']);
+  }
 
   get bank() {
     return this.paymentForm.get('bank');
