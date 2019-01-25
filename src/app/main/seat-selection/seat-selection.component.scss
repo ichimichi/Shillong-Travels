@@ -20,7 +20,8 @@
 
 // car
 .car .seat-svg{
-    width: 4rem;
+    min-width: 3rem;
+    max-width: 4rem;
 }
 
 .car{
