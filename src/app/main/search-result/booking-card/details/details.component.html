@@ -24,8 +24,8 @@
     <div class="driver">
         <h2>Driver Details</h2>
         <h3>Name :
-            <ng-template *ngIf="(booking.driver.gender==='male'); else mrs">Mr. </ng-template>
-            <ng-template #mrs>Ms. </ng-template>
+            <ng-template *ngIf="(booking.driver.gender==='male'); else ms">Mr. </ng-template>
+            <ng-template #ms>Ms. </ng-template>
             {{booking.driver.firstName}} {{booking.driver.lastName}}
         </h3>
         <h3>Contact : {{booking.driver.contact}} / {{booking.driver.email}}</h3>
