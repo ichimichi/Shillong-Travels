@@ -12,3 +12,11 @@ i.material-icons {
         text-align: center;
         font-weight: 100;
 }
+
+.id{
+    color: #3F51B5;
+}
+
+.passengers p{
+    margin-left: 1rem;
+}
