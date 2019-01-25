@@ -4,7 +4,6 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { startWith, map } from 'rxjs/operators';
 import { ReactiveFormsModule } from '@angular/forms'
 import { CustomValidators } from 'ngx-custom-validators';
-import { monthValidator } from './month.validator';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Order } from 'src/app/shared/order';
