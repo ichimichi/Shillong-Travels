@@ -2,7 +2,7 @@
   <div class="content align-left">
     <h2>SEARCH</h2>
     <div class="inputs" [formGroup]="searchForm">
-      {{searchForm.value|json}} 
+      <!-- {{searchForm.value|json}}  -->
       <div *ngIf="searchForm.invalid && searchForm.touched">
         <div *ngIf="searchForm.errors?.misMatch" class="formErrors rounded-box text-danger">ORIGIN AND DESTINATION
           CANNOT BE THE SAME</div>
@@ -41,7 +41,7 @@
         <mat-label>Select type</mat-label>
         <mat-select [class.is-invalid]="type.invalid && type.touched" formControlName="type" [(value)]="selected" class="form-control">
           <mat-option value="one">One Way</mat-option>
-          <mat-option value="round">Round Trip</mat-option>
+          <mat-option value="round">Round Trip (option currently not available)</mat-option>
         </mat-select>
         <mat-error *ngIf="type.invalid && type.touched">
           <small *ngIf="type.errors?.required" class="text-danger">Type is required</small>

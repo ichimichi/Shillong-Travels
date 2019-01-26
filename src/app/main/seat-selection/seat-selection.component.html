@@ -133,7 +133,7 @@
     <mat-step [stepControl]="passengersForm" errorMessage="Fill all the details">
 
       <form [formGroup]="passengersForm">
-        {{passengersForm.value | json }}
+        <!-- {{passengersForm.value | json }} -->
         <ng-template matStepLabel>Fill in Details of Passengers</ng-template>
 
         <div formArrayName="passenger" *ngFor="let passenger of passenger.controls; let i=index" class="formPassenger">
