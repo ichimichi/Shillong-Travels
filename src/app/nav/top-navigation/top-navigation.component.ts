@@ -8,9 +8,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TopNavigationComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  loggedIn: boolean;
+
+  constructor(private authService: AuthService) {
+    this.loggedIn = this.authService.isLoggedIn()
+  }
 
   ngOnInit() {
+
+  }
+
+  logOut() {
+    this.authService.logoutUser()
   }
 
 }
