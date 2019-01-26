@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AuthStatusService } from 'src/app/services/auth-status.service';
 
 
 @Component({
@@ -11,18 +11,18 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  loggedIn: boolean;
+  // loggedIn: boolean;
   animal: string;
   name: string;
 
   constructor(public dialog: MatDialog,
-    private authService: AuthService,
+    public authStatusService: AuthStatusService,
     private router: Router) {
-    this.loggedIn = this.authService.isLoggedIn()
+    // this.loggedIn = this.authStatusService.isLoggedIn()
   }
 
   openDialog(): void {
-    if (!this.authService.isLoggedIn()) {
+    if (!this.authStatusService.isLoggedIn()) {
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
         width: '250px',
       });

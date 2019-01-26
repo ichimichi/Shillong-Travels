@@ -15,13 +15,13 @@
         <a mat-button routerLink="/offer">
           OFFERS
         </a>
-        <a mat-button routerLink="/registration" *ngIf="!loggedIn">
+        <a mat-button routerLink="/registration" *ngIf="!authStatusService.isLoggedIn()">
           REGISTER
         </a>
-        <a mat-button routerLink="/login" *ngIf="!loggedIn">
+        <a mat-button routerLink="/login" *ngIf="!authStatusService.isLoggedIn()">
           SIGN IN
         </a>
-        <a mat-button *ngIf="loggedIn" (click)="logOut()">
+        <a mat-button *ngIf="authStatusService.isLoggedIn()" (click)="logOut()">
           SIGN OUT
         </a>
     </div>
@@ -47,15 +47,15 @@
           <mat-icon>favorite</mat-icon>
           <span>Offers</span>
         </button>
-        <button mat-menu-item routerLink="/registration"  *ngIf="!loggedIn">
+        <button mat-menu-item routerLink="/registration"  *ngIf="!authStatusService.isLoggedIn()">
           <mat-icon>person_add</mat-icon>
           <span>Register</span>
         </button>
-        <button mat-menu-item routerLink="/login"  *ngIf="!loggedIn">
+        <button mat-menu-item routerLink="/login"  *ngIf="!authStatusService.isLoggedIn()">
           <mat-icon>fingerprint</mat-icon>
           <span>Sign In</span>
         </button>
-        <button mat-menu-item *ngIf="loggedIn" (click)="logOut()">
+        <button mat-menu-item *ngIf="authStatusService.isLoggedIn()" (click)="logOut()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Sign Out</span>
         </button>

@@ -8,14 +8,14 @@
       <button color="accent" mat-raised-button (click)="openDialog()">START BOOKING</button>
     </div>
 
-    <div class="section-b" *ngIf="!loggedIn">
+    <div class="section-b" *ngIf="!authStatusService.isLoggedIn()">
       <small>If you already have an account</small>
       <button color="accent" mat-raised-button routerLink="/login">SIGN IN</button>
       <small>otherwise you can register and create and account now</small>
       <button color="accent" mat-raised-button routerLink="/registration">REGISTER</button>
     </div>
 
-    <div class="section-d" *ngIf="loggedIn">
+    <div class="section-d" *ngIf="authStatusService.isLoggedIn()">
     </div>
 
   </div>

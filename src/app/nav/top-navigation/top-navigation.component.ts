@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
+import {  AuthService } from 'src/app/services/auth.service';
+import { AuthStatusService } from 'src/app/services/auth-status.service';
 
 @Component({
   selector: 'app-top-navigation',
@@ -8,10 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TopNavigationComponent implements OnInit {
 
-  loggedIn: boolean;
+  // loggedIn: boolean;
 
-  constructor(private authService: AuthService) {
-    this.loggedIn = this.authService.isLoggedIn()
+  constructor(private authService: AuthService,
+    public authStatusService: AuthStatusService) {
+    // this.loggedIn = this.authStatusService.isLoggedIn()
   }
 
   ngOnInit() {
