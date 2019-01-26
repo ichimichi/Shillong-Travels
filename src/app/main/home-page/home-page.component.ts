@@ -11,25 +11,27 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-
+  loggedIn: boolean;
   animal: string;
   name: string;
 
   constructor(public dialog: MatDialog,
-              private authService: AuthService,
-              private router: Router) { }
+    private authService: AuthService,
+    private router: Router) {
+    this.loggedIn = this.authService.isLoggedIn()
+  }
 
   openDialog(): void {
-    if(!this.authService.isLoggedIn()){
+    if (!this.authService.isLoggedIn()) {
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
         width: '250px',
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
     }
-    else{
+    else {
       this.router.navigate(['/search']);
     }
   }

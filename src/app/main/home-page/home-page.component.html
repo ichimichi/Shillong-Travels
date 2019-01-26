@@ -1,25 +1,25 @@
 <div class="grid">
 
-  <div class="rounded-box align-center drop-shadow" >
+  <div class="rounded-box align-center drop-shadow">
 
     <div class="section-a">
       <h1> <span>WELCOME TO</span> <span>SHILLONG TRAVELS</span></h1>
       <p>WHERE WE MAKE BOOKING VEHICLES EASIER FOR YOU</p>
-      <button color="accent" mat-raised-button (click)="openDialog()" >START BOOKING</button>
+      <button color="accent" mat-raised-button (click)="openDialog()">START BOOKING</button>
     </div>
-  
-    <div class="section-b" *ngIf="!authService.isLoggedIn()">
+
+    <div class="section-b" *ngIf="!loggedIn">
       <small>If you already have an account</small>
       <button color="accent" mat-raised-button routerLink="/login">SIGN IN</button>
       <small>otherwise you can register and create and account now</small>
       <button color="accent" mat-raised-button routerLink="/registration">REGISTER</button>
     </div>
 
-    <div class="section-d" *ngIf="authService.isLoggedIn()">
+    <div class="section-d" *ngIf="loggedIn">
     </div>
-  
+
   </div>
-  
+
   <div class="section-c">
     <div class="logo">
       SHILLONG TRAVELS
