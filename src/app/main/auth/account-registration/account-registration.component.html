@@ -56,12 +56,12 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Enter your email-id</mat-label>
-          <input pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" [class.is-invalid]="email.invalid && email.touched"
+          <input [class.is-invalid]="email.invalid && email.touched"
             formControlName="email" matInput placeholder="EMAIL-ID">
-          <mat-icon matSuffix>email</mat-icon>
+          <mat-icon matSuffix>alternate_email</mat-icon>
           <mat-error *ngIf="email.invalid && email.touched">
             <small *ngIf="email.errors?.required" class="text-danger">E-mail is required.</small>
-            <small *ngIf="email.errors?.pattern" class="text-danger">E-mail is invalid. Hint: test@test.com</small>
+            <small *ngIf="email.errors?.email" class="text-danger">E-mail is invalid. Hint: test@test.com</small>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
