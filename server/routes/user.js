@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const Order = require('../models/order');
 
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
@@ -60,24 +61,23 @@ router.put('/password', verifyToken, (req, res) => {
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
 
-    User.findOne({ _id: id },'password', (err, user) => {
+    User.findOne({ _id: id }, 'password', (err, user) => {
         if (err) {
             res.status(501).send(err);
         } else {
-            if(req.body.opassword == user.password)
-            {
+            if (req.body.opassword == user.password) {
                 console.log('password found');
-                User.findOneAndUpdate({_id: id},{
+                User.findOneAndUpdate({ _id: id }, {
                     password: req.body.npassword, cpassword: req.body.npassword
-                }, (err)=> {
-                     if(err) {
-                         res.status(501).send(err);
-                     } else {
-                         res.status(200).send({match: true});
-                     }
+                }, (err) => {
+                    if (err) {
+                        res.status(501).send(err);
+                    } else {
+                        res.status(200).send({ match: true });
+                    }
                 });
             } else {
-                res.status(501).send({match: false})
+                res.status(501).send({ match: false })
             }
         }
     });
@@ -88,6 +88,27 @@ router.put('/password', verifyToken, (req, res) => {
 router.post('/bookings', verifyToken, (req, res) => {
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
+    let order_id = req.body.order_id;
+    for (var seat of req.body.selection) {
+        console.log(seat)
+        // var update = new BasicDBObject("available"+"."+seat);
+        Order.findOneAndUpdate({ _id: order_id },
+            {
+                $set: { [`available.${seat}`]: false },
+
+            },
+            //  (err, res) => {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         console.log(res);
+            //         console.log("-----seat no. : ", seat);
+            //     }
+            // }
+            
+            );
+    }
+
     User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
         if (err) {
             res.status(501).send(err);
