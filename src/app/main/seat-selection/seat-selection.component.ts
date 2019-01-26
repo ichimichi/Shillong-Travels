@@ -6,13 +6,14 @@ import { AppState } from 'src/app/store/reducers';
 import { MatVerticalStepper } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Query } from 'src/app/shared/query';
 import { Order } from 'src/app/shared/order';
 import { Bookings } from 'src/app/shared/bookings';
 import { Router } from '@angular/router';
-import { AddSelectedTicket } from 'src/app/store/actions/ticket.action';
+import { AddSelectedTicket, RemoveSelectedTicket } from 'src/app/store/actions/ticket.action';
+import { Person } from 'src/app/shared/person';
 
 
 @Component({
@@ -32,12 +33,16 @@ export class SeatSelectionComponent implements OnInit {
   passengersForm: FormGroup;
   seatSelectForm: FormGroup;
 
-  availability : boolean[];
-  passengers: number;
+  availability: boolean[];
+  npassenger: number;
   price: number;
   book = false;
   query: Query;
   order: Order;
+
+  ticket: Bookings;
+  passengers: Person[];
+  amount: number;
 
   genders: gender[] = [
     { value: 'female', viewValue: 'Miss' },
@@ -53,7 +58,7 @@ export class SeatSelectionComponent implements OnInit {
   ngOnInit() {
 
     this.store.pipe(map(state => state.searchQuery.query.passengers))
-      .subscribe(passenger => this.passengers = passenger);
+      .subscribe(passenger => this.npassenger = passenger);
 
     this.store.pipe(map(state => state.selectedBooking.order.price))
       .subscribe(price => this.price = price);
@@ -62,13 +67,23 @@ export class SeatSelectionComponent implements OnInit {
       .subscribe(res => this.query = res);
 
     this.store.pipe(map(state => state.selectedBooking.order))
-      .subscribe(res => {this.order = res; this.availability = res.available});
+      .subscribe(res => { this.order = res; this.availability = res.available });
+
+    this.store.pipe(
+      map(state => state.selectedTicket.ticket))
+      .subscribe(res => {
+        this.ticket = res;
+        this.price = res.price;
+        this.passengers = res.passengers;
+        this.amount = this.price * this.passengers.length;
+
+      });
 
     this.passengersForm = this.fb.group({
       passenger: this.fb.array([])
     });
 
-    for (let i = 0; i < this.passengers; i++) {
+    for (let i = 0; i < this.npassenger; i++) {
       this.passenger.push(this.createPassenger());
     }
 
@@ -76,24 +91,25 @@ export class SeatSelectionComponent implements OnInit {
       selected: ['', [Validators.required]]
     })
 
+
     this.initConfig();
   }
 
   normalPayment() {
     let ticket: Bookings = {
-      origin : this.order.origin,
+      origin: this.order.origin,
       destination: this.order.destination,
-      departure : this.order.departure,
-      agency : this.order.agency,
-      arrival : this.order.arrival,
-      type : this.order.type,
-      price : this.order.price,
-      vehicle :{
-        model:  this.order.vehicle.model,
-        plateNumber : this.order.vehicle.plateNumber,
+      departure: this.order.departure,
+      agency: this.order.agency,
+      arrival: this.order.arrival,
+      type: this.order.type,
+      price: this.order.price,
+      vehicle: {
+        model: this.order.vehicle.model,
+        plateNumber: this.order.vehicle.plateNumber,
         ac: this.order.vehicle.ac
       },
-      driver:{
+      driver: {
         firstName: this.order.driver.firstName,
         lastName: this.order.driver.lastName,
         gender: this.order.driver.gender,
@@ -101,11 +117,11 @@ export class SeatSelectionComponent implements OnInit {
         email: this.order.driver.email,
         contact: this.order.driver.contact,
       },
-      status : "pending",
-      booking : (new Date()).toString(),
-      passengers : this.passengersForm.value.passenger,
-      payment : false,
-      selection : this.selected,
+      status: "pending",
+      booking: (new Date()).toString(),
+      passengers: this.passengersForm.value.passenger,
+      payment: false,
+      selection: this.selected,
       amount: this.order.price * this.selected.length,
       order_id: this.order._id
     };
@@ -119,24 +135,73 @@ export class SeatSelectionComponent implements OnInit {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
       commit: true,
       client: {
-        sandbox: 'Ae-9HVagUn-u9WTli6aAElOUf_A1hRR8AhT26TMraDwKQXiZQFd5mLfu9CEb_xCFXaUaTWLMmJUH8hbq'
+        sandbox: 'AYrhWD-z0hGvUKOfA5-JMvTrh5IBMWYlvIIEwNxXn0f9z2wQ5dqoZgW_BIxNoUm9o6Z9cbfjNxBuc29S'
       },
       button: {
         label: 'paypal',
+        layout: 'vertical'
+      },
+      onAuthorize: (data, actions) => {
+        console.log('Authorize');
+        return of(undefined);
       },
       onPaymentComplete: (data, actions) => {
         console.log('OnPaymentComplete');
+        let ticket: Bookings = {
+          origin: this.order.origin,
+          destination: this.order.destination,
+          departure: this.order.departure,
+          agency: this.order.agency,
+          arrival: this.order.arrival,
+          type: this.order.type,
+          price: this.order.price,
+          vehicle: {
+            model: this.order.vehicle.model,
+            plateNumber: this.order.vehicle.plateNumber,
+            ac: this.order.vehicle.ac
+          },
+          driver: {
+            firstName: this.order.driver.firstName,
+            lastName: this.order.driver.lastName,
+            gender: this.order.driver.gender,
+            dateOfBirth: this.order.driver.dateOfBirth,
+            email: this.order.driver.email,
+            contact: this.order.driver.contact,
+          },
+          status: "upcoming",
+          booking: (new Date()).toString(),
+          passengers: this.passengersForm.value.passenger,
+          payment: true,
+          selection: this.selected,
+          amount: this.order.price * this.selected.length,
+          order_id: this.order._id
+        };
+        this.store.dispatch(new AddSelectedTicket(ticket));
+        this.router.navigate(['/success']);
+        console.log(ticket)
+
       },
       onCancel: (data, actions) => {
         console.log('OnCancel');
+        this.router.navigate(['/cancel']);
       },
       onError: (err) => {
-        console.log('OnError');
+        console.log(err);
+      },
+      onClick: () => {
+        console.log('onClick');
+      },
+      validate: (actions) => {
+        console.log(actions);
+      },
+      experience: {
+        noShipping: true,
+        brandName: 'Shillong Travels'
       },
       transactions: [{
         amount: {
           currency: 'INR',
-          total: this.price
+          total: this.price * this.npassenger
         }
       }]
     });
@@ -158,14 +223,14 @@ export class SeatSelectionComponent implements OnInit {
     if (this.selected.includes(seat)) {
       this.selected.splice(this.selected.indexOf(seat), 1);
     } else {
-      if (this.selected.length < this.passengers) {
+      if (this.selected.length < this.npassenger) {
         this.selected.push(seat);
       } else {
         this.snackbar.open('Can\'t select anymore seats. If you wish to change selection , un-select a selected seat', '', { duration: 1000 });
       }
     }
 
-    if (this.selected.length === this.passengers) {
+    if (this.selected.length === this.npassenger) {
       this.book = true;
       this.seatSelectForm.controls['selected'].setErrors(null)
     } else {
