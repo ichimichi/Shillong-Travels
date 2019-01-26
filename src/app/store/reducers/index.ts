@@ -49,7 +49,7 @@ export interface AppState {
   selectedTicket: SelectedTicketState
 }
 
-function searchQueryReducer(state: SearchState = initialSearchState, action: SearchQueryActions): SearchState {
+export function searchQueryReducer(state: SearchState = initialSearchState, action: SearchQueryActions): SearchState {
   switch (action.type) {
     case SearchQueryActionTypes.AddSearchQuery:
       return {
@@ -62,7 +62,7 @@ function searchQueryReducer(state: SearchState = initialSearchState, action: Sea
   }
 }
 
-function selectedBookingReducer(state: SelectedBookingState = initialSelectedBookingState, action: BookingActions): SelectedBookingState {
+export function selectedBookingReducer(state: SelectedBookingState = initialSelectedBookingState, action: BookingActions): SelectedBookingState {
   switch (action.type) {
     case SelectedBookingActionTypes.AddSelectedBooking:
       return {
@@ -75,7 +75,7 @@ function selectedBookingReducer(state: SelectedBookingState = initialSelectedBoo
   }
 }
 
-function selectedTicketReducer(state: SelectedTicketState = initialSelectedTicketState, action: TicketActions): SelectedTicketState {
+export function selectedTicketReducer(state: SelectedTicketState = initialSelectedTicketState, action: TicketActions): SelectedTicketState {
   switch (action.type) {
     case selectedTicketActionTypes.AddTicket:
       return {
