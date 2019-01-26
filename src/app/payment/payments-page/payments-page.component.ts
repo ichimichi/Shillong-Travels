@@ -25,6 +25,7 @@ export class PaymentsPageComponent implements OnInit {
   price: number;
   passengers: Person[];
   amount: number;
+  selected: string;
 
   constructor(private fb: FormBuilder, 
     private store: Store<AppState>,
