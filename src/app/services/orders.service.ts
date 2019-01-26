@@ -10,9 +10,9 @@ import { Order } from '../shared/order';
 })
 export class OrdersService {
 
-  getOrdersUrl = "http://localhost:3000/api/orders";
+  getOrdersUrl = "http://localhost:8080/api/orders";
 
-  postOrdersUrl = "http://localhost:3000/api/orders";
+  postOrdersUrl = "http://localhost:8080/api/orders";
   
   constructor(private _http : HttpClient) { }
 
