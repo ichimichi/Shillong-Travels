@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Order } from 'src/app/shared/order';
 import { DetailsComponent } from './details/details.component';
 import { MatBottomSheet } from '@angular/material';
@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 })
 export class BookingCardComponent implements OnInit {
   selected: Order;
+  @Input() availableBookings:Order[];
+
   constructor(private bottomSheet: MatBottomSheet,
               private store: Store<AppState>,
               private router: Router) { }
@@ -36,6 +38,5 @@ export class BookingCardComponent implements OnInit {
     this.router.navigate(['selection']);
   }
 
-  //availableBookings: Order[];
 
 }
