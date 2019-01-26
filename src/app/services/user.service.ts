@@ -9,10 +9,10 @@ import { Bookings } from '../shared/bookings';
 })
 export class UserService {
 
-  getProfileUrl = 'http://localhost:8080/user/profile'
-  updateProfileUrl= 'http://localhost:8080/user/edit'
-  updatePasswordUrl= 'http://localhost:8080/user/password'
-  getBookingURL = 'http://localhost:8080/user/bookings'
+  getProfileUrl = '/user/profile'
+  updateProfileUrl= '/user/edit'
+  updatePasswordUrl= '/user/password'
+  getBookingURL = '/user/bookings'
 
   postBookingURL = 'http://localhost:3000/user/bookings'
   
