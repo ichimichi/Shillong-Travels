@@ -18,7 +18,7 @@ export class OrdersService {
 
   getBookings(query: Query){
     query.departure = query.departure.toString().substring(0,15);
-    this.getOrdersUrl = "http://localhost:3000/api/orders"
+    this.getOrdersUrl = "/api/orders"
     this.getOrdersUrl = this.getOrdersUrl + "?o=" + query.origin + "&d=" + query.destination + "&dep=" + query.departure + "&n=" + query.passengers; 
     console.log(this.getOrdersUrl);
     return this._http.get<any>(this.getOrdersUrl);
