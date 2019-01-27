@@ -13,18 +13,24 @@ export class OrdersService {
   getOrdersUrl = "/api/orders";
 
   postOrdersUrl = "/api/orders";
-  
-  constructor(private _http : HttpClient) { }
 
-  getBookings(query: Query){
-    query.departure = query.departure.toString().substring(0,15);
+  bookSeatUrl = "/api/seat";
+
+  constructor(private _http: HttpClient) { }
+
+  getBookings(query: Query) {
+    query.departure = query.departure.toString().substring(0, 15);
     this.getOrdersUrl = "/api/orders"
-    this.getOrdersUrl = this.getOrdersUrl + "?o=" + query.origin + "&d=" + query.destination + "&dep=" + query.departure + "&n=" + query.passengers; 
+    this.getOrdersUrl = this.getOrdersUrl + "?o=" + query.origin + "&d=" + query.destination + "&dep=" + query.departure + "&n=" + query.passengers;
     console.log(this.getOrdersUrl);
     return this._http.get<any>(this.getOrdersUrl);
   }
 
-  postOrder(order: Order){
+  postOrder(order: Order) {
     return this._http.post<any>(this.postOrdersUrl, order);
+  }
+
+  bookSeat(order_id: string, seat: number): void {
+    this._http.put<any>(this.bookSeatUrl, { id: order_id, seat: seat });
   }
 }
