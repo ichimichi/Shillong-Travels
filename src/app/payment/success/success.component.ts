@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Bookings } from 'src/app/shared/bookings';
 import { UserService } from 'src/app/services/user.service';
 import { OrdersService } from 'src/app/services/orders.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-success',
@@ -30,30 +31,19 @@ export class SuccessComponent implements OnInit {
         this.userService.postBooking(this.ticket).subscribe(
           res => {
             this.recievedTicket = res;
-            for (let seat of res.selection) {
-              this.orderService.bookSeat(res.order_id, seat);
-            }
             this.loaded = true;
           },
           err => {
             console.log(err);
           }
         )
-        // this.loaded = true;
       }
-    )
-
-
-
+    );
 
   }
 
-  info = {
-    title: "Mr.",
-    name: { "firstName": "Peter", "lastName": "Law" },
-    origin: "Shillong",
-    destination: "Guahati",
-    bookingId: "12345",
-    type: "one-way"
-  };
+
+
+
+
 }
