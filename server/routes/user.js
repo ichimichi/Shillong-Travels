@@ -94,11 +94,7 @@ router.post('/bookings', verifyToken, (req, res) => {
             res.status(501).send(err);
         }
         else {
-            // console.log(bookings);
-            // res.status(200).send(bookings);
-            User.findOne({ _id: id }, 'bookings', (err, bookings) => {
-                res.status(200).send(bookings.bookings.slice(-1).pop());
-            })
+            res.status(200).send(user.bookings.slice(-1).pop());
         }
     })
 });
