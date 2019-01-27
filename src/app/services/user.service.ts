@@ -14,7 +14,7 @@ export class UserService {
   updatePasswordUrl= '/user/password'
   getBookingURL = '/user/bookings'
 
-  postBookingURL = 'http://localhost:3000/user/bookings'
+  postBookingURL = '/user/bookings'
   
   constructor(private _http: HttpClient) { }
 
