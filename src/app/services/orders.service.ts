@@ -30,7 +30,7 @@ export class OrdersService {
     return this._http.post<any>(this.postOrdersUrl, order);
   }
 
-  bookSeat(order_id: string, seat: number): void {
-    this._http.put<any>(this.bookSeatUrl, { id: order_id, seat: seat });
+  bookSeat(order_id: string, seat: number) {
+    return this._http.put<any>(this.bookSeatUrl, { id: order_id, seat: seat });
   }
 }
