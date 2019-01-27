@@ -88,26 +88,6 @@ router.put('/password', verifyToken, (req, res) => {
 router.post('/bookings', verifyToken, (req, res) => {
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
-    let order_id = req.body.order_id;
-    for (var seat of req.body.selection) {
-        console.log(seat)
-        // var update = new BasicDBObject("available"+"."+seat);
-        Order.findOneAndUpdate({ _id: order_id },
-            {
-                $set: { [`available.${seat}`]: false },
-
-            },
-            //  (err, res) => {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         console.log(res);
-            //         console.log("-----seat no. : ", seat);
-            //     }
-            // }
-            
-            );
-    }
 
     User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
         if (err) {
