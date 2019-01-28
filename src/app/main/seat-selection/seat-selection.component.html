@@ -115,13 +115,13 @@
 
         </div>
 
-        <div *ngIf="selected.length>0" class="mt">
+        <!-- <div *ngIf="selected.length>0" class="mt">
           <strong>selected :</strong>
           <span *ngFor="let select of selected">
             {{select}}
           </span>
 
-        </div>
+        </div> -->
 
         <div class="bookButton">
           <button mat-button matStepperNext color="accent" [disabled]="seatSelectForm.invalid" (click)="save()">Next</button>
