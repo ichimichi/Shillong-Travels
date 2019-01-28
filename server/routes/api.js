@@ -49,7 +49,6 @@ router.put('/seat', (req, res) => {
                     console.log(err);
                 } else {
                     // console.log(order);
-                    count++;
                     console.log("-----seat no. : ", seat);
                     // res.status(200).send({booked:true});
                 }
