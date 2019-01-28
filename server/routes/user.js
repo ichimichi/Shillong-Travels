@@ -86,17 +86,31 @@ router.put('/password', verifyToken, (req, res) => {
 });
 
 router.post('/bookings', verifyToken, (req, res) => {
+    console.log("booking",req.body.selection)
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
 
-    User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
-        if (err) {
-            res.status(501).send(err);
-        }
-        else {
-            res.status(200).send(user.bookings.slice(-1).pop());
-        }
-    })
+    if(req.body.selection.length > 0){
+        User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
+            if (err) {
+                res.status(501).send(err);
+            }
+            else {
+                // console.log(user.bookings.slice(-1).pop());
+                
+                User.findOne({ _id: id }, (err,user)=>{
+                    if(err){
+                        res.status(501).send(err);
+                    }else{
+                        // console.log(user.bookings.slice(-1).pop());
+                        res.status(200).send(user.bookings.slice(-1).pop());
+                    }
+                })
+            }
+        })
+    }else{
+        res.status(501).send("Invalid Request");
+    }
 });
 
 router.get('/bookings', verifyToken, (req, res) => {
