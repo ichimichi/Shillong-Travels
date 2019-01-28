@@ -33,29 +33,32 @@ router.post('/orders', (req, res) => {
         }
     });
 })
+
 router.put('/seat', (req, res) => {
-    console.log('Booking');
     let order_id = req.body.id;
-    let seat = req.body.seat;
+    let selection = req.body.selection;
 
-    console.log(seat)
-    // var update = new BasicDBObject("available"+"."+seat);
-    Order.findOneAndUpdate({ _id: order_id },
-        {
-            $set: { [`available.${seat}`]: false },
-
-        },
-         (err, order) => {
-            if (err) {
-                console.log(err);
-            } else {
-                // console.log(order);
-                console.log("-----seat no. : ", seat);
-                res.status(200).send({booked:true});
+    console.log(selection)
+    for (let seat of selection) {
+        Order.findOneAndUpdate({ _id: order_id },
+            {
+                $set: { [`available.${seat}`]: false },
+            },
+            (err, order) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // console.log(order);
+                    count++;
+                    console.log("-----seat no. : ", seat);
+                    // res.status(200).send({booked:true});
+                }
             }
-        }
 
-    );
+        );
+    }
+    res.status(200).send({ booked: true });
+
 
 })
 
