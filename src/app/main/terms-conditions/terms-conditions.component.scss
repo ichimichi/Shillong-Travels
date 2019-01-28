@@ -2,9 +2,9 @@ h2{
     color: white;
 }
 .main-img
-  {
-      background-color: black;
-  }
+{
+    background-image: radial-gradient(circle,#aaa, #888, #222);
+}
   
   .flex-1
   {
@@ -15,4 +15,11 @@ h2{
  .para{
      color: white;
      font-weight: 500;
+     padding: 0 0.8rem;
  }
+ 
+ .para p{
+    color: white;
+    font-weight: 400;
+    margin-left: 0.3rem;
+}

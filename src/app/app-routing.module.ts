@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent },
   { path: 'cancel', component: CancelComponent },
   { path: 'tandc', component: TermsConditionsComponent },
-  { path: 'post-orders', component: PostOrderComponent },
+  { path: 'post', component: PostOrderComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
