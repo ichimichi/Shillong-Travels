@@ -1,5 +1,5 @@
-<div class="rounded-box drop-shadow">
-  <div class="content align-left">
+<!-- <div class="rounded-box drop-shadow"> -->
+  <!-- <div class="content align-left"> -->
 
     <div *ngIf="!loaded" class="loading">
       <mat-spinner color="accent"></mat-spinner>
@@ -85,8 +85,8 @@
               </button>
             </div> <br>
 
-            <button mat-button [disabled]="editPassword">
-              <h5 (click)="EditPassword()" style="color:#fc6805">change password</h5>
+            <button mat-button [disabled]="editPassword" style="color:#fc6805"  (click)="EditPassword()">
+              <h5 style="margin: 0px">change password</h5>
             </button>
 
             <div *ngIf="editPassword" class="form">
@@ -133,5 +133,5 @@
     </div>
 
 
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->
