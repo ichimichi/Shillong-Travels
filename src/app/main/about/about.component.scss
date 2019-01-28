@@ -22,7 +22,9 @@ img {
   .flex-1
   {
       display: flex;
-      justify-content: center;
+      //justify-content: center;
+      justify-content: space-between;
+      align-items: center;
   }
 
  .para{
@@ -33,8 +35,11 @@ img {
 
  .boxes {
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 90px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+    align-content: space-between;
+    justify-content: space-around;
   }
   
   .box {
