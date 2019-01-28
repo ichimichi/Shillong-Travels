@@ -22,9 +22,7 @@ img {
   .flex-1
   {
       display: flex;
-      //justify-content: center;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
   }
 
  .para{
@@ -44,11 +42,12 @@ img {
   
   .box {
     text-align: center;
-    padding: 1.5rem 2rem
+    padding: 1.5rem 2rem;
   }
 
   .p_quotes{
       color: red;
+      font-weight: 600;
   }
   
   
