@@ -4,8 +4,8 @@ h2{
 
 img {
     border-radius: 50%;
-    width:  90%;
-    height: 90%;
+    width:  85%;
+    height: 85%;
   }
 
 .main-img
@@ -33,21 +33,51 @@ img {
 
  .boxes {
     display: grid;
-    grid-gap: 90px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: center;
-    align-content: space-between;
-    justify-content: space-around;
+    grid-gap: 3rem;
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+    justify-content: space-evenly ;
+    padding: 1rem 2rem;
+    // align-content: stretch;
   }
   
   .box {
+      padding-top: 1rem;
+      transition: 200ms ease-in;
+  }
+
+  .box mat-card{
     text-align: center;
-    padding: 1.5rem 2rem;
+    min-height: 450px ;
+      padding: 1.5rem 2rem;
+      
   }
 
   .p_quotes{
       color: red;
       font-weight: 600;
   }
+
+.box:hover {
+    cursor: pointer;
+    transform: translateY(-2rem) scale(1.1);
+}
   
-  
+  @media(min-width:780px){
+    .boxes {
+        display: grid;
+        grid-gap: 3rem;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        justify-content: space-evenly ;
+      }
+
+}
+
+@media(min-width:1229px){
+    .boxes {
+        display: grid;
+        grid-gap: 3rem;
+        grid-template-columns: repeat(4, minmax(250px, 1fr));
+        justify-content: space-evenly ;
+      }
+
+}
