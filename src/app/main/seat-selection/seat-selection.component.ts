@@ -230,11 +230,11 @@ export class SeatSelectionComponent implements OnInit {
       }
     }
 
-    if (this.selected.length === this.npassenger) {
-      this.book = true;
+    if (this.selected.length == this.npassenger) {
+      // this.book = true;
       this.seatSelectForm.controls['selected'].setErrors(null)
     } else {
-      this.book = false;
+      // this.book = false;
       this.seatSelectForm.controls['selected'].setErrors({ required: true })
 
     }

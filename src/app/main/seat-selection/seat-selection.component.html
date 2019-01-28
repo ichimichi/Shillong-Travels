@@ -124,7 +124,7 @@
         </div>
 
         <div class="bookButton">
-          <button mat-button matStepperNext color="accent" [disabled]="!book" (click)="save()">Next</button>
+          <button mat-button matStepperNext color="accent" [disabled]="seatSelectForm.invalid" (click)="save()">Next</button>
         </div>
 
       </div>
