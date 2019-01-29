@@ -8,11 +8,14 @@ import { Bookings } from 'src/app/shared/bookings';
   inputs: ['bookings']
 })
 export class CardComponent implements OnInit {
-
+  show: boolean = false;
   @Input() bookings: Bookings[];
   constructor() { }
 
   ngOnInit() {
   }
 
+  showMore() {
+    this.show = !this.show;
+  }
 }

@@ -43,6 +43,7 @@ import { SuccessComponent } from './payment/success/success.component';
 import { CardComponent } from './user/user-booking/card/card.component';
 import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
 import { PostOrderComponent } from './main/post-order/post-order.component';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { PostOrderComponent } from './main/post-order/post-order.component';
     TermsConditionsComponent,
     PostOrderComponent,
     CardComponent,
-    TermsConditionsComponent
+    TermsConditionsComponent,
+    ReversePipe
 
   ],
   entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
