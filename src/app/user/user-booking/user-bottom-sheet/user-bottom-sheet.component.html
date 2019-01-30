@@ -1,8 +1,10 @@
+<div class="more-details">
 <div class="booking">
-  <h4><span class="details">Booking Date: </span>{{booking.booking| date:'dd-MM-yy'}}</h4>
+  <h2>Booking Details</h2>
+  <h4><span class="details">Booking Date : </span>{{booking.booking| date:'dd-MM-yy'}}</h4>
 </div>
-<div class="departure-time">
-  <h4><span class="details">Departure Time : </span>{{booking.departure| time}}</h4>
+<div class="vehicle-no">
+    <h4><span class="details">Plate Number : </span>{{booking.vehicle.plateNumber}}</h4>
 </div>
 <div class="arrival-date">
   <h4><span class="details">Arrival Date : </span>{{booking.arrival| date:'dd-MM-yy'}}</h4>
@@ -19,11 +21,12 @@
   <h4><span class="details">AC : </span>{{booking.vehicle.ac}}</h4>
 </div>
 <div>
-  Passengers:
+  <h4><span class="details">Passengers :</span></h4>
   <div class="passengers" *ngFor="let passenger of booking.passengers; let i=index">
       <h4>{{i+1}}. {{passenger.name}}</h4>
   </div>
 </div>
 <div class="selection">
-  <h4><span class="details">Seats: </span>{{booking.selection}}</h4>
+  <h4><span class="details">Seats : </span>{{booking.selection}}</h4>
+</div>
 </div>
