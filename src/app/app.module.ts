@@ -44,6 +44,7 @@ import { CardComponent } from './user/user-booking/card/card.component';
 import { TermsConditionsComponent } from './main/terms-conditions/terms-conditions.component';
 import { PostOrderComponent } from './main/post-order/post-order.component';
 import { ReversePipe } from './pipes/reverse.pipe';
+import { UserBottomSheetComponent } from './user/user-booking/user-bottom-sheet/user-bottom-sheet.component';
 
 
 @NgModule({
@@ -78,10 +79,11 @@ import { ReversePipe } from './pipes/reverse.pipe';
     PostOrderComponent,
     CardComponent,
     TermsConditionsComponent,
-    ReversePipe
+    ReversePipe,
+    UserBottomSheetComponent
 
   ],
-  entryComponents: [DialogOverviewExampleDialog, DetailsComponent],
+  entryComponents: [DialogOverviewExampleDialog, DetailsComponent,UserBottomSheetComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

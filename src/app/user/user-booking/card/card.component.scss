@@ -36,10 +36,22 @@ h3
     vertical-align: bottom;
 }
 
-.details
-{
-    color: rgb(73, 70, 70);
+.label
+{   
+    color: rgb(49, 49, 49);
     font-weight: 400;
+}
+
+.details
+{   
+    color: rgb(253, 135, 0);
+    font-weight: 400;
+}
+
+.details:hover
+{   
+    color: rgb(253, 101, 0);
+    cursor: pointer;
 }
 
 .button

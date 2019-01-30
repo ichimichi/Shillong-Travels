@@ -15,18 +15,17 @@ export class UserBookingComponent implements OnInit {
   completed: Bookings[];
   cancelled: Bookings[];
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getBooking().subscribe(
-      res => { 
+      res => {
         this.myBookings = res.bookings;
-        // this.available.filter(value=> value).length>=
-        this.upcoming = this.myBookings.filter( booking => booking.status === "upcoming");
-        this.completed = this.myBookings.filter( booking => booking.status === "completed");
-        this.cancelled = this.myBookings.filter( booking => booking.status === "cancelled");
+        this.upcoming = this.myBookings.filter(booking => booking.status === "upcoming");
+        this.completed = this.myBookings.filter(booking => booking.status === "completed");
+        this.cancelled = this.myBookings.filter(booking => booking.status === "cancelled");
         this.loaded = true;
-        console.log(res); 
+        console.log(res);
       },
       err => { console.log(err) }
     );
@@ -35,6 +34,6 @@ export class UserBookingComponent implements OnInit {
   sortOptions = ["Time : Earliest", "Time : Last", "Price : Low to High", "Price : High to Low"];
   selectedSortOption = "Time : Earliest";
 
- }
+}
 
 
