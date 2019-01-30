@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-user-bottom-sheet',
   templateUrl: './user-bottom-sheet.component.html',
-  styleUrls: ['./user-bottom-sheet.component.css']
+  styleUrls: ['./user-bottom-sheet.component.scss']
 })
 export class UserBottomSheetComponent implements OnInit {
   

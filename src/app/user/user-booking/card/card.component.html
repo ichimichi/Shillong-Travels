@@ -7,27 +7,32 @@
         </div>
         <ol *ngFor="let booking of bookings  | reverse ;let i=index">
             <div *ngIf="(i<3) || show">
+
                 <mat-card class="mat-card">
+                    <mat-chip-list class="status">
+                        <mat-chip color="primary">{{booking.status}}</mat-chip>
+                    </mat-chip-list>
                     <div class="source-destination">
                         {{booking.origin|uppercase}}
                         <mat-icon class="right-arrow">keyboard_arrow_right</mat-icon>
                         {{booking.destination|uppercase}}
                     </div>
-                    <div class="id">
-                        <h4><span class="label">Id: </span>{{booking._id}}</h4>
-                    </div>
-                    <div class="travel-date">
-                        <h4><span class="label">Departure Date : </span>{{booking.departure| date:'dd-MM-yy'}}</h4>
+                    <div class="departure-time">
+                        <h3>Departure Time</h3>
+                        <h2>{{booking.departure | time}}</h2>
+                        <h3 style="display:inline">{{booking.departure| date:'dd-MM-yy'}}</h3>
                     </div>
                     <div class="agency">
-                        <h4><span class="label">Agency: </span>{{booking.agency}}</h4>
+                        <h3>{{booking.agency| uppercase}} / {{booking._id}}</h3>
                     </div>
-                    <div class="vehicle-no">
-                        <h4><span class="label">Plate number: </span>{{booking.vehicle.plateNumber}}</h4>
-                    </div>
-                    <a class="details" (click)="openBottomSheet(booking)">click for more details</a>
-                    <div class="cancel-button" *ngIf="booking.status === 'upcoming'">
-                        <button mat-raised-button color="warn" (click)="booking.status = 'cancelled'">Cancel</button>
+        
+                    <div class="flex-cont">
+                        <div class="details">
+                            <a (click)="openBottomSheet(booking)">click for more details</a>
+                        </div>
+                        <div class="cancel-btn">
+                            <button mat-raised-button color="warn" (click)="booking.status = 'cancelled'">Cancel</button>
+                        </div>
                     </div>
                 </mat-card>
             </div>
@@ -37,7 +42,6 @@
     <button mat-button (click)="showMore()" *ngIf="show" style="width:100%;">
         Show Less
     </button>
-
 
     <button mat-button (click)="showMore()" *ngIf="!show" style="width:100%;">
         Show More
