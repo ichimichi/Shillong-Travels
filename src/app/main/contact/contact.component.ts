@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from 'src/app/services/contact.service';
+import { AppState } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { email } from 'ngx-custom-validators/src/app/email/validator';
+import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 export interface subject {
   value: string;
@@ -26,7 +33,11 @@ export class ContactComponent implements OnInit {
   ];
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private contactService: ContactService, 
+              private store: Store<AppState>, 
+              private snackbar: MatSnackBar,
+              private router: Router) {
     this.messageForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       subject: ['', Validators.compose([Validators.required])],
@@ -37,19 +48,40 @@ export class ContactComponent implements OnInit {
 
 
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    if(this.messageForm.invalid) {
-      this.success = false;
-      return;
-    }
+    // if(this.messageForm.invalid) {
+    //   this.success = false;
+    //   return;
+    // }
 
-    this.success = true;
-    alert('Your message has been sent!');
-    location.href = '/home';
+    // this.success = true;
+
+    this.contactService.contact(this.email.value, this.message.value, this.subject.value).subscribe(
+        res => {
+          // console.log('success', res);
+          this.snackbar.open('Your message has been successfully sent ', '', { duration: 1000 });
+          this.router.navigate(['/home']);
+        },
+        err => {
+          this.snackbar.open('Unable to send image', '', { duration: 1000 });
+          // console.log('error', err);
+        }
+      );
   }
 
   ngOnInit() {
   }
 
+  get email(){
+    return this.messageForm.get('email');
+  }
+
+  get subject(){
+    return this.messageForm.get('subject');
+  }
+
+  get message(){
+    return this.messageForm.get('message');
+  }
 }
