@@ -3,30 +3,25 @@
   <h2>Booking Details</h2>
   <h4><span class="details">Booking Date : </span>{{booking.booking| date:'dd-MM-yy'}}</h4>
 </div>
-<div class="vehicle-no">
-    <h4><span class="details">Plate Number : </span>{{booking.vehicle.plateNumber}}</h4>
-</div>
-<div class="arrival-date">
+<div class="travel-details">
+    <h2>Travel Details</h2>
   <h4><span class="details">Arrival Date : </span>{{booking.arrival| date:'dd-MM-yy'}}</h4>
 </div>
-<div class="type">
-  <h4><span class="details">Type : </span>{{booking.type}}</h4>
-</div>
-<div class="price">
-  <h4><span class="details">Price : </span>{{booking.price|currency: 'INR'}}</h4>
-</div>
-<div class="vehicle">
-  <h4><span class="details">Model : </span>{{booking.vehicle.model}}</h4>
+<div class="vehicle-details">
+    <h2>Vehicle Details</h2>
+    <h4><span class="details">Type : </span>{{booking.type}}</h4>
+    <h4><span class="details">Model : </span>{{booking.vehicle.model}}</h4>
   <h4><span class="details">Plate Number : </span>{{booking.vehicle.plateNumber}}</h4>
   <h4><span class="details">AC : </span>{{booking.vehicle.ac}}</h4>
+  <h4><span class="details">Seats : </span>{{booking.selection}}</h4>
 </div>
-<div>
-  <h4><span class="details">Passengers :</span></h4>
+<div class="passenger-details">
+  <h2>Passenger Details</h2>
   <div class="passengers" *ngFor="let passenger of booking.passengers; let i=index">
       <h4>{{i+1}}. {{passenger.name}}</h4>
   </div>
 </div>
-<div class="selection">
-  <h4><span class="details">Seats : </span>{{booking.selection}}</h4>
-</div>
+<div class="price">
+    <h2><span class="details">Price : </span>{{booking.price|currency: 'INR'}}</h2>
+  </div>
 </div>
