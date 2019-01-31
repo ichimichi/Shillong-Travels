@@ -7,10 +7,12 @@
         </div>
         <ol *ngFor="let booking of bookings  | reverse ;let i=index">
             <div *ngIf="(i<3) || show">
-
+                <!-- {{i}} -->
                 <mat-card class="mat-card">
                     <mat-chip-list class="status">
-                        <mat-chip color="primary">{{booking.status}}</mat-chip>
+                        <mat-chip *ngIf="booking.status=='completed'" style="background:#3F51B5" selected>{{booking.status}}</mat-chip>
+                        <mat-chip *ngIf="booking.status=='upcoming'" style="background:rgb(58, 84, 230)" selected>{{booking.status}}</mat-chip>
+                        <mat-chip *ngIf="booking.status=='cancelled'" style="background:#888" selected>{{booking.status}}</mat-chip>
                     </mat-chip-list>
                     <div class="source-destination">
                         {{booking.origin|uppercase}}
@@ -25,13 +27,13 @@
                     <div class="agency">
                         <h3>{{booking.agency| uppercase}} / {{booking._id}}</h3>
                     </div>
-        
+
                     <div class="flex-cont">
                         <div class="details">
                             <a (click)="openBottomSheet(booking)">click for more details</a>
                         </div>
                         <div class="cancel-btn">
-                            <button mat-raised-button color="warn" (click)="booking.status = 'cancelled'">Cancel</button>
+                            <button mat-raised-button color="warn" (click)="cancel(booking,i)" *ngIf="booking.status=='upcoming'">Cancel</button>
                         </div>
                     </div>
                 </mat-card>

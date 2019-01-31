@@ -1,12 +1,13 @@
 
   .main-img
   {
-      background:url(https://images.pexels.com/photos/957615/pexels-photo-957615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-      background-attachment: fixed;
+      background:#fff url(https://images.pexels.com/photos/957615/pexels-photo-957615.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    //   background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       width: inherit;
+      height: auto;
   }
   
   .flex-1

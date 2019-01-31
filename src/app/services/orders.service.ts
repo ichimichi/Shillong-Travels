@@ -16,6 +16,8 @@ export class OrdersService {
 
   bookSeatUrl = "/api/seat";
 
+  unSeatUrl="/api/unseat";
+
   constructor(private _http: HttpClient) { }
 
   getBookings(query: Query) {
@@ -32,5 +34,9 @@ export class OrdersService {
 
   bookSeat(order_id: string, selection: number[]) {
     return this._http.put<any>(this.bookSeatUrl, { id: order_id, selection: selection });
+  }
+
+  unBookSeat(order_id: string, selection: number[]) {
+    return this._http.put<any>(this.unSeatUrl, { id: order_id, selection: selection });
   }
 }

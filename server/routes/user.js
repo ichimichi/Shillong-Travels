@@ -82,33 +82,52 @@ router.put('/password', verifyToken, (req, res) => {
         }
     });
 
-
 });
 
+router.put('/cancel',verifyToken, (req, res) => {
+    let token = req.headers.authorization.split(' ')[1];
+    id = jwt.decode(token).subject;
+    User.findOneAndUpdate(
+        { 
+            _id: id
+        },{
+            $set: { [`bookings.${req.body.index}.status`]: 'cancelled' },
+        },
+        (err, user) => {
+            if (err) {
+                res.status(501).send({cancel:false});
+            }
+            else {
+                // console.log(user);
+                res.status(200).send({cancel:true});
+            }
+        })
+})
+
 router.post('/bookings', verifyToken, (req, res) => {
-    console.log("booking",req.body.selection)
+    console.log("booking", req.body.selection)
     let token = req.headers.authorization.split(' ')[1];
     id = jwt.decode(token).subject;
 
-    if(req.body.selection.length > 0){
+    if (req.body.selection.length > 0) {
         User.findOneAndUpdate({ _id: id }, { $push: { bookings: req.body } }, (err, user) => {
             if (err) {
                 res.status(501).send(err);
             }
             else {
                 // console.log(user.bookings.slice(-1).pop());
-                
-                User.findOne({ _id: id }, (err,user)=>{
-                    if(err){
+
+                User.findOne({ _id: id }, (err, user) => {
+                    if (err) {
                         res.status(501).send(err);
-                    }else{
+                    } else {
                         // console.log(user.bookings.slice(-1).pop());
                         res.status(200).send(user.bookings.slice(-1).pop());
                     }
                 })
             }
         })
-    }else{
+    } else {
         res.status(501).send("Invalid Request");
     }
 });

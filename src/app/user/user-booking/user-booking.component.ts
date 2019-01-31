@@ -21,9 +21,9 @@ export class UserBookingComponent implements OnInit {
     this.userService.getBooking().subscribe(
       res => {
         this.myBookings = res.bookings;
-        this.upcoming = this.myBookings.filter(booking => booking.status === "upcoming");
-        this.completed = this.myBookings.filter(booking => booking.status === "completed");
-        this.cancelled = this.myBookings.filter(booking => booking.status === "cancelled");
+        this.upcoming = this.myBookings.filter(booking => booking.status === "upcoming" || booking.status === "cancelled" );
+        // this.completed = this.myBookings.filter(booking => booking.status === "completed");
+        // this.cancelled = this.myBookings.filter(booking => booking.status === "cancelled");
         this.loaded = true;
         console.log(res);
       },

@@ -49,7 +49,7 @@ router.put('/seat', (req, res) => {
                     console.log(err);
                 } else {
                     // console.log(order);
-                    console.log("-----seat no. : ", seat);
+                    // console.log("-----seat no. : ", seat);
                     // res.status(200).send({booked:true});
                 }
             }
@@ -57,8 +57,31 @@ router.put('/seat', (req, res) => {
         );
     }
     res.status(200).send({ booked: true });
+})
 
+router.put('/unseat', (req, res) => {
+    let order_id = req.body.id;
+    let selection = req.body.selection;
 
+    // console.log(selection)
+    for (let seat of selection) {
+        Order.findOneAndUpdate({ _id: order_id },
+            {
+                $set: { [`available.${seat}`]: true },
+            },
+            (err, order) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // console.log(order);
+                    // console.log("-----seat no. : ", seat);
+                    // res.status(200).send({booked:true});
+                }
+            }
+
+        );
+    }
+    res.status(200).send({ removed: true });
 })
 
 module.exports = router;

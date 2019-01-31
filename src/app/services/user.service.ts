@@ -13,7 +13,7 @@ export class UserService {
   updateProfileUrl= '/user/edit'
   updatePasswordUrl= '/user/password'
   getBookingURL = '/user/bookings'
-
+cancelBookingUrl='/user/cancel'
   postBookingURL = '/user/bookings'
   
   constructor(private _http: HttpClient) { }
@@ -38,6 +38,10 @@ export class UserService {
     return this._http.post<any>(this.getBookingURL, booking);
   }
 
+  cancelBooking(index: number)
+  {
+    return this._http.put<any>(this.cancelBookingUrl,{index:index})
+  }
 }
 
 interface Password {
