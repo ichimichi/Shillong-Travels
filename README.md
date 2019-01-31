@@ -35,10 +35,11 @@ The web app uses the following technologies:
 * Node.js
 * Heroku Cli
 
-Run the following commands to build the project
+Run the following commands to install all dependencies
 ```
 npm install
 ```
+Run the following commands to build the project
 ```
 ng build --aot --prod
 ```
