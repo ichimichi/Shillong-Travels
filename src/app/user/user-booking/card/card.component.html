@@ -33,7 +33,7 @@
                             <a (click)="openBottomSheet(booking)">click for more details</a>
                         </div>
                         <div class="cancel-btn">
-                            <button mat-raised-button color="warn" (click)="cancel(booking,i)" *ngIf="booking.status=='upcoming'">Cancel</button>
+                            <button mat-raised-button color="warn" (click)="cancel(booking,i)" [disabled]="booking.status!='upcoming'">Cancel</button>
                         </div>
                     </div>
                 </mat-card>
