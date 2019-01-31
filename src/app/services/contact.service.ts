@@ -14,4 +14,8 @@ export class ContactService {
   contact(emailAddress: string, message: string, issue:string ){
     return this._http.post<any>(this.url, { emailAddress: emailAddress, message: message, issue: issue });
   }
+
+  // getEmail(){
+  //   return this._http.get<any>(this.url);
+  // }
 }

@@ -1,10 +1,11 @@
 <div class="rounded-box drop-shadow">
   <div class="content align-left">
-    <h1><i>CONTACT US</i></h1>
+    <h1>CONTACT US</h1>
 
     <div class="inputs">
       <form [formGroup]="messageForm" class="form-group">
         <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Enter E-mail ID</mat-label>
           <input matInput placeholder="Email" formControlName="email">
           <mat-error *ngIf="messageForm.controls.email.invalid && !messageForm.controls.email.hasError('required')">
             Please enter a valid email address
@@ -20,10 +21,11 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="messageForm.controls.subject.hasError('required')">
-           Required
+            Required
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Enter your message</mat-label>
           <textarea matInput placeholder="Leave a message" formControlName="message"></textarea>
           <mat-error *ngIf="messageForm.controls.message.hasError('required')">
             Message required

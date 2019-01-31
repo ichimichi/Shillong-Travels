@@ -8,6 +8,8 @@ import { email } from 'ngx-custom-validators/src/app/email/validator';
 import { Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { AuthStatusService } from 'src/app/services/auth-status.service';
+import { UserService } from 'src/app/services/user.service';
 
 export interface subject {
   value: string;
@@ -22,14 +24,18 @@ export interface subject {
 })
 export class ContactComponent implements OnInit {
 
+  getEmail: string;
   messageForm: FormGroup;
   submitted = false;
-  success = false;
+  success = false;              
 
   subjects: subject[] = [
-    {value: 'Delete My Account-0', viewValue: 'Delete My Account'},
-    {value: 'Cannot Access my account-1', viewValue: 'Cannot Access my account'},
-    {value: 'Others-2', viewValue: 'Others'}
+    {value: 'Account', viewValue: 'Account'},
+    {value: 'Booking', viewValue: 'Booking'},
+    {value: 'Payment', viewValue: 'Payment'},
+    {value: 'Refund', viewValue: 'Refund'},
+    {value: 'Others', viewValue: 'Others'}
+
   ];
 
 
@@ -37,25 +43,15 @@ export class ContactComponent implements OnInit {
               private contactService: ContactService, 
               private store: Store<AppState>, 
               private snackbar: MatSnackBar,
-              private router: Router) {
-    this.messageForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      subject: ['', Validators.compose([Validators.required])],
-      message: ['', Validators.compose([Validators.required])]
-    });
+              private router: Router,
+              private authService: AuthStatusService,
+              private userService: UserService) {
+    
 
   }
 
 
   onSubmit() {
-    // this.submitted = true;
-
-    // if(this.messageForm.invalid) {
-    //   this.success = false;
-    //   return;
-    // }
-
-    // this.success = true;
 
     this.contactService.contact(this.email.value, this.message.value, this.subject.value).subscribe(
         res => {
@@ -71,6 +67,22 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn()){
+      this.userService.getProfile().subscribe(
+        res => { 
+          this.getEmail = res.email;
+          this.messageForm.patchValue({email: this.getEmail})
+        },
+        // res=>{res.json();this.getEmail = res.email;},
+        err => { console.log(err) }
+      );
+    }
+
+    this.messageForm = this.formBuilder.group({
+      email: [ '', Validators.compose([Validators.required, Validators.email])],
+      subject: ['', Validators.compose([Validators.required])],
+      message: ['', Validators.compose([Validators.required])]
+    });
   }
 
   get email(){
@@ -85,3 +97,4 @@ export class ContactComponent implements OnInit {
     return this.messageForm.get('message');
   }
 }
+
