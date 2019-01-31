@@ -28,6 +28,7 @@ The web app uses the following technologies:
 * [mLab Database Service](https://mlab.com/)
 * [Heroku](https://www.heroku.com/) for deployment
 * [DataFire Integration](https://app.datafire.io/)
+* Icon made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
 
 ## How to Build
 
