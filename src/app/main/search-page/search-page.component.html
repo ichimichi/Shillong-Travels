@@ -50,7 +50,7 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter departure date</mat-label>
         <input matInput [class.is-invalid]="dept_date.invalid && dept_date.touched" formControlName="departure"
-          [matDatepicker]="picker" class="form-control">
+          [matDatepicker]="picker" class="form-control" readonly>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="dept_date.invalid && dept_date.touched">
@@ -60,7 +60,7 @@
       <mat-form-field appearance="outline" class="form-group">
         <mat-label>Enter return date</mat-label>
         <input matInput [class.is-invalid]="return.invalid && return.touched" formControlName="return"
-          [matDatepicker]="pickerone" selected class="form-control">
+          [matDatepicker]="pickerone" selected class="form-control" readonly>
         <mat-datepicker-toggle matSuffix [for]="pickerone"></mat-datepicker-toggle>
         <mat-datepicker #pickerone></mat-datepicker>
       </mat-form-field>

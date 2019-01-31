@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatChipsModule, MatSelectModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatRadioModule, MatCardModule, MatSnackBarModule, MatRippleModule, MatBottomSheetModule, MatProgressSpinnerModule, MAT_DATE_LOCALE } from '@angular/material';
 import { TopNavigationComponent } from './nav/top-navigation/top-navigation.component';
 import { BottomNavigationComponent } from './nav/bottom-navigation/bottom-navigation.component';
 import { HomePageComponent, DialogOverviewExampleDialog } from './main/home-page/home-page.component';
@@ -122,7 +122,8 @@ import { UserBottomSheetComponent } from './user/user-booking/user-bottom-sheet/
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }],
+    },
+    {provide: MAT_DATE_LOCALE, useValue: 'en-IN'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
