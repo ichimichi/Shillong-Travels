@@ -8,7 +8,7 @@ import { SearchPageComponent } from './main/search-page/search-page.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
 import { ContactComponent } from './main/contact/contact.component';
 import { MyProfileComponent } from './main/my-profile/my-profile.component';
-import { OfferPageComponent } from './offer/offer-page.component';
+import { OfferPageComponent } from './main/offer/offer-page.component';
 import { PaymentsPageComponent } from './payment/payments-page/payments-page.component';
 import { AccountLoginComponent } from './main/auth/account-login/account-login.component';
 import { AuthGuard } from './guard/auth.guard';
