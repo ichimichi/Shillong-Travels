@@ -7,6 +7,7 @@
 
 ## Notable features
 
+* Desktop and Moblile Friendly
 * Making seat reservations
 * Post cab services
 * Online Payment using PayPal
