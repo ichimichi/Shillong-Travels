@@ -1,6 +1,6 @@
  #  <img src="https://raw.githubusercontent.com/ichimichi/Shillong-Travels/master/src/favicon.ico" alt="phone view" width="29" height="29"> Shillong Travels  
  
- [![view](https://raw.githubusercontent.com/ichimichi/Shillong-Travels/master/src/assets/images/preview.jpg)]
+ ![view](https://raw.githubusercontent.com/ichimichi/Shillong-Travels/master/src/assets/images/preview.jpg)
  
  
 [Shillong Travels](https://shillongtravels.herokuapp.com) is a website where where we make booking vehicles easy with a feature to select seats to reserve for effortless booking.
@@ -20,7 +20,7 @@
 The web app uses the following technologies:
 * [MongoDB](https://www.mongodb.com/)
 * [ExpressJS ](http://expressjs.com/)
-* [AngularJS](https://angularjs.org/)
+* [Angular](https://angular.io/)
 * [Node.js](https://nodejs.org/en/)
 * PayPal Checkout Integration ([ngx-paypal](https://www.npmjs.com/package/ngx-paypal))
 * [Mongoose library](https://mongoosejs.com/)
