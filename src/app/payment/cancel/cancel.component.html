@@ -1,15 +1,22 @@
 <div class="rounded-box drop-shadow">
     <div class="content align-left">
       <div class="inputs">
+
+        <ng-template #load>
+          <div class="loading">
+            <mat-spinner color="accent"></mat-spinner>
+          </div>        
+        </ng-template>
   
         <!-- div for displaying canceled booking -->
-        <div *ngIf="canceled">
+        <div *ngIf="profile$ | async as myprofile else load">
             
             <i class="material-icons icon_align" style="font-size:150px;color:red;">highlight_off</i>
             
             <h3>Oops!! Something went wrong.</h3>
+            
             <h2>BOOKING CANCELED</h2>
-            <p>{{info.title}} {{info.name.firstName}} {{info.name.lastName}},<br>
+            <p>{{title}} {{myprofile.firstName}},<br>
             Your booking has been canceled.</p>
     
             <p>We are sorry for the inconvenience.</p><br>

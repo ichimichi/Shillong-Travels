@@ -69,6 +69,8 @@ export class MyProfileComponent implements OnInit {
         if (res.update) {
           this.myprofile.email = this.EmailForm.get('email').value;
           this.sb.open('Email Successfully Updated','',{duration:1000});
+        } else {
+          this.sb.open('ERROR! Email cannot be Updated','',{duration:1000});
         }
       })
       this.email.markAsUntouched(); 
@@ -88,6 +90,8 @@ export class MyProfileComponent implements OnInit {
       if (res.update) {
         this.myprofile.phone = this.PhoneForm.get('phoneNo').value;
         this.sb.open('Phone Number Successfully Updated','',{duration:1000});
+      } else {
+        this.sb.open('ERROR! Phone Number cannot be Updated','',{duration:1000});
       }
     })
 
@@ -115,7 +119,7 @@ export class MyProfileComponent implements OnInit {
        }
      }, 
      err => {
-       console.log(err)
+        this.sb.open('ERROR! Password cannot be Updated','',{duration:1000});
      });
      this.opassword.markAsUntouched(); 
      this.opassword.markAsPristine();

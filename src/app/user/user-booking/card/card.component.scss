@@ -5,7 +5,10 @@
 }
 
 h2{
-margin: 10px 0px 0px 0px;
+font-weight: 900;
+    color: #333;
+font-size: 1.5rem;
+margin: 0;
 }
 
 .icon
@@ -21,8 +24,9 @@ margin: 10px 0px 0px 0px;
 
 h3
 {
-    font-size: 1rem;
-    color: rgb(148, 144, 144);
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
 }
 
 .source-destination{
@@ -36,10 +40,22 @@ h3
     vertical-align: bottom;
 }
 
+.label
+{   
+    color: rgb(107, 103, 103);
+    font-weight: 600;
+}
+
 .details
-{
-    color: rgb(73, 70, 70);
+{   
+    color: rgb(253, 135, 0);
     font-weight: 400;
+}
+
+.details:hover
+{   
+    color: rgb(253, 101, 0);
+    cursor: pointer;
 }
 
 .button
@@ -51,7 +67,8 @@ h3
 h4
 {
     color: black;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
     margin: 7px 0px 7px 0px;
 }
 
@@ -87,6 +104,27 @@ ol
     margin-left:1rem;
 }
 
+.mat-card a{
+    text-decoration: none;
+    font-weight: 900;
+    color: #3F51B5;
+}
+
+.mat-card a:hover{
+    color: #FB5A1D;
+}
+
+.flex-cont
+{
+display: flex;
+justify-content: space-between;
+margin-top: 10px;
+}
+
+.status
+{
+    margin-left: 2rem;
+}
 
 @media only screen and (min-width: 768px) {
 .container-one
@@ -95,7 +133,7 @@ display: flex;
 flex-wrap: wrap;
 }
 .container-one > ol{
-    margin: 15px 15px 15px 0px;
+    margin: 0px 15px 15px 0px;
 }
 
 .mat-card
