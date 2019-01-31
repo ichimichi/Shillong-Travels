@@ -37,7 +37,7 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Enter your Date of Birth</mat-label>
-          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Enter your Date of Birth">
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Enter your Date of Birth" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="date.invalid && date.touched">
